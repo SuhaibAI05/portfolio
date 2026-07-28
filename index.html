@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suhaib.dev</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+ 
+<nav class="navbar">
+
+    <div class="logo">
+        <b>S</b>uhaib<b>.</b>dev
+    </div>
+
+    <button id="menuBtn" class="menu-btn">
+
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+
+    </button>
+
+</nav>
+
+<!-- OVERLAY -->
+
+<div id="overlay" onclick="closeMenu()"></div>
+
+<!-- SIDE MENU -->
+
+<aside id="sideMenu">
+
+      <button id="closeBtn" class="close-btn">
+        ✕
+      </button>
+    <ul class="menu-links">
+
+        <li><a href="#about">ABOUT <span>00</span></a></li>
+
+        <li><a href="#skills">SKILLS <span>01</span></a></li>
+
+        <li><a href="#courses">COURSES <span>02</span></a></li>
+
+        <li><a href="#Resources">RESOURCES <span>03</span></a></li>
+
+        <li><a href="#profiles">PROFILES <span>04</span></a></li>
+
+        <li><a href="#quiz">QUIZ <span>05</span></a></li>
+
+    </ul>
+
+    <div class="status">
+
+        <p>SYSTEM STATUS</p>
+
+        <div class="online">
+            <span class="dot"></span>
+            <span>ONLINE</span>
+        </div>
+    </div>
+</aside>
+
+<!-- HERO -->
+<div class="wrap">
+  <div class="hero" id="about">
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div class="hero-tag">Available for projects</div>
+      <h1 class="hero-name">
+        <span class="line">Hello,</span>
+        <span class="line">I'm <span class="grad">Suhaib</span></span>
+      </h1>
+      <p class="hero-role">// Web Developer &amp; AI Student</p>
+      <p class="hero-desc">Passionate about <strong style="color:var(--text)">HTML5, CSS3 &amp; JavaScript</strong>. Studying Data Science &amp; AI at Philadelphia University, Jordan.</p>
+      <div class="cta">
+        <a href="#skills" class="btn btn-p">View Skills →</a>
+        <a href="#quiz" class="btn btn-g">Take Quiz</a>
+      </div>
+    </div>
+    <!-- RIGHT: hard fixed size — NEVER participates in layout reflow -->
+    <div style="width:310px;height:430px;position:relative;flex-shrink:0;">
+      <div class="flip-wrap" id="flipWrap">
+        <div class="flip-card" id="flipCard">
+          <!-- FRONT -->
+          <div class="card-face card-front">
+            <div class="avatar-ring"><div class="avatar-inner">🧑‍💻</div></div>
+            <div class="card-name">Suhaib</div>
+            <div class="card-sub">Web Developer</div>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">HTML5</span>
+              <span class="chip">CSS3</span>
+              <span class="chip">JS</span>
+              <span class="chip">ML</span>
+            </div>
+            <p class="flip-hint">↻ Click to flip</p>
+          </div>
+          <!-- BACK -->
+          <div class="card-face card-back">
+            <div class="back-name">Suhaib Al-Rawashdeh</div>
+            <div class="info-row">
+              <span class="info-ico">🎓</span>
+              <div><div class="info-lbl">Education</div><div class="info-val">Philadelphia University<br>Data Science &amp; AI</div></div>
+            </div>
+            <div class="info-row">
+              <span class="info-ico">💻</span>
+              <div><div class="info-lbl">Skills</div><div class="info-val">Python · HTML5 · CSS3 · JS<br>ML · Data Analysis</div></div>
+            </div>
+            <div class="info-row">
+              <span class="info-ico">🎯</span>
+              <div><div class="info-lbl">Goals</div><div class="info-val">Full-Stack Developer<br>AI Solutions Engineer</div></div>
+            </div>
+            <div class="back-contact">
+              <p> Jordan</p>
+              <p>shybalrwashdh740@gmail.com</p>
+              <p>+962777329689</p>
+              <hr>
+              <p>Whatsapp :</p> 
+              <p> +962778871983</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span>★</span>HTML5</span>
+    <span class="ticker-item"><span>★</span>CSS3</span>
+    <span class="ticker-item"><span>★</span>JavaScript</span>
+    <span class="ticker-item"><span>★</span>Python</span>
+    <span class="ticker-item"><span>★</span>Machine Learning</span>
+    <span class="ticker-item"><span>★</span>Data Analysis</span>
+    <span class="ticker-item"><span>★</span>Responsive Design</span>
+    <span class="ticker-item"><span>★</span>Data Science</span>
+    <span class="ticker-item"><span>★</span>HTML5</span>
+    <span class="ticker-item"><span>★</span>CSS3</span>
+    <span class="ticker-item"><span>★</span>JavaScript</span>
+    <span class="ticker-item"><span>★</span>Python</span>
+    <span class="ticker-item"><span>★</span>Machine Learning</span>
+    <span class="ticker-item"><span>★</span>Data Analysis</span>
+    <span class="ticker-item"><span>★</span>Responsive Design</span>
+    <span class="ticker-item"><span>★</span>Data Science</span>
+  </div>
+</div>
+ 
+<div class="wrap">
+ 
+  <!-- STATS -->
+  <div class="stats-bar reveal">
+    <div class="stat-item"><span class="stat-num" id="statDays">0</span><span class="stat-lbl">Days Learning</span></div>
+    <div class="stat-item"><span class="stat-num" id="statProjects">6</span><span class="stat-lbl">Projects Done</span></div>
+    <div class="stat-item"><span class="stat-num" id="statHours">500+</span><span class="stat-lbl">Coding Hours</span></div>
+    <div class="stat-item"><span class="stat-num" id="statSkills">7</span><span class="stat-lbl">Skills Gained</span></div>
+  </div>
+ 
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <div class="sec-hdr"><span class="sec-num">01</span><h2 class="sec-title">Skills</h2><div class="sec-line"></div></div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="sk-ico"></span><div class="sk-name">HTML5</div><div class="bar-wrap"><div class="bar-fill" data-w="85"></div></div><div class="sk-pct">Advanced · 85%</div></div>
+      <div class="skill-card"><span class="sk-ico"></span><div class="sk-name">CSS3</div><div class="bar-wrap"><div class="bar-fill" data-w="78"></div></div><div class="sk-pct">Intermediate · 78%</div></div>
+      <div class="skill-card"><span class="sk-ico"></span><div class="sk-name">JavaScript</div><div class="bar-wrap"><div class="bar-fill" data-w="65"></div></div><div class="sk-pct">Intermediate · 65%</div></div>
+      <div class="skill-card"><span class="sk-ico"></span><div class="sk-name">Python</div><div class="bar-wrap"><div class="bar-fill" data-w="72"></div></div><div class="sk-pct">Intermediate · 72%</div></div>
+      <div class="skill-card"><span class="sk-ico"></span><div class="sk-name">Machine Learning</div><div class="bar-wrap"><div class="bar-fill" data-w="55"></div></div><div class="sk-pct">Beginner · 55%</div></div>
+      <div class="skill-card"><span class="sk-ico"></span><div class="sk-name">Data Analysis</div><div class="bar-wrap"><div class="bar-fill" data-w="68"></div></div><div class="sk-pct">Intermediate · 68%</div></div>
+      <div class="skill-card"><span class="sk-ico"></span><div class="sk-name">Responsive Design</div><div class="bar-wrap"><div class="bar-fill" data-w="75"></div></div><div class="sk-pct">Intermediate · 75%</div></div>
+
+    </div>
+  </section>
+ 
+  <!-- LANGUAGES TABLE -->
+  <section id="languages" class="reveal">
+    <div class="sec-hdr"><span class="sec-num">02</span><h2 class="sec-title">Programming Languages</h2><div class="sec-line"></div></div>
+    <div class="tbl-controls">
+      <button class="tbl-btn" id="toggleTblBtn"> Toggle Table</button>
+      <button class="tbl-btn" id="sortYrBtn"> Sort by Year</button>
+      <button class="tbl-btn" id="addRowBtn"> Add Language</button>
+    </div>
+    <div class="tbl-wrap" id="tblWrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-col="0">Language ↕</th>
+            <th data-col="1">Creator ↕</th>
+            <th data-col="2">Year ↕</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tblBody">
+          <tr><td>Python</td><td>Guido van Rossum</td><td><span class="yr-pill">1991</span></td><td><button class="act-btn edit">✏ Edit</button><button class="act-btn del">🗑 Del</button></td></tr>
+          <tr><td>Java</td><td>James Gosling</td><td><span class="yr-pill">1995</span></td><td><button class="act-btn edit">✏ Edit</button><button class="act-btn del">🗑 Del</button></td></tr>
+          <tr><td>JavaScript</td><td>Brendan Eich</td><td><span class="yr-pill">1995</span></td><td><button class="act-btn edit">✏ Edit</button><button class="act-btn del">🗑 Del</button></td></tr>
+          <tr><td>C++</td><td>Bjarne Stroustrup</td><td><span class="yr-pill">1985</span></td><td><button class="act-btn edit">✏ Edit</button><button class="act-btn del">🗑 Del</button></td></tr>
+          <tr><td>C#</td><td>Anders Hejlsberg</td><td><span class="yr-pill">2000</span></td><td><button class="act-btn edit">✏ Edit</button><button class="act-btn del">🗑 Del</button></td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="4"><div class="tbl-foot" id="tblFoot"><span><strong>5</strong> languages</span><span> Range: <strong>1985–2000</strong></span><span> <strong>5</strong> creators</span></div></td></tr></tfoot>
+      </table>
+    </div>
+    <div class="add-panel" id="addPanel">
+      <h4> Add Language</h4>
+      <div class="panel-row">
+        <input class="p-inp" id="nName" placeholder="Language name" type="text">
+        <input class="p-inp" id="nCreator" placeholder="Creator" type="text">
+        <input class="p-inp" id="nYear" placeholder="Year" type="number" style="min-width:100px">
+        <button class="btn btn-p" id="saveLangBtn" style="height:40px;padding:0 16px">Save</button>
+        <button class="btn btn-g" id="cancelAddBtn" style="height:40px;padding:0 14px">Cancel</button>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- COURSES -->
+  <section id="courses" class="reveal">
+    <div class="sec-hdr"><span class="sec-num">03</span><h2 class="sec-title">Courses</h2><div class="sec-line"></div></div>
+    <div class="course-list">
+      <a href="https://www.w3schools.com/html/" target="_blank" class="course-item"><span class="c-num">01</span><div class="c-info"><div class="c-name">HTML Tutorial</div><div class="c-sub">Structure &amp; Semantics · W3Schools</div></div><span class="c-arr">→</span></a>
+      <a href="https://www.w3schools.com/css/" target="_blank" class="course-item"><span class="c-num">02</span><div class="c-info"><div class="c-name">CSS Tutorial</div><div class="c-sub">Styling &amp; Animations · W3Schools</div></div><span class="c-arr">→</span></a>
+      <a href="https://www.w3schools.com/Js/" target="_blank" class="course-item"><span class="c-num">03</span><div class="c-info"><div class="c-name">JavaScript Tutorial</div><div class="c-sub">Logic &amp; Interactivity · W3Schools</div></div><span class="c-arr">→</span></a>
+    </div>
+    <button class="btn btn-g" id="detailBtn" style="margin-top:16px">Show Course Details</button>
+    <div class="detail-panel" id="detailPanel">
+      <h4> Introduction to Web Programming</h4>
+      <div class="d-grid">
+        <div class="d-cell"><div class="d-lbl">Instructor</div><div class="d-val">Suhaib</div></div>
+        <div class="d-cell"><div class="d-lbl">Duration</div><div class="d-val">12 Weeks</div></div>
+        <div class="d-cell"><div class="d-lbl">Level</div><div class="d-val">Beginner → Intermediate</div></div>
+        <div class="d-cell"><div class="d-lbl">Status</div><div class="d-val" style="color:var(--accent2)"> In Progress</div></div>
+      </div>
+      <div class="d-lbl" style="margin-top:4px">Topics Covered</div>
+      <div class="topic-tags">
+        <span class="t-tag">HTML5 , CSS3</span><span class="t-tag">JavaScript</span>
+        <span class="t-tag">Responsive Design</span>
+        <span class="t-tag">Animations</span><span class="t-tag">Python</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILES -->
+<section id="profiles" class="reveal">
+  <div class="sec-hdr">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Profiles</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="profiles-grid">
+
+    <!-- LinkedIn -->
+    <a class="profile-card" href="https://www.linkedin.com/in/sohaib-rawashdeh-5496a02b8/" target="_blank">
+      <div class="profile-card-top linkedin-bg">
+        <svg class="profile-logo" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        <div class="profile-badge">LinkedIn</div>
+      </div>
+      <div class="profile-card-body">
+        <div class="profile-name">Suhaib Al-Rawashdeh</div>
+        <div class="profile-handle">Sohaib rawashdeh</div>
+        <p class="profile-desc">Connect with me professionally — education, skills, and career journey.</p>
+        <div class="profile-footer">
+          <span class="profile-tag">Professional</span>
+          <span class="profile-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- GitHub -->
+    <a class="profile-card" href="https://github.com/shybalrwashdh740-collab" target="_blank">
+      <div class="profile-card-top github-bg">
+        <svg class="profile-logo" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+        <div class="profile-badge">GitHub</div>
+      </div>
+      <div class="profile-card-body">
+        <div class="profile-name">Suhaib Al-Rawashdeh</div>
+        <div class="profile-handle">sohaib-rawashdeh</div>
+        <p class="profile-desc">Browse my repositories, projects, and open source contributions.</p>
+        <div class="profile-footer">
+          <span class="profile-tag">Code</span>
+          <span class="profile-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+ 
+  <!-- RESOURCES -->
+  <section id="Resources" class="reveal">
+    <div class="sec-hdr"><span class="sec-num">04</span><h2 class="sec-title">Resources</h2><div class="sec-line"></div></div>
+    <div class="res-grid">
+      <a class="res-card" href="https://www.alhussein.jo/en/the-hashemites/history-hashemites" target="_blank">
+        <span class="res-icon"></span><div class="res-title">Royal Heritage</div>
+        <div class="res-desc">Explore the rich history of Jordan's Hashemite Kings.</div>
+        <span class="res-tag">History</span>
+      </a>
+      <div class="res-card" id="projCard">
+        <span class="res-icon"></span><div class="res-title">My Projects</div>
+        <div class="res-desc">A collection of web projects built throughout my learning journey.</div>
+        <span class="res-tag">Portfolio</span>
+        <span class="res-badge">CLICK →</span>
+      </div>
+      <a class="res-card" href="https://www.w3schools.com" target="_blank">
+        <span class="res-icon"></span><div class="res-title">W3Schools</div>
+        <div class="res-desc">The go-to reference for web development tutorials.</div>
+        <span class="res-tag">Reference</span>
+      </a>
+    </div>
+  </section>
+ 
+  <!-- QUIZ -->
+  <section id="quiz" class="reveal">
+    <div class="sec-hdr"><span class="sec-num">05</span><h2 class="sec-title">Knowledge Quiz</h2><div class="sec-line"></div></div>
+    <div class="quiz-box">
+      <div class="quiz-hdr">
+        <h3>Programming Test</h3>
+        <span class="q-ctr" id="qCtr">Question 1 of 10</span>
+      </div>
+      <div class="q-prog-bar"><div class="q-prog" id="qProg" style="width:10%"></div></div>
+      <div id="qSection">
+        <div class="q-body" id="qArea"></div>
+        <div class="q-footer">
+          <button class="btn btn-g" id="prevBtn" style="display:none">← Prev</button>
+          <span></span>
+          <div>
+            <button class="btn btn-p" id="nextBtn">Next →</button>
+            <button class="btn btn-p" id="subBtn" style="display:none">Submit ✓</button>
+          </div>
+        </div>
+      </div>
+      <div class="q-result" id="qResult">
+        <div class="score-ring" id="scoreRing"><span class="score-val" id="scoreVal">0%</span></div>
+        <p style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:6px" id="rMsg"></p>
+        <p style="color:var(--muted);font-size:.86rem" id="rSub"></p>
+        <button class="btn btn-p" id="restartBtn" style="margin-top:20px">Try Again</button>
+      </div>
+    </div>
+    <div class="q-stats-row" style="margin-top:16px">
+      <div class="qs-block"><span class="qs-val" id="qsAtt">0</span><span class="qs-lbl">Attempts</span></div>
+      <div class="qs-block"><span class="qs-val" id="qsAvg">0%</span><span class="qs-lbl">Average Score</span></div>
+      <div class="qs-block"><span class="qs-val" id="qsBest">0%</span><span class="qs-lbl">Best Score</span></div>
+    </div>
+  </section>
+ 
+</div><!-- end wrap -->
+ 
+<footer>
+  <p class="f-quote">"Every expert was once a beginner. This site documents the beginning of something great."</p>
+  <p class="f-credit">Built by <span>Suhaib</span> · HTML5 · CSS3 · JavaScript</p>
+</footer>
+ 
+<div class="toast" id="toast"></div>
+ 
+<!-- ══════════════ PROJECTS MODAL ══════════════ -->
+<div class="modal-ov" id="mProj">
+  <div class="modal-box" style="max-width:510px">
+    <div class="m-head">
+      <div><div class="m-tag">Portfolio</div><div class="m-title"> My Projects</div></div>
+      <button class="x-btn" id="xProj">✕</button>
+    </div>
+    <div class="proj-list">
+      <div class="proj-row pu" id="rowPs">
+        <span class="pr-ico"></span>
+        <div class="pr-info"><div class="pr-name">Personal Statement</div><div class="pr-sub">View my academic &amp; professional profile</div></div>
+        <span class="pr-arr" style="color:var(--accent)">→</span>
+      </div>
+      <div class="proj-row te" id="rowCalc">
+        <span class="pr-ico"></span>
+        <div class="pr-info"><div class="pr-name">Smart Calculator</div><div class="pr-sub">Scientific + unit converter + history log</div></div>
+        <span class="pr-arr" style="color:var(--accent2)">→</span>
+      </div>
+      <div class="proj-row te" id="rowTic">
+       <span class="pr-ico"></span>
+       <div class="pr-info">
+       <div class="pr-name">Tic Tac Toe</div>
+       <div class="pr-sub">2-player game with score tracker</div>
+      </div>
+      <span class="pr-arr" style="color:var(--accent2)">→</span>
+      </div>
+      <div class="proj-row go" id="rowPort">
+        <span class="pr-ico"></span>
+        <div class="pr-info"><div class="pr-name">Web Portfolio</div><div class="pr-sub">This very site — HTML5 · CSS3 · JavaScript</div></div>
+        <span class="pr-badge">Current</span>
+      </div>
+      
+    </div>
+    <div class="m-foot">ESC to close · 3 projects</div>
+  </div>
+</div>
+ 
+<!-- ══════════════ PERSONAL STATEMENT MODAL ══════════════ -->
+<div class="modal-ov ps-ov" id="mPs">
+  <div class="modal-box" style="max-width:650px;margin:auto">
+    <div class="m-head" style="background:linear-gradient(135deg,#1a0533,#0d1a33)">
+      <div><div class="m-tag" style="color:var(--gold)">Document</div><div class="m-title">Personal Statement</div></div>
+      <button class="x-btn" id="xPs">✕</button>
+    </div>
+    <div style="padding:24px">
+      <div class="ps-profile-row">
+        <div class="ps-av">S</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:3px">Suhaib</div>
+          <div style="color:var(--accent);font-family:'Space Mono',monospace;font-size:.72rem;margin-bottom:3px">Web &amp; AI Developer</div>
+          <div style="color:var(--accent2);font-size:.8rem"> Jordan · Philadelphia University</div>
+        </div>
+      </div>
+      
+      <div class="ps-grid">
+        <div class="ps-cell"><div class="ps-cell-lbl"> Education</div><ul><li>Philadelphia University</li><li>Data Science &amp; AI</li></ul></div>
+        <div class="ps-cell"><div class="ps-cell-lbl"> Tech Skills</div><ul><li>Python · HTML5 · CSS3</li><li>JavaScript</li><li>Data Analysis · ML</li></ul></div>
+        <div class="ps-cell"><div class="ps-cell-lbl"> Soft Skills</div><ul><li>Fluent English</li><li>Team Collaboration</li><li>Problem Solving</li></ul></div>
+        <div class="ps-cell"><div class="ps-cell-lbl"> Goals</div><ul><li>Full-Stack Developer</li><li>AI Solutions Engineer</li><li>Real-world Projects</li></ul></div>
+      </div>
+      <br>
+      <div class="ps-sum">
+        <div style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:7px">Summary</div>
+        <p>I am a Data Science and Artificial Intelligence student with a strong interest in web development. Passionate about technology, continuous learning, and building smart, user-friendly digital solutions by combining AI, data analysis, and modern web technologies.</p>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ══════════════ CALCULATOR MODAL ══════════════ -->
+<div class="modal-ov" id="mCalc">
+  <div class="modal-box" style="max-width:375px">
+    <div class="m-head">
+      <div><div class="m-tag">Project</div><div class="m-title">Calculator</div></div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <div class="calc-modes">
+          <button class="mode-btn on" id="mStd">STD</button>
+          <button class="mode-btn" id="mSci">SCI</button>
+          <button class="mode-btn" id="mConv">CONV</button>
+        </div>
+        <button class="x-btn" id="xCalc">✕</button>
+      </div>
+    </div>
+    <div class="c-disp"><div class="c-expr" id="cExpr"></div><div class="c-val" id="cVal">0</div></div>
+    <div class="c-hist" id="cHist"><div class="c-hist-hdr">— History —</div></div>
+    <!-- STD -->
+    <div class="calc-panel" id="pStd">
+      <button class="cbtn fn" id="cBtnC">C</button><button class="cbtn fn" id="cBtnSign">+/−</button><button class="cbtn fn" id="cBtnPct">%</button><button class="cbtn op" data-op="/">÷</button>
+      <button class="cbtn" data-n="7">7</button><button class="cbtn" data-n="8">8</button><button class="cbtn" data-n="9">9</button><button class="cbtn op" data-op="*">×</button>
+      <button class="cbtn" data-n="4">4</button><button class="cbtn" data-n="5">5</button><button class="cbtn" data-n="6">6</button><button class="cbtn op" data-op="-">−</button>
+      <button class="cbtn" data-n="1">1</button><button class="cbtn" data-n="2">2</button><button class="cbtn" data-n="3">3</button><button class="cbtn op" data-op="+">+</button>
+      <button class="cbtn s2" data-n="0">0</button><button class="cbtn" data-n=".">.</button><button class="cbtn eq" id="cBtnEq">=</button>
+    </div>
+    <!-- SCI -->
+    <div class="calc-panel off" id="pSci">
+      <button class="cbtn fn" data-sci="sin">sin</button><button class="cbtn fn" data-sci="cos">cos</button><button class="cbtn fn" data-sci="tan">tan</button><button class="cbtn fn" data-sci="log">log</button>
+      <button class="cbtn fn" data-sci="ln">ln</button><button class="cbtn fn" data-sci="sqrt">√</button><button class="cbtn fn" data-sci="sq">x²</button><button class="cbtn fn" data-sci="inv">1/x</button>
+      <button class="cbtn fn" data-n="3.14159265">π</button><button class="cbtn fn" data-n="2.71828182">e</button><button class="cbtn fn" data-sci="abs">|x|</button><button class="cbtn fn" id="cBtnC2">C</button>
+      <button class="cbtn" data-n="7">7</button><button class="cbtn" data-n="8">8</button><button class="cbtn" data-n="9">9</button><button class="cbtn op" data-op="/">÷</button>
+      <button class="cbtn" data-n="4">4</button><button class="cbtn" data-n="5">5</button><button class="cbtn" data-n="6">6</button><button class="cbtn op" data-op="*">×</button>
+      <button class="cbtn" data-n="1">1</button><button class="cbtn" data-n="2">2</button><button class="cbtn" data-n="3">3</button><button class="cbtn op" data-op="-">−</button>
+      <button class="cbtn s2" data-n="0">0</button><button class="cbtn" data-n=".">.</button><button class="cbtn eq" id="cBtnEq2">=</button>
+      <button class="cbtn op" data-op="+">+</button>
+    </div>
+    <!-- CONV -->
+    <div class="conv-panel" id="pConv">
+      <label class="conv-lbl">Category</label>
+      <select class="conv-sel" id="convCat">
+        <option value="length"> Length</option>
+        <option value="weight"> Weight</option>
+        <option value="temp"> Temperature</option>
+        <option value="speed"> Speed</option>
+      </select>
+      <div class="conv-row-pair">
+        <div><label class="conv-lbl">From</label><select class="conv-sel" id="convFrom"></select></div>
+        <button class="conv-swap" id="convSwapBtn">⇄</button>
+        <div><label class="conv-lbl">To</label><select class="conv-sel" id="convTo"></select></div>
+      </div>
+      <label class="conv-lbl">Value</label>
+      <input class="conv-inp" id="convIn" type="number" placeholder="Enter value">
+      <label class="conv-lbl">Result</label>
+      <div class="conv-res" id="convOut">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- TIC TAC TOE MODAL -->
+<div class="modal-ov" id="mTic">
+  <div class="modal-box" style="max-width:420px">
+    <div class="m-head">
+      <div><div class="m-tag">Game</div><div class="m-title">Tic Tac Toe</div></div>
+      <button class="x-btn" id="xTic">✕</button>
+    </div>
+
+    <!-- Score bar -->
+    <div style="display:flex;justify-content:space-around;align-items:center;padding:16px 24px;background:var(--bg);border-bottom:1px solid var(--border)">
+      <div style="text-align:center">
+        <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:var(--accent);letter-spacing:1px;margin-bottom:4px">PLAYER X</div>
+        <div style="font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--accent)" id="scoreX">0</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:1px;margin-bottom:4px">DRAWS</div>
+        <div style="font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--muted)" id="scoreD">0</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:var(--accent2);letter-spacing:1px;margin-bottom:4px">PLAYER O</div>
+        <div style="font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--accent2)" id="scoreO">0</div>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div id="ticStatus" style="text-align:center;padding:12px;font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:1px;background:var(--surface2);border-bottom:1px solid var(--border);color:var(--accent)">
+      ✦ PLAYER X's TURN
+    </div>
+
+    <!-- Board -->
+    <div style="padding:24px">
+      <div id="ticBoard" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <div class="tic-cell" data-i="0"></div>
+        <div class="tic-cell" data-i="1"></div>
+        <div class="tic-cell" data-i="2"></div>
+        <div class="tic-cell" data-i="3"></div>
+        <div class="tic-cell" data-i="4"></div>
+        <div class="tic-cell" data-i="5"></div>
+        <div class="tic-cell" data-i="6"></div>
+        <div class="tic-cell" data-i="7"></div>
+        <div class="tic-cell" data-i="8"></div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div style="display:flex;gap:10px;padding:0 24px 20px">
+      <button class="btn btn-g" id="ticReset" style="flex:1"> New Round</button>
+      <button class="btn btn-p" id="ticResetAll" style="flex:1">🗑 Reset All</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
