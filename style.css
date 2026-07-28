@@ -538,7 +538,7 @@ body{
 
 }
 
-/* تحسين الهاتف */
+
 
 @media(max-width:768px){
 
@@ -587,7 +587,7 @@ body{
 }
 .hero-left{position:relative;flex:1;min-width:0}
  
-/* الـ tag بقى كبسولة زجاج حقيقية بدل بوردر عادي */
+
 .hero-tag{
   position:relative;
   display:inline-flex;
@@ -620,7 +620,7 @@ body{
   border-radius:50%;
   background:var(--accent2);
   box-shadow:0 0 8px var(--accent2);
-  animation:blink 2s infinite;    /* opacity+transform بس — رخيصة زي ما اتفقنا */
+  animation:blink 2s infinite;    
 }
  
 @keyframes blink{
@@ -710,7 +710,8 @@ body{
   transform:translateY(-3px);
 }
  
-/* توهج زجاجي طافي خلف الـ hero — ثابت مش متحرك، فتكلفته منخفضة */
+
+
 .hero-left::before{
   content:'';
   position:absolute;
@@ -724,7 +725,7 @@ body{
   z-index:-1;
 }
  
-/* ── الجوال: تبسيط التخطيط + تخفيف البلور ── */
+
 @media (max-width:768px){
   .hero{
     flex-direction:column;
@@ -740,7 +741,7 @@ body{
     backdrop-filter:blur(10px) saturate(140%);
     -webkit-backdrop-filter:blur(10px) saturate(140%);
   }
-  .hero-left::before{filter:blur(24px)}   /* الـ blur هنا static مش animated، لكن بره تقليله بيوفر شوية على الموبايل */
+  .hero-left::before{filter:blur(24px)}   
 }
 /* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:8px;font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:1px;cursor:pointer;text-decoration:none;transition:all .3s;border:none;outline:none}
@@ -832,9 +833,9 @@ body{
   transform: translateY(-2px);
 }
  
-/* ══════════════════════════════════════════════════════════
-   FLIP CARD — LIQUID GLASS EDITION
-   ══════════════════════════════════════════════════════════ */
+/* ════════════
+   FLIP CARD
+   ════════════ */
 :root{
   --glass-fill:        rgba(255,255,255,.10);
   --glass-fill-soft:    rgba(255,255,255,.04);
@@ -845,7 +846,7 @@ body{
   --card-radius:        26px;
 }
 
-/* ── 1. الحاويات + آلية الفليب (Flip Mechanics) ── */
+
 
 .card-area{
   display:block;
@@ -860,13 +861,13 @@ body{
   position:absolute;
   top:0;
   left:0;
-  perspective:1400px;          /* عمق أكبر = إحساس أكثر واقعية بالدوران */
+  perspective:1400px;          
   cursor:pointer;
   -webkit-tap-highlight-color:transparent;
-  animation:floatCard 6s ease-in-out infinite;   /* طفو خفيف مستمر */
+  animation:floatCard 6s ease-in-out infinite;  
 }
 
-/* عند الـ hover: نوقف الطفو ونرفع الكارد برفق بدل ما يتصادما */
+
 .flip-wrap:hover{
   animation-play-state:paused;
   transform:translateY(-10px);
@@ -878,7 +879,7 @@ body{
   height:100%;
   position:absolute;
   transform-style:preserve-3d;
-  transition:transform .8s cubic-bezier(.22,1,.36,1);   /* smoother, أكثر premium */
+  transition:transform .8s cubic-bezier(.22,1,.36,1);   
   border-radius:var(--card-radius);
   will-change:transform;
 }
@@ -899,7 +900,7 @@ body{
   50%{transform:translateY(-8px)}
 }
 
-/* ── 2. الوجه الأمامي — Liquid Glass Shell ── */
+
 
 .card-front{
   position:absolute;
@@ -915,7 +916,7 @@ body{
   border-radius:var(--card-radius);
   border:1px solid var(--glass-border);
 
-  /* زجاج متعدد الطبقات: شفافية + انكسار خفيف */
+  
   background:
     linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.02) 55%, rgba(255,255,255,.06)),
     linear-gradient(135deg, var(--glass-fill), var(--glass-fill-soft) 45%, transparent 70%);
@@ -923,10 +924,10 @@ body{
   backdrop-filter:blur(14px) saturate(120%) brightness(1.02);
    -webkit-backdrop-filter:blur(14px) saturate(120%) brightness(1.02);
   box-shadow:
-    0 30px 70px -15px var(--glass-shadow),          /* ظل عائم premium */
+    0 30px 70px -15px var(--glass-shadow),          
     0 8px 24px rgba(0,0,0,.35),
-    inset 0 1px 0 rgba(255,255,255,.6),              /* حافة علوية لامعة */
-    inset 0 -1px 0 rgba(0,0,0,.25),                  /* حافة سفلية غامقة */
+    inset 0 1px 0 rgba(255,255,255,.6),              
+    inset 0 -1px 0 rgba(0,0,0,.25),                
     inset 1px 0 0 rgba(255,255,255,.08),
     inset -1px 0 0 rgba(0,0,0,.12);
 
@@ -940,7 +941,7 @@ body{
     inset 0 -1px 0 rgba(0,0,0,.25);
 }
 
-/* شريط لمعان علوي (edge lighting) بدل الخط الملوّن العادي */
+
 .card-front::before{
   content:'';
   position:absolute;
@@ -950,7 +951,7 @@ body{
   opacity:.9;
 }
 
-/* انعكاس ضوئي متحرك (Animated Light Sweep) — قلب تأثير الزجاج الحقيقي */
+
 .card-front::after{
   content:'';
   position:absolute;
@@ -978,10 +979,10 @@ body{
   100%{transform:translateX(-30%) rotate(8deg)}
 }
 
-/* الـ sweep يتسارع بلطف عند الـ hover — micro-interaction */
+
 .flip-wrap:hover .card-front::after{animation-duration:3.2s}
 
-/* ── 3. الأفاتار — Glass Frame + Glow ── */
+
 
 .avatar-ring{
   position:relative;
@@ -989,12 +990,12 @@ body{
   height:112px;
   border-radius:50%;
   padding:3px;
-  background:rgba(255,255,255,.08); /* بدل التدرج الملون */
+  background:rgba(255,255,255,.08); 
   border:1px solid rgba(255,255,255,.18);
   box-shadow:
     0 8px 20px rgba(0,0,0,.25),
     inset 0 1px 0 rgba(255,255,255,.15);
-  animation:none; /* إلغاء الحركة */
+  animation:none; 
 }
 
 .avatar-inner{
@@ -1009,7 +1010,7 @@ body{
   box-shadow:inset 0 2px 12px rgba(0,0,0,.45), inset 0 -1px 0 rgba(255,255,255,.08);
 }
 
-/* ── 4. التايبوجرافي والشيبس (Typography & Chips) ── */
+
 
 .card-name{
   font-family:'Syne', sans-serif;
@@ -1072,7 +1073,7 @@ body{
   50%{transform:translateY(-4px);opacity:1}
 }
 
-/* ── 5. الوجه الخلفي — Redesigned Glass Panel ── */
+
 
 .card-back{
   position:relative;
@@ -1097,7 +1098,7 @@ body{
     inset 0 1px 0 rgba(255,255,255,.12);
 }
 
-/* خط توهج علوي متدرج بدل الخط الثابت */
+
 .card-back::before{
   content:'';
   position:absolute;
@@ -1125,7 +1126,7 @@ body{
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-/* كل معلومة بقت "كبسولة زجاج" مصغّرة مستقلة */
+
 .info-row{
   display:flex;
   gap:12px;
@@ -1143,7 +1144,7 @@ body{
   transform:translateX(-2px);
 }
 
-/* الأيقونة بقت badge دائري زجاجي بدل ما تكون إيموجي عادي عائم */
+
 .info-ico{
   flex-shrink:0;
   width:30px;
@@ -1175,7 +1176,7 @@ body{
   color:#d4d6e8;
 }
 
-/* منطقة التواصل — أسطر أنيقة بفواصل زجاجية */
+
 .back-contact{
   margin-top:auto;
   padding-top:14px;
@@ -1214,13 +1215,13 @@ body{
   }
 
   .flip-wrap{animation:none}
-  .card-front::after{animation:none;opacity:.45}   /* لمعان ثابت بدل متحرك، بيفضل شكله زجاجي */
-  .avatar-ring{animation:none}                      /* دي كانت بتعمل animate على filter — أثقل property ممكن */
+  .card-front::after{animation:none;opacity:.45}   
+  .avatar-ring{animation:none}                     
   .card-back::before{animation:none;background-position:0 0}
   .flip-hint{animation:none;opacity:.75}
 }
 
-/* ── 7. سلوك مسؤول (Accessibility / Performance) ── */
+
 
 @media (prefers-reduced-motion: reduce){
   .flip-wrap,
@@ -1275,7 +1276,6 @@ section{padding:70px 0}
     inset -1px 0 0 rgba(0,0,0,.1);
 }
  
-/* انعكاس ضوء في الزاوية — ثابت، مش متحرك، فتكلفته قليلة أصلًا */
 .stats-bar::after{
   content:'';
   position:absolute;
@@ -1320,7 +1320,7 @@ section{padding:70px 0}
   color:rgba(255,255,255,.5);
 }
  
-/* خط تحت الـ label */
+
 .stat-lbl::after{
   content:'';
   position:absolute;
@@ -1332,7 +1332,7 @@ section{padding:70px 0}
   background:linear-gradient(90deg, transparent, var(--accent2), transparent);
 }
  
-/* ── تخفيف الحمل على الموبايل ── */
+
 @media (max-width:600px), (hover:none){
   .stats-bar{
     backdrop-filter:blur(12px) saturate(140%);
@@ -1356,11 +1356,11 @@ section{padding:70px 0}
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.14);
 
-  /* هاد هو جوهر Liquid Glass: تمويه (blur) + إشباع (saturate) لما وراء العنصر */
+  
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
 
-  /* عمق زجاجي: ظل خارجي + إضاءة داخلية من فوق وتظليل خفيف من تحت */
+  
   box-shadow:
     0 8px 24px rgba(0,0,0,.35),
     inset 0 1px 0 rgba(255,255,255,.25),
@@ -1370,7 +1370,7 @@ section{padding:70px 0}
               background .35s ease, border-color .35s ease, box-shadow .35s ease;
 }
 
-/* الخط المتدرج العلوي (نفس فكرتك الأصلية) */
+
 .skill-card::before{
   content:'';
   position:absolute; top:0; left:0; right:0; height:2px;
@@ -1379,7 +1379,7 @@ section{padding:70px 0}
   z-index:2;
 }
 
-/* لمعة الزجاج (specular highlight) تنزلق عند الـ hover */
+
 .skill-card::after{
   content:'';
   position:absolute; top:-50%; left:-60%; width:60%; height:200%;
@@ -1411,7 +1411,7 @@ section{padding:70px 0}
 .bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1.3s cubic-bezier(.4,0,.2,1);box-shadow:0 0 10px rgba(108,99,255,.6)}
 .sk-pct{font-family:'Space Mono',monospace;font-size:.61rem;color:var(--muted);margin-top:7px;letter-spacing:1px;text-transform:uppercase}
 
-/* ── دعم الشاشات الصغيرة ── */
+
 @media (max-width:640px){
   .skills-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
   .skill-card{padding:18px;border-radius:16px;backdrop-filter:blur(12px) saturate(150%);-webkit-backdrop-filter:blur(12px) saturate(150%)}
@@ -1438,7 +1438,7 @@ section{padding:70px 0}
 }
 .tbl-btn:hover{border-color:var(--accent2);color:var(--accent2);transform:translateY(-1px);background:rgba(0,229,204,.08)}
 
-/* التمويه الثقيل الوحيد بالصفحة — مركّز بعنصر واحد بس، مش متكرر بكل صف */
+
 .tbl-wrap{
   position:relative;
   background: rgba(255,255,255,.055);
@@ -1453,7 +1453,7 @@ section{padding:70px 0}
     inset 0 1px 0 rgba(255,255,255,.18),
     inset 0 -1px 0 rgba(255,255,255,.04);
 
-  /* يفتح طبقة GPU مستقلة فيصير التمويه أخف على البروسيسور */
+  
   transform: translateZ(0);
   will-change: transform;
 }
@@ -1490,12 +1490,12 @@ tfoot td{background:rgba(255,255,255,.04);border-top:1px solid var(--border);pad
 .p-inp:focus{border-color:var(--accent);background:rgba(108,99,255,.06)}
 .p-inp::placeholder{color:var(--muted)}
 
-/* ── نسخة خفيفة للشاشات الصغيرة ── */
+
 @media (max-width:640px){
   .tbl-btn{padding:8px 13px;font-size:.62rem}
   .tbl-wrap{
     border-radius:14px;
-    backdrop-filter: blur(8px) saturate(130%);   /* أخف بكثير من نسخة الديسكتوب */
+    backdrop-filter: blur(8px) saturate(130%);   
     -webkit-backdrop-filter: blur(8px) saturate(130%);
   }
   th, td{padding:11px 12px;font-size:.78rem}
@@ -1504,7 +1504,6 @@ tfoot td{background:rgba(255,255,255,.04);border-top:1px solid var(--border);pad
   .p-inp{min-width:120px;font-size:.8rem;padding:8px 10px}
 }
 
-/* لو المستخدم مفعّل توفير البيانات/تقليل الحركة عالموبايل: بلور معطّل بالكامل */
 @media (max-width:640px) and (prefers-reduced-motion: reduce){
   .tbl-wrap, .tbl-btn, .add-panel{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(20,20,28,.85)}
 }
@@ -1521,7 +1520,6 @@ tfoot td{background:rgba(255,255,255,.04);border-top:1px solid var(--border);pad
   position:relative;overflow:hidden;
   cursor:pointer;
 
-  /* بلور أخف نسبيًا لأنه بيتكرر بكل صف بالقائمة (مش عنصر واحد) */
   backdrop-filter: blur(10px) saturate(140%);
   -webkit-backdrop-filter: blur(10px) saturate(140%);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
@@ -1550,7 +1548,7 @@ tfoot td{background:rgba(255,255,255,.04);border-top:1px solid var(--border);pad
 .c-arr{color:var(--muted);transition:color .3s, transform .3s}
 .course-item:hover .c-arr{color:var(--accent2);transform:translateX(-4px)}
 
-/* لوحة التفاصيل: عنصر واحد بس بيظهر عند الفتح، فحطيت فيها البلور الأقوى */
+
 .detail-panel{
   display:none;
   background: rgba(255,255,255,.045);
@@ -1584,11 +1582,11 @@ tfoot td{background:rgba(255,255,255,.04);border-top:1px solid var(--border);pad
   font-size:.73rem;font-family:'Space Mono',monospace;
 }
 
-/* ── نسخة خفيفة للشاشات الصغيرة ── */
+
 @media (max-width:640px){
   .course-item{
     padding:13px 15px;gap:12px;border-radius:12px;
-    backdrop-filter: blur(6px) saturate(130%);   /* أخف بكثير — ممكن يظهر أكثر من عنصر بنفس الوقت */
+    backdrop-filter: blur(6px) saturate(130%);  
     -webkit-backdrop-filter: blur(6px) saturate(130%);
   }
   .c-icon{font-size:1.05rem}
@@ -1609,7 +1607,7 @@ tfoot td{background:rgba(255,255,255,.04);border-top:1px solid var(--border);pad
   .d-grid{grid-template-columns:1fr}
 }
 
-/* أضعف الأجهزة: تعطيل البلور كليًا واستبداله بشفافية عادية */
+
 @media (max-width:640px) and (prefers-reduced-motion: reduce){
   .course-item, .detail-panel{
     backdrop-filter:none;-webkit-backdrop-filter:none;
@@ -1627,7 +1625,7 @@ tfoot td{background:rgba(255,255,255,.04);border-top:1px solid var(--border);pad
   position:relative;overflow:hidden;
   text-decoration:none;display:block;color:var(--text);
 
-  /* بلور خفيف نسبيًا — البطاقات ممكن تتكرر 4-6 مرات بنفس الشاشة */
+  
   backdrop-filter: blur(10px) saturate(140%);
   -webkit-backdrop-filter: blur(10px) saturate(140%);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
@@ -1676,7 +1674,7 @@ tfoot td{background:rgba(255,255,255,.04);border-top:1px solid var(--border);pad
   border-radius:100px;
 }
 
-/* ── نسخة خفيفة للشاشات الصغيرة ── */
+
 @media (max-width:640px){
   .res-grid{grid-template-columns:1fr;gap:12px}
   .res-card{
@@ -1691,7 +1689,7 @@ tfoot td{background:rgba(255,255,255,.04);border-top:1px solid var(--border);pad
   .res-badge{font-size:.53rem}
 }
 
-/* أضعف الأجهزة: تعطيل بلور كامل */
+
 @media (max-width:640px) and (prefers-reduced-motion: reduce){
   .res-card{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(20,20,28,.85)}
   .res-badge{backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -1907,7 +1905,7 @@ footer{border-top:1px solid var(--border);padding:36px;text-align:center}
   display:flex;align-items:center;justify-content:space-between;
   position:relative;overflow:hidden;
 }
-/* طبقة زجاج خفيفة فوق الغراديانت الملوّن، عشان يبين "زجاج ملوّن" مش مجرد لون مسطح */
+
 .profile-card-top::before{
   content:'';position:absolute;inset:0;
   background: rgba(0,0,0,.18);
@@ -1951,8 +1949,6 @@ footer{border-top:1px solid var(--border);padding:36px;text-align:center}
 }
 .profile-arrow{font-size:1.1rem;color:var(--muted);transition:color .3s, transform .3s}
 .profile-card:hover .profile-arrow{color:var(--accent2);transform:translateX(-5px)}
-
-/* ── نسخة خفيفة للشاشات الصغيرة ── */
 @media (max-width:640px){
   .profiles-grid{gap:14px}
   .profile-card{
@@ -1961,7 +1957,7 @@ footer{border-top:1px solid var(--border);padding:36px;text-align:center}
     -webkit-backdrop-filter: blur(6px) saturate(130%);
   }
   .profile-card-top{padding:22px 20px}
-  .profile-card-top::before{backdrop-filter:none;-webkit-backdrop-filter:none} /* بلور مضاعف مو ضروري عالموبايل */
+  .profile-card-top::before{backdrop-filter:none;-webkit-backdrop-filter:none} 
   .profile-logo{width:42px;height:42px}
   .profile-badge{font-size:.58rem;padding:4px 10px;backdrop-filter:none;-webkit-backdrop-filter:none}
   .profile-card-body{padding:16px 18px}
@@ -1971,7 +1967,7 @@ footer{border-top:1px solid var(--border);padding:36px;text-align:center}
   .profile-tag{font-size:.58rem;padding:2px 8px}
 }
 
-/* أضعف الأجهزة: تعطيل بلور كامل */
+
 @media (max-width:640px) and (prefers-reduced-motion: reduce){
   .profile-card{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(20,20,28,.85)}
 }

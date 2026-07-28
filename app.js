@@ -84,9 +84,7 @@ document
     });
 
 });
-/* ──────────────────────────────────────────
-   TOAST
-────────────────────────────────────────── */
+
 function toast(msg) {
   var el = document.getElementById('toast');
   el.textContent = msg;
@@ -94,20 +92,11 @@ function toast(msg) {
   setTimeout(function(){ el.classList.remove('show'); }, 3000);
 }
  
-/* ──────────────────────────────────────────
-   FLIP CARD  — key insight: we never change
-   the dimensions of flip-wrap, so the layout
-   never reflowes when the card flips.
-────────────────────────────────────────── */
 document.getElementById('flipWrap').addEventListener('click', function(){
   document.getElementById('flipCard').classList.toggle('flipped');
 });
  
-/* ──────────────────────────────────────────
-   MODAL SYSTEM
-   Using .open class on the overlay.
-   Close buttons wired with addEventListener.
-────────────────────────────────────────── */
+
 function openModal(id)  { document.getElementById(id).classList.add('open');    }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
  
@@ -115,14 +104,13 @@ document.getElementById('xProj').addEventListener('click', function(){ closeModa
 document.getElementById('xPs').addEventListener('click',   function(){ closeModal('mPs');   });
 document.getElementById('xCalc').addEventListener('click', function(){ closeModal('mCalc'); });
 document.getElementById('xTic').addEventListener('click', function(){ closeModal('mTic'); });
-// Backdrop click closes modal
 ['mProj','mPs','mCalc','mTic'].forEach(function(id){
   document.getElementById(id).addEventListener('click', function(e){
     if (e.target === this) closeModal(id);
   });
 });
  
-// ESC key — closes top-most open modal
+
 document.addEventListener('keydown', function(e){
   if (e.key !== 'Escape') return;
   if (document.getElementById('mTic').classList.contains('open'))  { closeModal('mTic');  return; }
@@ -132,7 +120,7 @@ document.addEventListener('keydown', function(e){
   document.getElementById('flipCard').classList.remove('flipped');
 });
  
-// Open projects modal from resource card
+
 document.getElementById('projCard').addEventListener('click', function(){ openModal('mProj'); });
  
 // Project rows
@@ -140,9 +128,6 @@ document.getElementById('rowPs').addEventListener('click',   function(){ closeMo
 document.getElementById('rowCalc').addEventListener('click', function(){ closeModal('mProj'); openModal('mCalc'); });
 document.getElementById('rowPort').addEventListener('click', function(){ closeModal('mProj'); toast('🌐 You are already viewing the Web Portfolio!'); });
  
-/* ──────────────────────────────────────────
-   SCROLL REVEAL
-────────────────────────────────────────── */
 function checkReveal(){
   document.querySelectorAll('.reveal').forEach(function(el){
     if (el.getBoundingClientRect().top < window.innerHeight - 60) {
@@ -155,15 +140,13 @@ function checkReveal(){
 }
 window.addEventListener('scroll', checkReveal);
 window.addEventListener('load', function(){
-  // Days counter
+
   var n = 0, el = document.getElementById('statDays');
   var iv = setInterval(function(){ n++; el.textContent = n; if(n>=1000) clearInterval(iv); }, 10);
   setTimeout(checkReveal, 150);
 });
  
-/* ──────────────────────────────────────────
-   TABLE
-────────────────────────────────────────── */
+
 var tblVisible = true;
 document.getElementById('toggleTblBtn').addEventListener('click', function(){
   tblVisible = !tblVisible;
@@ -248,10 +231,7 @@ function updateTblFoot(){
     '<span> Range: <strong>'+Math.min.apply(null,yrs)+'–'+Math.max.apply(null,yrs)+'</strong></span>'+
     '<span> <strong>'+rows.length+'</strong> creators</span>';
 }
- 
-/* ──────────────────────────────────────────
-   COURSE DETAIL
-────────────────────────────────────────── */
+
 document.getElementById('detailBtn').addEventListener('click', function(){
   var p = document.getElementById('detailPanel');
   var open = p.style.display === 'block';
@@ -259,9 +239,7 @@ document.getElementById('detailBtn').addEventListener('click', function(){
   this.textContent = open ? ' Show Course Details' : ' Hide Course Details';
 });
  
-/* ──────────────────────────────────────────
-   QUIZ — 10 questions
-────────────────────────────────────────── */
+
 var QS = [
   {q:'What does HTML stand for?',              opts:['Hyper Text Markup Language','High Tech Modern Language','Hyper Transfer Markup Language'],   ans:0},
   {q:'Which language is used to style web pages?', opts:['JavaScript','Python','CSS'],                                                             ans:2},
@@ -290,7 +268,6 @@ function renderQ(){
   html += '</div>';
   document.getElementById('qArea').innerHTML = html;
  
-  // Bind option clicks
   document.querySelectorAll('#qArea .opt').forEach(function(el){
     el.addEventListener('click', function(){
       var i = parseInt(this.getAttribute('data-i'));
@@ -360,9 +337,7 @@ function updateQStats(){
 renderQ();
 updateQStats();
  
-/* ──────────────────────────────────────────
-   CALCULATOR
-────────────────────────────────────────── */
+
 var cv='0', ce='', cop=null, cprev=null, cnew=true, chist=[];
  
 function cDisp(){
@@ -427,7 +402,7 @@ function cAddHist(entry){
     chist.map(function(e){ return '<div class="c-hist-row">'+e+'</div>'; }).join('');
 }
  
-// Wire calculator buttons via data attributes
+
 document.getElementById('pStd').addEventListener('click', function(e){
   var btn = e.target.closest('.cbtn'); if (!btn) return;
   if (btn.dataset.n  !== undefined) cNum(btn.dataset.n);
@@ -446,7 +421,7 @@ document.getElementById('pSci').addEventListener('click', function(e){
   if (btn.id==='cBtnEq2') cEq();
 });
  
-// Keyboard
+
 document.addEventListener('keydown', function(e){
   if (!document.getElementById('mCalc').classList.contains('open')) return;
   if ('0123456789.'.includes(e.key)) { cNum(e.key); return; }
@@ -456,7 +431,7 @@ document.addEventListener('keydown', function(e){
   if (e.key.toLowerCase()==='c') cClear();
 });
  
-// Mode switch
+
 function setCalcMode(m){
   ['Std','Sci','Conv'].forEach(function(x){
     document.getElementById('m'+x).classList.toggle('on', x.toLowerCase()===m);
@@ -469,9 +444,7 @@ document.getElementById('mStd').addEventListener('click',  function(){ setCalcMo
 document.getElementById('mSci').addEventListener('click',  function(){ setCalcMode('sci');  });
 document.getElementById('mConv').addEventListener('click', function(){ setCalcMode('conv'); });
  
-/* ──────────────────────────────────────────
-   UNIT CONVERTER
-────────────────────────────────────────── */
+
 var CD = {
   length: {u:['Meter','Kilometer','Mile','Foot','Inch','Centimeter','Yard'],     b:{Meter:1,Kilometer:1000,Mile:1609.34,Foot:.3048,Inch:.0254,Centimeter:.01,Yard:.9144}},
   weight: {u:['Kilogram','Gram','Pound','Ounce','Tonne'],                        b:{Kilogram:1,Gram:.001,Pound:.453592,Ounce:.0283495,Tonne:1000}},
@@ -518,7 +491,7 @@ document.getElementById('convSwapBtn').addEventListener('click', function(){
 });
 convUnits();
 
-/* ── TIC TAC TOE ── */
+
 document.getElementById('xTic').addEventListener('click', function(){ closeModal('mTic'); });
 document.getElementById('mTic').addEventListener('click', function(e){ if(e.target===this) closeModal('mTic'); });
 document.getElementById('rowTic').addEventListener('click', function(){ closeModal('mProj'); openModal('mTic'); ticReset(); });
@@ -529,9 +502,9 @@ var ticOver    = false;
 var ticScores  = { X:0, O:0, D:0 };
 
 var ticWins = [
-  [0,1,2],[3,4,5],[6,7,8],  // rows
-  [0,3,6],[1,4,7],[2,5,8],  // cols
-  [0,4,8],[2,4,6]           // diagonals
+  [0,1,2],[3,4,5],[6,7,8],
+  [0,3,6],[1,4,7],[2,5,8],
+  [0,4,8],[2,4,6]           
 ];
 
 function ticRender(){
@@ -576,7 +549,7 @@ document.getElementById('ticBoard').addEventListener('click', function(e){
 
   var win = ticCheckWin();
   if(win){
-    // highlight winning cells
+    
     win.forEach(function(idx){
       document.querySelector('.tic-cell[data-i="'+idx+'"]').classList.add('win');
     });
