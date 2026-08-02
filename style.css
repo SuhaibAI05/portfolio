@@ -639,10 +639,48 @@ body{
 .hero-name .line{display:block}
  
 .grad{
-  background:linear-gradient(90deg, var(--accent), var(--accent2));
+  background:linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent2),
+    var(--accent)
+  );
+
+  background-size:200% auto;
+
   -webkit-background-clip:text;
   background-clip:text;
   -webkit-text-fill-color:transparent;
+
+  animation:
+    revealName 1.2s ease forwards,
+    gradientMove 4s linear infinite;
+}
+
+
+@keyframes revealName{
+  from{
+    opacity:0;
+    transform:translateX(-40px);
+    filter:blur(8px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateX(0);
+    filter:blur(0);
+  }
+}
+
+
+@keyframes gradientMove{
+  from{
+    background-position:0% center;
+  }
+
+  to{
+    background-position:200% center;
+  }
 }
  
 .hero-role{

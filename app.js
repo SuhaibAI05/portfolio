@@ -494,3 +494,20 @@ document.getElementById('ticResetAll').addEventListener('click', function(){
   ticUpdateScores();
   ticReset();
 });
+
+const text = "Suhaib Al - Rawashdeh";
+const nameElement = document.getElementById("name");
+
+nameElement.textContent = "";
+
+let index = 0;
+
+function typeName(){
+  if(index < text.length){
+    nameElement.textContent += text[index];
+    index++;
+    setTimeout(typeName, 120);
+  }
+}
+
+window.onload = typeName;
