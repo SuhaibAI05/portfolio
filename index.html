@@ -349,9 +349,20 @@
         <span class="pr-arr" style="color:var(--accent)">→</span>
       </div>
       <div class="proj-row te" id="rowCalc">
-        <span class="pr-ico"></span>
-        <div class="pr-info"><div class="pr-name">Smart Calculator</div><div class="pr-sub">Scientific + unit converter + history log</div></div>
-        <span class="pr-arr" style="color:var(--accent2)">→</span>
+       <span class="pr-ico"></span>
+
+        <div class="pr-info">
+          <div class="pr-name">Smart Calculator</div>
+          <div class="pr-sub">Scientific + unit converter + history log</div>
+        </div>
+
+        <a
+          href=" https://suhaibai05.github.io/CALCULATOR-MODAL/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pr-arr"
+          style="color:var(--accent2)"
+        >↗</a>
       </div>
       <div class="proj-row te" id="rowTic">
        <span class="pr-ico"></span>
@@ -406,57 +417,13 @@
  
 <!-- ══════════════ CALCULATOR MODAL ══════════════ -->
 <div class="modal-ov" id="mCalc">
-  <div class="modal-box" style="max-width:375px">
+  <div class="modal-box" style="max-width:400px">
     <div class="m-head">
-      <div><div class="m-tag">Project</div><div class="m-title">Calculator</div></div>
-      <div style="display:flex;gap:6px;align-items:center">
-        <div class="calc-modes">
-          <button class="mode-btn on" id="mStd">STD</button>
-          <button class="mode-btn" id="mSci">SCI</button>
-          <button class="mode-btn" id="mConv">CONV</button>
-        </div>
-        <button class="x-btn" id="xCalc">✕</button>
-      </div>
+      <div><div class="m-tag">Project</div><div class="m-title">Smart Calculator</div></div>
+      <button class="x-btn" id="xCalc">✕</button>
     </div>
-    <div class="c-disp"><div class="c-expr" id="cExpr"></div><div class="c-val" id="cVal">0</div></div>
-    <div class="c-hist" id="cHist"><div class="c-hist-hdr">— History —</div></div>
-    <!-- STD -->
-    <div class="calc-panel" id="pStd">
-      <button class="cbtn fn" id="cBtnC">C</button><button class="cbtn fn" id="cBtnSign">+/−</button><button class="cbtn fn" id="cBtnPct">%</button><button class="cbtn op" data-op="/">÷</button>
-      <button class="cbtn" data-n="7">7</button><button class="cbtn" data-n="8">8</button><button class="cbtn" data-n="9">9</button><button class="cbtn op" data-op="*">×</button>
-      <button class="cbtn" data-n="4">4</button><button class="cbtn" data-n="5">5</button><button class="cbtn" data-n="6">6</button><button class="cbtn op" data-op="-">−</button>
-      <button class="cbtn" data-n="1">1</button><button class="cbtn" data-n="2">2</button><button class="cbtn" data-n="3">3</button><button class="cbtn op" data-op="+">+</button>
-      <button class="cbtn s2" data-n="0">0</button><button class="cbtn" data-n=".">.</button><button class="cbtn eq" id="cBtnEq">=</button>
-    </div>
-    <!-- SCI -->
-    <div class="calc-panel off" id="pSci">
-      <button class="cbtn fn" data-sci="sin">sin</button><button class="cbtn fn" data-sci="cos">cos</button><button class="cbtn fn" data-sci="tan">tan</button><button class="cbtn fn" data-sci="log">log</button>
-      <button class="cbtn fn" data-sci="ln">ln</button><button class="cbtn fn" data-sci="sqrt">√</button><button class="cbtn fn" data-sci="sq">x²</button><button class="cbtn fn" data-sci="inv">1/x</button>
-      <button class="cbtn fn" data-n="3.14159265">π</button><button class="cbtn fn" data-n="2.71828182">e</button><button class="cbtn fn" data-sci="abs">|x|</button><button class="cbtn fn" id="cBtnC2">C</button>
-      <button class="cbtn" data-n="7">7</button><button class="cbtn" data-n="8">8</button><button class="cbtn" data-n="9">9</button><button class="cbtn op" data-op="/">÷</button>
-      <button class="cbtn" data-n="4">4</button><button class="cbtn" data-n="5">5</button><button class="cbtn" data-n="6">6</button><button class="cbtn op" data-op="*">×</button>
-      <button class="cbtn" data-n="1">1</button><button class="cbtn" data-n="2">2</button><button class="cbtn" data-n="3">3</button><button class="cbtn op" data-op="-">−</button>
-      <button class="cbtn s2" data-n="0">0</button><button class="cbtn" data-n=".">.</button><button class="cbtn eq" id="cBtnEq2">=</button>
-      <button class="cbtn op" data-op="+">+</button>
-    </div>
-    <!-- CONV -->
-    <div class="conv-panel" id="pConv">
-      <label class="conv-lbl">Category</label>
-      <select class="conv-sel" id="convCat">
-        <option value="length"> Length</option>
-        <option value="weight"> Weight</option>
-        <option value="temp"> Temperature</option>
-        <option value="speed"> Speed</option>
-      </select>
-      <div class="conv-row-pair">
-        <div><label class="conv-lbl">From</label><select class="conv-sel" id="convFrom"></select></div>
-        <button class="conv-swap" id="convSwapBtn">⇄</button>
-        <div><label class="conv-lbl">To</label><select class="conv-sel" id="convTo"></select></div>
-      </div>
-      <label class="conv-lbl">Value</label>
-      <input class="conv-inp" id="convIn" type="number" placeholder="Enter value">
-      <label class="conv-lbl">Result</label>
-      <div class="conv-res" id="convOut">—</div>
+    <div style="padding:25px">
+      <iframe src="https://suhaibai05.github.io/CALCULATOR-MODAL/" title="Smart Calculator" style="width:100%;height:400px;border:none"></iframe>
     </div>
   </div>
 </div>
