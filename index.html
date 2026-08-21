@@ -75,7 +75,7 @@
       <p class="hero-role">// Web Developer &amp; AI Student</p>
       <p class="hero-desc">Passionate about <strong style="color:var(--text)">HTML5, CSS3 &amp; JavaScript</strong>. Studying Data Science &amp; AI at Philadelphia University, Jordan.</p>
       <div class="cta">
-        <a href="#skills" class="btn btn-p">View Skills →</a>
+        <a href="#skills" class="btn btn-p">View Skills</a>
         <a href="https://wa.me/962778871683?text=Hi%20Suhaib,%20I%20visited%20your%20portfolio%20and%20I'd%20like%20to%20discuss%20a%20project."
           target="_blank"
           rel="noopener noreferrer"
@@ -276,7 +276,6 @@
         <p class="profile-desc">Connect with me professionally — education, skills, and career journey.</p>
         <div class="profile-footer">
           <span class="profile-tag">Professional</span>
-          <span class="profile-arrow">→</span>
         </div>
       </div>
     </a>
@@ -295,7 +294,6 @@
         <p class="profile-desc">Browse my repositories, projects, and open source contributions.</p>
         <div class="profile-footer">
           <span class="profile-tag">Code</span>
-          <span class="profile-arrow">→</span>
         </div>
       </div>
     </a>
@@ -316,7 +314,7 @@
         <span class="res-icon"></span><div class="res-title">My Projects</div>
         <div class="res-desc">A collection of web projects built throughout my learning journey.</div>
         <span class="res-tag">Portfolio</span>
-        <span class="res-badge">CLICK →</span>
+        <span class="res-badge">CLICK</span>
       </div>
       <a class="res-card" href="https://www.w3schools.com" target="_blank">
         <span class="res-icon"></span><div class="res-title">W3Schools</div>
@@ -346,10 +344,9 @@
       <div class="proj-row pu" id="rowPs">
         <span class="pr-ico"></span>
         <div class="pr-info"><div class="pr-name">Personal Statement</div><div class="pr-sub">View my academic &amp; professional profile</div></div>
-        <span class="pr-arr" style="color:var(--accent)">→</span>
+        <span class="pr-arr" style="color:var(--accent)"></span>
       </div>
       <div class="proj-row te" id="rowCalc">
-       <span class="pr-ico"></span>
 
         <div class="pr-info">
           <div class="pr-name">Smart Calculator</div>
@@ -362,15 +359,7 @@
           rel="noopener noreferrer"
           class="pr-arr"
           style="color:var(--accent2)"
-        >↗</a>
-      </div>
-      <div class="proj-row te" id="rowTic">
-       <span class="pr-ico"></span>
-       <div class="pr-info">
-       <div class="pr-name">Tic Tac Toe</div>
-       <div class="pr-sub">2-player game with score tracker</div>
-      </div>
-      <span class="pr-arr" style="color:var(--accent2)">→</span>
+        ></a>
       </div>
       <div class="proj-row go" id="rowPort">
         <span class="pr-ico"></span>
@@ -424,58 +413,6 @@
     </div>
     <div style="padding:25px">
       <iframe src="https://suhaibai05.github.io/CALCULATOR-MODAL/" title="Smart Calculator" style="width:100%;height:400px;border:none"></iframe>
-    </div>
-  </div>
-</div>
-
-<!-- TIC TAC TOE MODAL -->
-<div class="modal-ov" id="mTic">
-  <div class="modal-box" style="max-width:420px">
-    <div class="m-head">
-      <div><div class="m-tag">Game</div><div class="m-title">Tic Tac Toe</div></div>
-      <button class="x-btn" id="xTic">✕</button>
-    </div>
-
-    <!-- Score bar -->
-    <div style="display:flex;justify-content:space-around;align-items:center;padding:16px 24px;background:var(--bg);border-bottom:1px solid var(--border)">
-      <div style="text-align:center">
-        <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:var(--accent);letter-spacing:1px;margin-bottom:4px">PLAYER X</div>
-        <div style="font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--accent)" id="scoreX">0</div>
-      </div>
-      <div style="text-align:center">
-        <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:1px;margin-bottom:4px">DRAWS</div>
-        <div style="font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--muted)" id="scoreD">0</div>
-      </div>
-      <div style="text-align:center">
-        <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:var(--accent2);letter-spacing:1px;margin-bottom:4px">PLAYER O</div>
-        <div style="font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--accent2)" id="scoreO">0</div>
-      </div>
-    </div>
-
-    <!-- Status -->
-    <div id="ticStatus" style="text-align:center;padding:12px;font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:1px;background:var(--surface2);border-bottom:1px solid var(--border);color:var(--accent)">
-      ✦ PLAYER X's TURN
-    </div>
-
-    <!-- Board -->
-    <div style="padding:24px">
-      <div id="ticBoard" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-        <div class="tic-cell" data-i="0"></div>
-        <div class="tic-cell" data-i="1"></div>
-        <div class="tic-cell" data-i="2"></div>
-        <div class="tic-cell" data-i="3"></div>
-        <div class="tic-cell" data-i="4"></div>
-        <div class="tic-cell" data-i="5"></div>
-        <div class="tic-cell" data-i="6"></div>
-        <div class="tic-cell" data-i="7"></div>
-        <div class="tic-cell" data-i="8"></div>
-      </div>
-    </div>
-
-    <!-- Buttons -->
-    <div style="display:flex;gap:10px;padding:0 24px 20px">
-      <button class="btn btn-g" id="ticReset" style="flex:1"> New Round</button>
-      <button class="btn btn-p" id="ticResetAll" style="flex:1">🗑 Reset All</button>
     </div>
   </div>
 </div>

@@ -112,10 +112,9 @@ function closeModal(id) { document.getElementById(id).classList.remove('open'); 
 document.getElementById('xProj').addEventListener('click', function(){ closeModal('mProj'); });
 document.getElementById('xPs').addEventListener('click',   function(){ closeModal('mPs');   });
 document.getElementById('xCalc').addEventListener('click', function(){ closeModal('mCalc'); });
-document.getElementById('xTic').addEventListener('click',  function(){ closeModal('mTic');  });
 
 // إغلاق المودال عند الضغط على الخلفية خارجه
-['mProj','mPs','mCalc','mTic'].forEach(function(id){
+['mProj','mPs','mCalc'].forEach(function(id){
     document.getElementById(id).addEventListener('click', function(e){
         if (e.target === this) closeModal(id);
     });
@@ -124,7 +123,6 @@ document.getElementById('xTic').addEventListener('click',  function(){ closeModa
 // إغلاق المودال بزر ESC — يغلق الأعلى أولاً
 document.addEventListener('keydown', function(e){
     if (e.key !== 'Escape') return;
-    if (document.getElementById('mTic').classList.contains('open'))  { closeModal('mTic');  return; }
     if (document.getElementById('mCalc').classList.contains('open')) { closeModal('mCalc'); return; }
     if (document.getElementById('mPs').classList.contains('open'))   { closeModal('mPs');   return; }
     if (document.getElementById('mProj').classList.contains('open')) { closeModal('mProj'); return; }
@@ -279,126 +277,6 @@ document.getElementById('detailBtn').addEventListener('click', function(){
     var open = p.style.display === 'block';
     p.style.display = open ? 'none' : 'block';
     this.textContent = open ? 'Show Course Details' : 'Hide Course Details';
-});
-
-// ═══════════════════════════════════════
-// TIC TAC TOE — لعبة إكس أو
-// ═══════════════════════════════════════
-
-// إغلاق مودال اللعبة
-document.getElementById('xTic').addEventListener('click', function(){ closeModal('mTic'); });
-document.getElementById('mTic').addEventListener('click', function(e){ if(e.target===this) closeModal('mTic'); });
-
-// فتح اللعبة وإعادة تشغيلها
-document.getElementById('rowTic').addEventListener('click', function(){ closeModal('mProj'); openModal('mTic'); ticReset(); });
-
-// متغيرات اللعبة
-var ticBoard   = ['','','','','','','','',''];  // 9 خانات فارغة
-var ticCurrent = 'X';                           // اللاعب الحالي
-var ticOver    = false;                         // هل انتهت اللعبة؟
-var ticScores  = { X:0, O:0, D:0 };            // نقاط X، O، والتعادل
-
-// كل الحالات الممكنة للفوز (صفوف، أعمدة، أقطار)
-var ticWins = [
-    [0,1,2],[3,4,5],[6,7,8],  // صفوف
-    [0,3,6],[1,4,7],[2,5,8],  // أعمدة
-    [0,4,8],[2,4,6]           // أقطار
-];
-
-// رسم حالة اللوح الحالية
-function ticRender(){
-    document.querySelectorAll('.tic-cell').forEach(function(cell){
-        var i   = parseInt(cell.getAttribute('data-i'));
-        var val = ticBoard[i];
-        cell.textContent = val === 'X' ? '✕' : val === 'O' ? '○' : '';
-        cell.className = 'tic-cell' + (val ? ' '+val.toLowerCase()+' taken' : '');
-    });
-}
-
-// التحقق من وجود فائز
-function ticCheckWin(){
-    for(var w=0; w<ticWins.length; w++){
-        var a=ticWins[w][0], b=ticWins[w][1], c=ticWins[w][2];
-        if(ticBoard[a] && ticBoard[a]===ticBoard[b] && ticBoard[a]===ticBoard[c]){
-            return ticWins[w]; // إرجاع الخانات الفائزة
-        }
-    }
-    return null; // لا يوجد فائز
-}
-
-// تحديث رسالة الحالة
-function ticSetStatus(msg, color){
-    var s = document.getElementById('ticStatus');
-    s.textContent = msg;
-    s.style.color = color || 'var(--text)';
-}
-
-// تحديث النقاط على الشاشة
-function ticUpdateScores(){
-    document.getElementById('scoreX').textContent = ticScores.X;
-    document.getElementById('scoreO').textContent = ticScores.O;
-    document.getElementById('scoreD').textContent = ticScores.D;
-}
-
-// منطق اللعب عند الضغط على خانة
-document.getElementById('ticBoard').addEventListener('click', function(e){
-    var cell = e.target.closest('.tic-cell');
-    if(!cell || ticOver) return;          // لو اللعبة انتهت لا تقبل ضغط
-    var i = parseInt(cell.getAttribute('data-i'));
-    if(ticBoard[i]) return;               // لو الخانة ممتلئة لا تقبل ضغط
-
-    ticBoard[i] = ticCurrent;            // ضع علامة اللاعب الحالي
-    ticRender();
-
-    var win = ticCheckWin();
-    if(win){
-        // تلوين الخانات الفائزة
-        win.forEach(function(idx){
-            document.querySelector('.tic-cell[data-i="'+idx+'"]').classList.add('win');
-        });
-        ticScores[ticCurrent]++;
-        ticUpdateScores();
-        ticSetStatus(
-            '🏆 PLAYER ' + ticCurrent + ' WINS!',
-            ticCurrent==='X' ? 'var(--accent)' : 'var(--accent2)'
-        );
-        ticOver = true;
-        return;
-    }
-
-    // تحقق من التعادل (كل الخانات ممتلئة)
-    if(ticBoard.every(function(v){ return v !== ''; })){
-        ticScores.D++;
-        ticUpdateScores();
-        ticSetStatus('DRAW!', 'var(--gold)');
-        ticOver = true;
-        return;
-    }
-
-    // تبديل اللاعب
-    ticCurrent = ticCurrent==='X' ? 'O' : 'X';
-    ticSetStatus(
-        '✦ PLAYER ' + ticCurrent + '\'s TURN',
-        ticCurrent==='X' ? 'var(--accent)' : 'var(--accent2)'
-    );
-});
-
-// إعادة جولة جديدة
-function ticReset(){
-    ticBoard   = ['','','','','','','','',''];
-    ticCurrent = 'X';
-    ticOver    = false;
-    ticRender();
-    ticSetStatus('✦ PLAYER X\'s TURN', 'var(--accent)');
-}
-
-document.getElementById('ticReset').addEventListener('click', ticReset);
-
-// إعادة تعيين كل شيء بما فيها النقاط
-document.getElementById('ticResetAll').addEventListener('click', function(){
-    ticScores = {X:0, O:0, D:0};
-    ticUpdateScores();
-    ticReset();
 });
 
 // ═══════════════════════════════════════

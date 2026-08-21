@@ -1790,7 +1790,6 @@ footer{border-top:1px solid var(--border);padding:36px;text-align:center}
 .proj-row.pu:hover{border-color:rgba(108,99,255,.5);background:rgba(108,99,255,.09)}
 .proj-row.te:hover{border-color:rgba(0,229,204,.5);background:rgba(0,229,204,.07)}
 .proj-row.go:hover{border-color:rgba(255,215,0,.4);background:rgba(255,215,0,.05)}
-.pr-ico{font-size:1.8rem}.pr-info{flex:1}
 .pr-name{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:2px}
 .pr-sub{font-size:.76rem;color:var(--muted)}
 .pr-arr{font-size:1rem;transition:transform .24s}
@@ -1825,38 +1824,6 @@ footer{border-top:1px solid var(--border);padding:36px;text-align:center}
   .q-stats-row{grid-template-columns:1fr}
   .stats-bar{grid-template-columns:repeat(2,1fr)}
   .ps-grid{grid-template-columns:1fr}
-}
-
-/* TIC TAC TOE */
-.tic-cell{
-  aspect-ratio:1;
-  background:var(--surface2);
-  border:2px solid var(--border);
-  border-radius:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:2.4rem;
-  cursor:pointer;
-  transition:all .2s;
-  user-select:none;
-}
-.tic-cell:hover:not(.taken){
-  background:rgba(108,99,255,.15);
-  border-color:var(--accent);
-  transform:scale(1.05);
-}
-.tic-cell.x{ color:var(--accent);  border-color:rgba(108,99,255,.4); }
-.tic-cell.o{ color:var(--accent2); border-color:rgba(0,229,204,.4);  }
-.tic-cell.win{
-  background:rgba(255,215,0,.1);
-  border-color:var(--gold);
-  animation:winPulse .6s ease infinite alternate;
-}
-.tic-cell.taken{ cursor:default; }
-@keyframes winPulse{
-  from{ transform:scale(1);   box-shadow:none; }
-  to  { transform:scale(1.08); box-shadow:0 0 18px rgba(255,215,0,.4); }
 }
 
 /* PROFILES */
@@ -1934,8 +1901,8 @@ footer{border-top:1px solid var(--border);padding:36px;text-align:center}
   background: rgba(0,229,204,.06);
   padding:3px 10px;border-radius:100px;
 }
-.profile-arrow{font-size:1.1rem;color:var(--muted);transition:color .3s, transform .3s}
-.profile-card:hover .profile-arrow{color:var(--accent2);transform:translateX(-5px)}
+
+.profile-card:hover .profile-card-top::before{backdrop-filter:blur(4px) saturate(140%);-webkit-backdrop-filter:blur(4px) saturate(140%)}
 @media (max-width:640px){
   .profiles-grid{gap:14px}
   .profile-card{
