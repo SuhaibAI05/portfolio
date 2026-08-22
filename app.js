@@ -1,3 +1,35 @@
+// LOADING SCREEN
+var loaderMessages = [
+  'Initializing...',
+  'Loading assets...',
+  'Setting up UI...',
+  'Almost ready...',
+  'Welcome!'
+];
+
+var loaderProgress = 0;
+var loaderInterval = setInterval(function(){
+  loaderProgress += 2;
+
+  // تحديث شريط التحميل
+  document.getElementById('loaderBar').style.width = loaderProgress + '%';
+
+  // تغيير النص حسب التقدم
+  if (loaderProgress === 20) document.getElementById('loaderText').textContent = loaderMessages[1];
+  if (loaderProgress === 40) document.getElementById('loaderText').textContent = loaderMessages[2];
+  if (loaderProgress === 65) document.getElementById('loaderText').textContent = loaderMessages[3];
+  if (loaderProgress === 85) document.getElementById('loaderText').textContent = loaderMessages[4];
+
+  // لما يوصل 100% — أخفي الـ loader
+  if (loaderProgress >= 100) {
+    clearInterval(loaderInterval);
+    setTimeout(function(){
+      document.getElementById('loader').classList.add('hide');
+    }, 400);
+  }
+}, 40);
+
+
 // ═══════════════════════════════════════
 // SIDE MENU
 // ═══════════════════════════════════════
