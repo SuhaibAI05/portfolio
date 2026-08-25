@@ -135,41 +135,67 @@ document.getElementById('flipWrap').addEventListener('click', function(){
 // ═══════════════════════════════════════
 
 // فتح مودال بإضافة class "open"
-function openModal(id)  { document.getElementById(id).classList.add('open');    }
+function openModal(id) {
+    document.getElementById(id).classList.add('open');
+}
 
 // إغلاق مودال بإزالة class "open"
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+}
 
-// أزرار الإغلاق X لكل مودال
-document.getElementById('xProj').addEventListener('click', function(){ closeModal('mProj'); });
-document.getElementById('xPs').addEventListener('click',   function(){ closeModal('mPs');   });
-document.getElementById('xCalc').addEventListener('click', function(){ closeModal('mCalc'); });
 
-// إغلاق المودال عند الضغط على الخلفية خارجه
-['mProj','mPs','mCalc'].forEach(function(id){
-    document.getElementById(id).addEventListener('click', function(e){
-        if (e.target === this) closeModal(id);
-    });
+// ═══════════════════════════════════════
+// PROJECTS MODAL
+// ═══════════════════════════════════════
+
+// إغلاق نافذة My Projects
+document.getElementById('xProj').addEventListener('click', function () {
+    closeModal('mProj');
 });
 
-// إغلاق المودال بزر ESC — يغلق الأعلى أولاً
-document.addEventListener('keydown', function(e){
+// إغلاق My Projects عند الضغط على الخلفية
+document.getElementById('mProj').addEventListener('click', function (e) {
+    if (e.target === this) {
+        closeModal('mProj');
+    }
+});
+
+// فتح My Projects عند الضغط على البطاقة
+document.getElementById('projCard').addEventListener('click', function () {
+    openModal('mProj');
+});
+
+
+// ═══════════════════════════════════════
+// WEB PORTFOLIO
+// ═══════════════════════════════════════
+
+// Web Portfolio ليس رابطًا
+// يعرض رسالة فقط لأنه الصفحة الحالية
+document.getElementById('rowPort').addEventListener('click', function () {
+    closeModal('mProj');
+    toast('You are already viewing the Web Portfolio!');
+});
+
+
+// ═══════════════════════════════════════
+// ESC KEY
+// ═══════════════════════════════════════
+
+document.addEventListener('keydown', function (e) {
+
     if (e.key !== 'Escape') return;
-    if (document.getElementById('mCalc').classList.contains('open')) { closeModal('mCalc'); return; }
-    if (document.getElementById('mPs').classList.contains('open'))   { closeModal('mPs');   return; }
-    if (document.getElementById('mProj').classList.contains('open')) { closeModal('mProj'); return; }
-    // لو ما في مودال مفتوح — اقلب البطاقة لوجهها الأمامي
+
+    // إذا My Projects مفتوح
+    if (document.getElementById('mProj').classList.contains('open')) {
+        closeModal('mProj');
+        return;
+    }
+
+    // إذا لا يوجد مودال مفتوح — اقلب البطاقة للوجه الأمامي
     document.getElementById('flipCard').classList.remove('flipped');
 });
-
-// فتح مودال المشاريع عند الضغط على بطاقة Projects
-document.getElementById('projCard').addEventListener('click', function(){ openModal('mProj'); });
-
-// أزرار داخل مودال المشاريع
-document.getElementById('rowPs').addEventListener('click',   function(){ closeModal('mProj'); openModal('mPs');   });
-document.getElementById('rowCalc').addEventListener('click', function(){ closeModal('mProj'); openModal('mCalc'); });
-document.getElementById('rowPort').addEventListener('click', function(){ closeModal('mProj'); toast('🌐 You are already viewing the Web Portfolio!'); });
-
 // ═══════════════════════════════════════
 // SCROLL REVEAL — ظهور العناصر عند التمرير
 // ═══════════════════════════════════════

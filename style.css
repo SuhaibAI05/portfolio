@@ -1796,6 +1796,25 @@ footer{border-top:1px solid var(--border);padding:36px;text-align:center}
 .proj-row:hover .pr-arr{transform:translateX(4px)}
 .pr-badge{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--gold);border:1px solid rgba(255,215,0,.4);padding:2px 8px;border-radius:100px}
 .m-foot{padding:0 23px 13px;font-family:'Space Mono',monospace;font-size:.59rem;color:var(--muted);letter-spacing:1px;text-align:center}
+
+.proj-row{
+    text-decoration:none;
+    color:var(--text);
+    cursor:pointer;
+}
+
+.proj-row:visited,
+.proj-row:hover,
+.proj-row:active{
+    text-decoration:none;
+    color:var(--text);
+}
+
+.proj-row .pr-name,
+.proj-row .pr-sub,
+.proj-row .pr-arr{
+    text-decoration:none;
+}
  
 /* personal statement modal */
 .ps-ov{align-items:flex-start;overflow-y:auto;padding:28px 20px}
