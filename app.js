@@ -27,7 +27,7 @@ var loaderInterval = setInterval(function(){
       document.getElementById('loader').classList.add('hide');
     }, 400);
   }
-}, 40);
+}, 60);
 
 
 // ═══════════════════════════════════════
