@@ -1,360 +1,482 @@
-// LOADING SCREEN
-var loaderMessages = [
-  'Initializing...',
-  'Loading assets...',
-  'Setting up UI...',
-  'Almost ready...',
-  'Welcome!'
-];
+(function() {
+    'use strict';
 
-var loaderProgress = 0;
-var loaderInterval = setInterval(function(){
-  loaderProgress += 2;
+    // ============================================================
+    // 1. LOADER
+    // ============================================================
+    const loader = document.getElementById('loader');
+    const loaderBar = document.getElementById('loaderBar');
+    const loaderText = document.getElementById('loaderText');
 
-  // تحديث شريط التحميل
-  document.getElementById('loaderBar').style.width = loaderProgress + '%';
+    let loadProgress = 0;
+    const loadInterval = setInterval(() => {
+        loadProgress += Math.floor(Math.random() * 6) + 2;
+        if (loadProgress > 100) loadProgress = 100;
+        loaderBar.style.width = loadProgress + '%';
+        loaderText.textContent = loadProgress + '%';
 
-  // تغيير النص حسب التقدم
-  if (loaderProgress === 20) document.getElementById('loaderText').textContent = loaderMessages[1];
-  if (loaderProgress === 40) document.getElementById('loaderText').textContent = loaderMessages[2];
-  if (loaderProgress === 65) document.getElementById('loaderText').textContent = loaderMessages[3];
-  if (loaderProgress === 85) document.getElementById('loaderText').textContent = loaderMessages[4];
+        if (loadProgress === 100) {
+            clearInterval(loadInterval);
+            setTimeout(() => {
+                loader.classList.add('hide');
+                document.body.style.overflow = 'visible';
+                // trigger reveal animations
+                initReveal();
+                animateStats();
+            }, 400);
+        }
+    }, 60);
 
-  // لما يوصل 100% — أخفي الـ loader
-  if (loaderProgress >= 100) {
-    clearInterval(loaderInterval);
-    setTimeout(function(){
-      document.getElementById('loader').classList.add('hide');
-    }, 400);
-  }
-}, 60);
+    // ============================================================
+    // 2. SIDE MENU
+    // ============================================================
+    const menuBtn = document.getElementById('menuBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const sideMenu = document.getElementById('sideMenu');
+    const overlay = document.getElementById('overlay');
 
-
-// ═══════════════════════════════════════
-// SIDE MENU
-// ═══════════════════════════════════════
-
-let open = false;
-
-// جلب عناصر القائمة الجانبية
-const sideMenu = document.getElementById("sideMenu");
-const overlay = document.getElementById("overlay");
-const menuItems = document.querySelectorAll(".menu-links li");
-const bars = document.querySelectorAll(".bar");
-
-// فتح القائمة الجانبية
-function openMenu(){
-    open = true;
-
-    // إظهار القائمة من اليمين
-    sideMenu.style.right = "0";
-
-    // تفعيل الخلفية الضبابية
-    overlay.style.background = "rgba(0,0,0,.45)";
-    overlay.style.backdropFilter = "blur(5px)";
-    overlay.style.pointerEvents = "auto";
-
-    // تحويل الأيقونة لـ X
-    bars[0].style.transform = "translateY(8px) rotate(45deg)";
-    bars[1].style.opacity = "0";
-    bars[2].style.transform = "translateY(-8px) rotate(-45deg)";
-
-    // ظهور عناصر القائمة بالتتابع
-    menuItems.forEach((item, index) => {
-        setTimeout(() => {
-            item.style.opacity = "1";
-            item.style.transform = "translateX(0)";
-        }, index * 100);
-    });
-}
-
-// إغلاق القائمة الجانبية
-function closeMenu(){
-    open = false;
-
-    // إخفاء القائمة لليمين
-    sideMenu.style.right = "-420px";
-
-    // إخفاء الخلفية الضبابية
-    overlay.style.background = "rgba(0,0,0,0)";
-    overlay.style.backdropFilter = "blur(0px)";
-    overlay.style.pointerEvents = "none";
-
-    // رجوع الأيقونة لشكلها الأصلي
-    bars[0].style.transform = "none";
-    bars[1].style.opacity = "1";
-    bars[2].style.transform = "none";
-
-    // إخفاء عناصر القائمة
-    menuItems.forEach(item => {
-        item.style.opacity = "0";
-        item.style.transform = "translateX(40px)";
-    });
-}
-
-// زر فتح/إغلاق القائمة
-document.getElementById("menuBtn").addEventListener("click", () => {
-    open ? closeMenu() : openMenu();
-});
-
-// زر الإغلاق داخل القائمة
-document.getElementById("closeBtn").addEventListener("click", closeMenu);
-
-'use strict';
-
-// إغلاق القائمة عند الضغط على أي رابط داخلها
-document.querySelectorAll(".menu-links a").forEach(link => {
-    link.addEventListener("click", () => {
-        closeMenu();
-    });
-});
-
-// ═══════════════════════════════════════
-// TOAST — رسائل الإشعار
-// ═══════════════════════════════════════
-
-function toast(msg) {
-    var el = document.getElementById('toast');
-    el.textContent = msg;
-    el.classList.add('show');
-    // إخفاء الرسالة بعد 3 ثواني
-    setTimeout(function(){ el.classList.remove('show'); }, 3000);
-}
-
-// ═══════════════════════════════════════
-// FLIP CARD — بطاقة الملف الشخصي
-// ═══════════════════════════════════════
-
-// قلب البطاقة عند الضغط عليها
-document.getElementById('flipWrap').addEventListener('click', function(){
-    document.getElementById('flipCard').classList.toggle('flipped');
-});
-
-// ═══════════════════════════════════════
-// MODAL SYSTEM — نظام النوافذ المنبثقة
-// ═══════════════════════════════════════
-
-// فتح مودال بإضافة class "open"
-function openModal(id) {
-    document.getElementById(id).classList.add('open');
-}
-
-// إغلاق مودال بإزالة class "open"
-function closeModal(id) {
-    document.getElementById(id).classList.remove('open');
-}
-
-
-// ═══════════════════════════════════════
-// PROJECTS MODAL
-// ═══════════════════════════════════════
-
-// إغلاق نافذة My Projects
-document.getElementById('xProj').addEventListener('click', function () {
-    closeModal('mProj');
-});
-
-// إغلاق My Projects عند الضغط على الخلفية
-document.getElementById('mProj').addEventListener('click', function (e) {
-    if (e.target === this) {
-        closeModal('mProj');
-    }
-});
-
-// فتح My Projects عند الضغط على البطاقة
-document.getElementById('projCard').addEventListener('click', function () {
-    openModal('mProj');
-});
-
-
-// ═══════════════════════════════════════
-// WEB PORTFOLIO
-// ═══════════════════════════════════════
-
-// Web Portfolio ليس رابطًا
-// يعرض رسالة فقط لأنه الصفحة الحالية
-document.getElementById('rowPort').addEventListener('click', function () {
-    closeModal('mProj');
-    toast('You are already viewing the Web Portfolio!');
-});
-
-
-// ═══════════════════════════════════════
-// ESC KEY
-// ═══════════════════════════════════════
-
-document.addEventListener('keydown', function (e) {
-
-    if (e.key !== 'Escape') return;
-
-    // إذا My Projects مفتوح
-    if (document.getElementById('mProj').classList.contains('open')) {
-        closeModal('mProj');
-        return;
+    function openMenu() {
+        sideMenu.style.right = '0';
+        overlay.style.display = 'block';
+        overlay.style.background = 'rgba(0,0,0,0.15)';
+        document.body.style.overflow = 'hidden';
+        // animate menu links
+        const links = sideMenu.querySelectorAll('.menu-links li');
+        links.forEach((li, i) => {
+            li.style.transitionDelay = (i * 0.07) + 's';
+            li.style.opacity = '1';
+            li.style.transform = 'translateX(0)';
+        });
     }
 
-    // إذا لا يوجد مودال مفتوح — اقلب البطاقة للوجه الأمامي
-    document.getElementById('flipCard').classList.remove('flipped');
-});
-// ═══════════════════════════════════════
-// SCROLL REVEAL — ظهور العناصر عند التمرير
-// ═══════════════════════════════════════
+    function closeMenu() {
+        sideMenu.style.right = '-420px';
+        overlay.style.display = 'none';
+        overlay.style.background = 'transparent';
+        document.body.style.overflow = 'visible';
+        const links = sideMenu.querySelectorAll('.menu-links li');
+        links.forEach((li) => {
+            li.style.transitionDelay = '0s';
+            li.style.opacity = '0';
+            li.style.transform = 'translateX(40px)';
+        });
+    }
 
-function checkReveal(){
-    document.querySelectorAll('.reveal').forEach(function(el){
-        // لو العنصر ظهر في الشاشة — أضف class "on"
-        if (el.getBoundingClientRect().top < window.innerHeight - 60) {
-            el.classList.add('on');
-            // تحريك أشرطة المهارات
-            el.querySelectorAll('.bar-fill').forEach(function(b){
-                b.style.width = b.getAttribute('data-w') + '%';
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // close with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (sideMenu.style.right === '0px') closeMenu();
+            if (document.getElementById('mProj').classList.contains('open')) closeModal();
+        }
+    });
+
+    // ============================================================
+    // 3. FLIP CARD
+    // ============================================================
+    const flipWrap = document.getElementById('flipWrap');
+    const flipCard = document.getElementById('flipCard');
+    let isFlipped = false;
+
+    flipWrap.addEventListener('click', () => {
+        isFlipped = !isFlipped;
+        flipCard.classList.toggle('flipped', isFlipped);
+    });
+
+    // ============================================================
+    // 4. SCROLL REVEAL (Intersection Observer)
+    // ============================================================
+    function initReveal() {
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('on');
+                    // if it's a skill card, animate bars
+                    if (entry.target.querySelectorAll('.bar-fill').length) {
+                        entry.target.querySelectorAll('.bar-fill').forEach(bar => {
+                            const w = bar.getAttribute('data-w');
+                            if (w) bar.style.width = w + '%';
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+        reveals.forEach(el => observer.observe(el));
+    }
+
+    // ============================================================
+    // 5. STATS COUNTER ANIMATION
+    // ============================================================
+    function animateStats() {
+        const statDays = document.getElementById('statDays');
+        const statProjects = document.getElementById('statProjects');
+        const statHours = document.getElementById('statHours');
+        const statSkills = document.getElementById('statSkills');
+
+        const targetDays = 1000;
+        const targetProjects = 6;
+        const targetHours = 500;
+        const targetSkills = 10;
+
+        let currentDays = 0, currentProjects = 0, currentHours = 0, currentSkills = 0;
+        const step = () => {
+            let changed = false;
+            if (currentDays < targetDays) {
+                currentDays += Math.ceil((targetDays - currentDays) / 12);
+                if (currentDays > targetDays) currentDays = targetDays;
+                statDays.textContent = currentDays;
+                changed = true;
+            }
+            if (currentProjects < targetProjects) {
+                currentProjects += 1;
+                if (currentProjects > targetProjects) currentProjects = targetProjects;
+                statProjects.textContent = currentProjects;
+                changed = true;
+            }
+            if (currentHours < targetHours) {
+                currentHours += Math.ceil((targetHours - currentHours) / 15);
+                if (currentHours > targetHours) currentHours = targetHours;
+                statHours.textContent = currentHours + '+';
+                changed = true;
+            }
+            if (currentSkills < targetSkills) {
+                currentSkills += 1;
+                if (currentSkills > targetSkills) currentSkills = targetSkills;
+                statSkills.textContent = currentSkills;
+                changed = true;
+            }
+            if (changed) requestAnimationFrame(step);
+        };
+        // start after a small delay
+        setTimeout(step, 300);
+    }
+
+    // ============================================================
+    // 6. TABLE (CRUD + Sort + Toggle)
+    // ============================================================
+    const tblBody = document.getElementById('tblBody');
+    const tblFoot = document.getElementById('tblFoot');
+    const toggleTblBtn = document.getElementById('toggleTblBtn');
+    const sortYrBtn = document.getElementById('sortYrBtn');
+    const addRowBtn = document.getElementById('addRowBtn');
+    const addPanel = document.getElementById('addPanel');
+    const saveLangBtn = document.getElementById('saveLangBtn');
+    const cancelAddBtn = document.getElementById('cancelAddBtn');
+    const nName = document.getElementById('nName');
+    const nCreator = document.getElementById('nCreator');
+    const nYear = document.getElementById('nYear');
+
+    let tblVisible = true;
+
+    function updateTableFoot() {
+        const rows = tblBody.querySelectorAll('tr');
+        const count = rows.length;
+        let years = [];
+        let creators = new Set();
+        rows.forEach(row => {
+            const yearCell = row.querySelector('td:nth-child(3) .yr-pill');
+            if (yearCell) years.push(parseInt(yearCell.textContent));
+            const creatorCell = row.querySelector('td:nth-child(2)');
+            if (creatorCell) creators.add(creatorCell.textContent.trim());
+        });
+        const minYear = years.length ? Math.min(...years) : 'N/A';
+        const maxYear = years.length ? Math.max(...years) : 'N/A';
+        document.getElementById('langCount').textContent = count;
+        document.getElementById('rangeYears').textContent = (count ? minYear + '–' + maxYear : '—');
+        document.getElementById('creatorCount').textContent = creators.size;
+    }
+
+    function deleteRow(btn) {
+        const row = btn.closest('tr');
+        if (row) {
+            row.style.transition = 'opacity 0.3s, transform 0.3s';
+            row.style.opacity = '0';
+            row.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                row.remove();
+                updateTableFoot();
+                showToast('Language deleted successfully');
+            }, 300);
+        }
+    }
+
+    function editRow(btn) {
+        const row = btn.closest('tr');
+        const cells = row.querySelectorAll('td');
+        const name = cells[0].textContent.trim();
+        const creator = cells[1].textContent.trim();
+        const year = cells[2].querySelector('.yr-pill')?.textContent || '';
+        // populate add panel for editing
+        nName.value = name;
+        nCreator.value = creator;
+        nYear.value = year;
+        addPanel.style.display = 'block';
+        // remove the row after saving
+        const oldSave = saveLangBtn._clickHandler;
+        if (oldSave) saveLangBtn.removeEventListener('click', oldSave);
+        const handler = function() {
+            if (nName.value && nCreator.value && nYear.value) {
+                cells[0].textContent = nName.value;
+                cells[1].textContent = nCreator.value;
+                const yearSpan = cells[2].querySelector('.yr-pill');
+                if (yearSpan) yearSpan.textContent = nYear.value;
+                addPanel.style.display = 'none';
+                nName.value = '';
+                nCreator.value = '';
+                nYear.value = '';
+                updateTableFoot();
+                showToast('Language updated successfully');
+                saveLangBtn.removeEventListener('click', handler);
+                saveLangBtn._clickHandler = null;
+                // reattach default add handler
+                saveLangBtn.addEventListener('click', defaultAddHandler);
+                saveLangBtn._clickHandler = defaultAddHandler;
+            } else {
+                showToast('Please fill all fields');
+            }
+        };
+        saveLangBtn.removeEventListener('click', defaultAddHandler);
+        saveLangBtn.addEventListener('click', handler);
+        saveLangBtn._clickHandler = handler;
+        // cancel returns to default
+        const oldCancel = cancelAddBtn._clickHandler;
+        if (oldCancel) cancelAddBtn.removeEventListener('click', oldCancel);
+        const cancelHandler = function() {
+            addPanel.style.display = 'none';
+            nName.value = '';
+            nCreator.value = '';
+            nYear.value = '';
+            cancelAddBtn.removeEventListener('click', cancelHandler);
+            cancelAddBtn._clickHandler = null;
+            // reattach default add click
+            addRowBtn.click();
+        };
+        cancelAddBtn.addEventListener('click', cancelHandler);
+        cancelAddBtn._clickHandler = cancelHandler;
+    }
+
+    function defaultAddHandler() {
+        if (nName.value && nCreator.value && nYear.value) {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${nName.value}</td>
+                <td>${nCreator.value}</td>
+                <td><span class="yr-pill">${nYear.value}</span></td>
+                <td><button class="act-btn edit">Edit</button> <button class="act-btn del">Delete</button></td>
+            `;
+            tblBody.appendChild(newRow);
+            newRow.style.opacity = '0';
+            newRow.style.transform = 'translateY(-10px)';
+            requestAnimationFrame(() => {
+                newRow.style.transition = 'opacity 0.4s, transform 0.4s';
+                newRow.style.opacity = '1';
+                newRow.style.transform = 'translateY(0)';
+            });
+            nName.value = '';
+            nCreator.value = '';
+            nYear.value = '';
+            addPanel.style.display = 'none';
+            updateTableFoot();
+            showToast('Language added successfully');
+            // attach events to new buttons
+            attachTableEvents();
+        } else {
+            showToast('Please fill all fields');
+        }
+    }
+
+    function attachTableEvents() {
+        document.querySelectorAll('#tblBody .act-btn.edit').forEach(btn => {
+            btn.removeEventListener('click', editHandler);
+            btn.addEventListener('click', editHandler);
+        });
+        document.querySelectorAll('#tblBody .act-btn.del').forEach(btn => {
+            btn.removeEventListener('click', delHandler);
+            btn.addEventListener('click', delHandler);
+        });
+    }
+
+    function editHandler(e) { editRow(e.currentTarget); }
+    function delHandler(e) { deleteRow(e.currentTarget); }
+
+    // toggle table visibility
+    toggleTblBtn.addEventListener('click', () => {
+        const wrap = document.getElementById('tblWrap');
+        tblVisible = !tblVisible;
+        wrap.style.transition = 'opacity 0.4s, transform 0.4s';
+        if (tblVisible) {
+            wrap.style.opacity = '1';
+            wrap.style.transform = 'scale(1)';
+            toggleTblBtn.textContent = 'Hide Table';
+        } else {
+            wrap.style.opacity = '0';
+            wrap.style.transform = 'scale(0.97)';
+            toggleTblBtn.textContent = 'Show Table';
+        }
+    });
+
+    // sort by year
+    let sortAsc = true;
+    sortYrBtn.addEventListener('click', () => {
+        const rows = Array.from(tblBody.querySelectorAll('tr'));
+        sortAsc = !sortAsc;
+        rows.sort((a, b) => {
+            const aYear = parseInt(a.querySelector('td:nth-child(3) .yr-pill')?.textContent || 0);
+            const bYear = parseInt(b.querySelector('td:nth-child(3) .yr-pill')?.textContent || 0);
+            return sortAsc ? aYear - bYear : bYear - aYear;
+        });
+        rows.forEach(row => tblBody.appendChild(row));
+        sortYrBtn.textContent = sortAsc ? 'Sort by Year (Oldest)' : 'Sort by Year (Newest)';
+        updateTableFoot();
+        showToast('Sorted by year');
+    });
+
+    // add row panel toggle
+    addRowBtn.addEventListener('click', () => {
+        const isOpen = addPanel.style.display === 'block';
+        addPanel.style.display = isOpen ? 'none' : 'block';
+        if (!isOpen) {
+            nName.focus();
+            // ensure default add handler is attached
+            saveLangBtn.removeEventListener('click', saveLangBtn._clickHandler || defaultAddHandler);
+            saveLangBtn.addEventListener('click', defaultAddHandler);
+            saveLangBtn._clickHandler = defaultAddHandler;
+            // cancel resets
+            cancelAddBtn.removeEventListener('click', cancelAddBtn._clickHandler || (() => {}));
+            const cancelReset = function() {
+                addPanel.style.display = 'none';
+                nName.value = '';
+                nCreator.value = '';
+                nYear.value = '';
+            };
+            cancelAddBtn.addEventListener('click', cancelReset);
+            cancelAddBtn._clickHandler = cancelReset;
+        }
+    });
+
+    // default add handler
+    saveLangBtn.addEventListener('click', defaultAddHandler);
+    saveLangBtn._clickHandler = defaultAddHandler;
+    cancelAddBtn.addEventListener('click', () => {
+        addPanel.style.display = 'none';
+        nName.value = '';
+        nCreator.value = '';
+        nYear.value = '';
+    });
+
+    // initial attach
+    attachTableEvents();
+    updateTableFoot();
+
+    // ============================================================
+    // 7. COURSE DETAILS TOGGLE
+    // ============================================================
+    const detailBtn = document.getElementById('detailBtn');
+    const detailPanel = document.getElementById('detailPanel');
+    let detailVisible = false;
+
+    detailBtn.addEventListener('click', () => {
+        detailVisible = !detailVisible;
+        detailPanel.style.display = detailVisible ? 'block' : 'none';
+        detailBtn.textContent = detailVisible ? 'Hide Course Details' : 'Show Course Details';
+        if (detailVisible) {
+            detailPanel.style.opacity = '0';
+            detailPanel.style.transform = 'translateY(-8px)';
+            requestAnimationFrame(() => {
+                detailPanel.style.transition = 'opacity 0.4s, transform 0.4s';
+                detailPanel.style.opacity = '1';
+                detailPanel.style.transform = 'translateY(0)';
             });
         }
     });
-}
 
-window.addEventListener('scroll', checkReveal);
-window.addEventListener('load', function(){
-    // عداد الأيام يبدأ من 0 ويصل لـ 1000
-    var n = 0, el = document.getElementById('statDays');
-    var iv = setInterval(function(){ n++; el.textContent = n; if(n>=1000) clearInterval(iv); }, 10);
-    setTimeout(checkReveal, 150);
-});
+    // ============================================================
+    // 8. PROJECTS MODAL
+    // ============================================================
+    const projCard = document.getElementById('projCard');
+    const modalProj = document.getElementById('mProj');
+    const xProj = document.getElementById('xProj');
 
-// ═══════════════════════════════════════
-// TABLE — جدول لغات البرمجة
-// ═══════════════════════════════════════
-
-var tblVisible = true;
-
-// إظهار/إخفاء الجدول
-document.getElementById('toggleTblBtn').addEventListener('click', function(){
-    tblVisible = !tblVisible;
-    document.getElementById('tblWrap').style.display = tblVisible ? '' : 'none';
-    toast(tblVisible ? 'Table shown' : 'Table hidden');
-});
-
-// ترتيب الجدول حسب السنة
-document.getElementById('sortYrBtn').addEventListener('click', function(){
-    var tb = document.getElementById('tblBody');
-    var rows = Array.from(tb.rows);
-    rows.sort(function(a,b){
-        return parseInt(a.querySelector('.yr-pill').textContent) -
-               parseInt(b.querySelector('.yr-pill').textContent);
-    });
-    rows.forEach(function(r){ tb.appendChild(r); });
-    updateTblFoot(); toast('🗓 Sorted by year');
-});
-
-// ترتيب الجدول بالضغط على رأس العمود
-var colDir = {};
-document.querySelectorAll('th[data-col]').forEach(function(th){
-    th.addEventListener('click', function(){
-        var c = parseInt(this.getAttribute('data-col'));
-        var asc = !colDir[c]; colDir = {}; colDir[c] = asc;
-        var tb = document.getElementById('tblBody');
-        var rows = Array.from(tb.rows);
-        rows.sort(function(a,b){
-            var av = c===2 ? parseInt(a.querySelector('.yr-pill').textContent) : a.cells[c].textContent.trim();
-            var bv = c===2 ? parseInt(b.querySelector('.yr-pill').textContent) : b.cells[c].textContent.trim();
-            return av < bv ? (asc?-1:1) : av > bv ? (asc?1:-1) : 0;
+    function openModal() {
+        modalProj.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        // animate rows
+        const rows = modalProj.querySelectorAll('.proj-row');
+        rows.forEach((row, i) => {
+            row.style.opacity = '0';
+            row.style.transform = 'translateY(12px)';
+            setTimeout(() => {
+                row.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                row.style.opacity = '1';
+                row.style.transform = 'translateY(0)';
+            }, 100 + i * 80);
         });
-        rows.forEach(function(r){ tb.appendChild(r); });
-        updateTblFoot();
-    });
-});
-
-// إظهار/إخفاء نموذج إضافة لغة جديدة
-document.getElementById('addRowBtn').addEventListener('click', function(){
-    var p = document.getElementById('addPanel');
-    p.style.display = p.style.display === 'block' ? 'none' : 'block';
-});
-
-// إلغاء إضافة لغة جديدة
-document.getElementById('cancelAddBtn').addEventListener('click', function(){
-    document.getElementById('addPanel').style.display = 'none';
-});
-
-// حفظ لغة جديدة في الجدول
-document.getElementById('saveLangBtn').addEventListener('click', function(){
-    var n  = document.getElementById('nName').value.trim();
-    var cr = document.getElementById('nCreator').value.trim();
-    var y  = document.getElementById('nYear').value.trim();
-    if (!n||!cr||!y) { toast('⚠️ Fill all fields'); return; }
-    var ico = langIcons[n.toLowerCase()];
-    var row = document.createElement('tr');
-    row.innerHTML = '<td>'+ico+' '+n+'</td><td>'+cr+'</td><td><span class="yr-pill">'+y+'</span></td><td><button class="act-btn edit">✏ Edit</button><button class="act-btn del">🗑 Del</button></td>';
-    document.getElementById('tblBody').appendChild(row);
-    bindRowBtns(row);
-    // تنظيف الحقول بعد الحفظ
-    document.getElementById('nName').value = '';
-    document.getElementById('nCreator').value = '';
-    document.getElementById('nYear').value = '';
-    document.getElementById('addPanel').style.display = 'none';
-    updateTblFoot(); toast('"' + n + '" added!');
-});
-
-// ربط أزرار تعديل وحذف كل صف
-function bindRowBtns(row){
-    // تعديل الصف
-    row.querySelector('.edit').addEventListener('click', function(){
-        var r = this.closest('tr');
-        var n = prompt('Language:', r.cells[0].textContent.trim()); if(n!==null) r.cells[0].textContent = n;
-        var c = prompt('Creator:',  r.cells[1].textContent.trim()); if(c!==null) r.cells[1].textContent = c;
-        var y = prompt('Year:', r.querySelector('.yr-pill').textContent); if(y!==null) r.querySelector('.yr-pill').textContent = y;
-        updateTblFoot(); toast('Updated');
-    });
-    // حذف الصف
-    row.querySelector('.del').addEventListener('click', function(){
-        if (!confirm('Delete this row?')) return;
-        this.closest('tr').remove(); updateTblFoot(); toast('🗑 Deleted');
-    });
-}
-
-// ربط الأزرار للصفوف الموجودة مسبقاً
-document.querySelectorAll('#tblBody tr').forEach(bindRowBtns);
-
-// تحديث إحصائيات أسفل الجدول
-function updateTblFoot(){
-    var rows = document.querySelectorAll('#tblBody tr');
-    if (!rows.length) { document.getElementById('tblFoot').innerHTML = '<span>No data</span>'; return; }
-    var yrs = Array.from(rows).map(function(r){ return parseInt(r.querySelector('.yr-pill').textContent); });
-    document.getElementById('tblFoot').innerHTML =
-        '<span><strong>'+rows.length+'</strong> languages</span>'+
-        '<span>Range: <strong>'+Math.min.apply(null,yrs)+'–'+Math.max.apply(null,yrs)+'</strong></span>'+
-        '<span><strong>'+rows.length+'</strong> creators</span>';
-}
-
-// ═══════════════════════════════════════
-// COURSE DETAILS — تفاصيل الكورس
-// ═══════════════════════════════════════
-
-// إظهار/إخفاء تفاصيل الكورس
-document.getElementById('detailBtn').addEventListener('click', function(){
-    var p = document.getElementById('detailPanel');
-    var open = p.style.display === 'block';
-    p.style.display = open ? 'none' : 'block';
-    this.textContent = open ? 'Show Course Details' : 'Hide Course Details';
-});
-
-// ═══════════════════════════════════════
-// TYPING EFFECT — تأثير الكتابة للاسم
-// ═══════════════════════════════════════
-
-const text = "Suhaib Al - Rawashdeh";
-const nameElement = document.getElementById("name");
-
-nameElement.textContent = ""; // تفريغ الاسم أولاً
-
-let index = 0;
-
-// كتابة حرف واحد كل 120ms
-function typeName(){
-    if(index < text.length){
-        nameElement.textContent += text[index];
-        index++;
-        setTimeout(typeName, 120);
     }
-}
 
-window.onload = typeName; // تشغيل التأثير عند تحميل الصفحة
+    function closeModal() {
+        modalProj.classList.remove('open');
+        document.body.style.overflow = 'visible';
+        const rows = modalProj.querySelectorAll('.proj-row');
+        rows.forEach(row => {
+            row.style.opacity = '0';
+            row.style.transform = 'translateY(12px)';
+        });
+    }
+
+    projCard.addEventListener('click', openModal);
+    xProj.addEventListener('click', closeModal);
+    modalProj.addEventListener('click', (e) => {
+        if (e.target === modalProj) closeModal();
+    });
+
+    // ============================================================
+    // 9. TOAST SYSTEM
+    // ============================================================
+    const toastEl = document.getElementById('toast');
+    let toastTimeout;
+
+    function showToast(message) {
+        toastEl.textContent = message;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toastEl.classList.remove('show');
+        }, 2800);
+    }
+
+    // ============================================================
+    // 10. KEYBOARD & ACCESSIBILITY
+    // ============================================================
+    // handle ESC for modal (already added above)
+
+    // ============================================================
+    // 11. SMOOTH SCROLL FOR INTERNAL LINKS
+    // ============================================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href').substring(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                e.preventDefault();
+                const offset = 100;
+                const top = targetEl.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+                // close menu if open
+                if (sideMenu.style.right === '0px') closeMenu();
+            }
+        });
+    });
+
+    // ============================================================
+    // 12. MOBILE TOUCH IMPROVEMENTS
+    // ============================================================
+    // subtle hover effect on touch devices via 'active' class
+    document.addEventListener('touchstart', function() {}, { passive: true });
+
+    console.log('Suhaib.dev — Light Neomorphism fully interactive!');
+})();
