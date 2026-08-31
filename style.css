@@ -58,21 +58,15 @@ body{
   background-repeat: no-repeat;
   
   position: relative;
-  isolation: isolate;
 }
 
 body::before{
   content: '';
   position: fixed;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 10, 22, 0.7) 0%,
-    rgba(0, 0, 0, 0.45) 40%,
-    rgba(10, 10, 22, 0.75) 100%
-  );
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   z-index: 0;
   pointer-events: none;
 }
@@ -80,6 +74,13 @@ body::before{
 body > * {
   position: relative;
   z-index: 1;
+}
+
+/* موبايل: تعطيل fixed attachment لتفادي مشاكل الأداء على iOS Safari */
+@media (max-width: 768px){
+  body{
+    background-attachment: scroll;
+  }
 }
 
 body::after{ display: none; }
@@ -141,44 +142,6 @@ body::after{ display: none; }
 
 .nav-links a:hover{
   color: var(--text-primary);
-}
-
-/* ==========================
-   RESPONSIVE
-========================== */
-
-/* تابلت */
-@media (max-width: 768px){
-  .navbar{
-    gap: 18px;
-    padding: 10px 18px;
-  }
-  .nav-links{
-    gap: 16px;
-  }
-  .nav-links a{
-    font-size: 0.8rem;
-  }
-}
-
-/* موبايل صغير */
-@media (max-width: 480px){
-  .navbar{
-    top: 10px;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px 14px;
-    border-radius: 16px;
-    width: 92%;
-  }
-  .nav-links{
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px 16px;
-  }
-  .nav-links a{
-    font-size: 0.75rem;
-  }
 }
 
 /* ==========================
