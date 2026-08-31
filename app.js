@@ -25,54 +25,7 @@
                 animateStats();
             }, 400);
         }
-    }, 60);
-
-    // ============================================================
-    // 2. SIDE MENU
-    // ============================================================
-    const menuBtn = document.getElementById('menuBtn');
-    const closeBtn = document.getElementById('closeBtn');
-    const sideMenu = document.getElementById('sideMenu');
-    const overlay = document.getElementById('overlay');
-
-    function openMenu() {
-        sideMenu.style.right = '0';
-        overlay.style.display = 'block';
-        overlay.style.background = 'rgba(0,0,0,0.15)';
-        document.body.style.overflow = 'hidden';
-        // animate menu links
-        const links = sideMenu.querySelectorAll('.menu-links li');
-        links.forEach((li, i) => {
-            li.style.transitionDelay = (i * 0.07) + 's';
-            li.style.opacity = '1';
-            li.style.transform = 'translateX(0)';
-        });
-    }
-
-    function closeMenu() {
-        sideMenu.style.right = '-420px';
-        overlay.style.display = 'none';
-        overlay.style.background = 'transparent';
-        document.body.style.overflow = 'visible';
-        const links = sideMenu.querySelectorAll('.menu-links li');
-        links.forEach((li) => {
-            li.style.transitionDelay = '0s';
-            li.style.opacity = '0';
-            li.style.transform = 'translateX(40px)';
-        });
-    }
-
-    menuBtn.addEventListener('click', openMenu);
-    closeBtn.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', closeMenu);
-
-    // close with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            if (sideMenu.style.right === '0px') closeMenu();
-            if (document.getElementById('mProj').classList.contains('open')) closeModal();
-        }
-    });
+    }, 100);
 
     // ============================================================
     // 3. FLIP CARD
