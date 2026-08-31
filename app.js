@@ -28,20 +28,19 @@
     }, 60);
 
     // ============================================================
-    // 2. SIDE MENU (معدل ليتوافق مع التعديلات الجديدة)
+    // 2. SIDE MENU
     // ============================================================
-    const menuToggle = document.getElementById('menuToggle');  // زر البرجر
+    const menuBtn = document.getElementById('menuBtn');
+    const closeBtn = document.getElementById('closeBtn');
     const sideMenu = document.getElementById('sideMenu');
-    const overlay = document.getElementById('overlay');        // احتفظنا بنفس المعرف
-    // ملاحظة: closeBtn غير مستخدم في الـ HTML الجديد، يمكن تركه كتحقق اختياري
-    const closeBtn = document.getElementById('closeBtn');      // إن وجد
+    const overlay = document.getElementById('overlay');
 
     function openMenu() {
-        sideMenu.classList.add('open');
-        overlay.classList.add('show');
-        menuToggle.classList.add('active');
+        sideMenu.style.right = '0';
+        overlay.style.display = 'block';
+        overlay.style.background = 'rgba(0,0,0,0.15)';
         document.body.style.overflow = 'hidden';
-        // أنيميشن للروابط
+        // animate menu links
         const links = sideMenu.querySelectorAll('.menu-links li');
         links.forEach((li, i) => {
             li.style.transitionDelay = (i * 0.07) + 's';
@@ -51,9 +50,9 @@
     }
 
     function closeMenu() {
-        sideMenu.classList.remove('open');
-        overlay.classList.remove('show');
-        menuToggle.classList.remove('active');
+        sideMenu.style.right = '-420px';
+        overlay.style.display = 'none';
+        overlay.style.background = 'transparent';
         document.body.style.overflow = 'visible';
         const links = sideMenu.querySelectorAll('.menu-links li');
         links.forEach((li) => {
@@ -63,27 +62,14 @@
         });
     }
 
-    // فتح القائمة عند الضغط على زر البرجر
-    menuToggle.addEventListener('click', () => {
-        if (sideMenu.classList.contains('open')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
-    });
-
-    // إغلاق عند الضغط على overlay
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
     overlay.addEventListener('click', closeMenu);
 
-    // إغلاق عند الضغط على closeBtn إن وجد
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeMenu);
-    }
-
-    // إغلاق بمفتاح Escape
+    // close with Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            if (sideMenu.classList.contains('open')) closeMenu();
+            if (sideMenu.style.right === '0px') closeMenu();
             if (document.getElementById('mProj').classList.contains('open')) closeModal();
         }
     });
@@ -171,7 +157,7 @@
     }
 
     // ============================================================
-    // 6. TABLE (CRUD + Sort + Toggle) - بدون تغيير
+    // 6. TABLE (CRUD + Sort + Toggle)
     // ============================================================
     const tblBody = document.getElementById('tblBody');
     const tblFoot = document.getElementById('tblFoot');
@@ -466,7 +452,7 @@
     // ============================================================
     // 10. KEYBOARD & ACCESSIBILITY
     // ============================================================
-    // (تمت المعالجة في الأقسام السابقة)
+    // handle ESC for modal (already added above)
 
     // ============================================================
     // 11. SMOOTH SCROLL FOR INTERNAL LINKS
@@ -480,8 +466,8 @@
                 const offset = 100;
                 const top = targetEl.getBoundingClientRect().top + window.pageYOffset - offset;
                 window.scrollTo({ top, behavior: 'smooth' });
-                // close menu if open (using class now)
-                if (sideMenu.classList.contains('open')) closeMenu();
+                // close menu if open
+                if (sideMenu.style.right === '0px') closeMenu();
             }
         });
     });
@@ -489,6 +475,7 @@
     // ============================================================
     // 12. MOBILE TOUCH IMPROVEMENTS
     // ============================================================
+    // subtle hover effect on touch devices via 'active' class
     document.addEventListener('touchstart', function() {}, { passive: true });
 
     console.log('Suhaib.dev — Light Neomorphism fully interactive!');
