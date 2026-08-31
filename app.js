@@ -36,9 +36,9 @@
     const overlay = document.getElementById('overlay');
 
     function openMenu() {
-        sideMenu.style.right = '0';
+        sideMenu.style.right = '24px';
         overlay.style.display = 'block';
-        overlay.style.background = 'rgba(0,0,0,0.15)';
+        overlay.style.background = 'rgba(0,0,0,0.35)';
         document.body.style.overflow = 'hidden';
         // animate menu links
         const links = sideMenu.querySelectorAll('.menu-links li');
@@ -50,7 +50,7 @@
     }
 
     function closeMenu() {
-        sideMenu.style.right = '-420px';
+        sideMenu.style.right = '-600px';
         overlay.style.display = 'none';
         overlay.style.background = 'transparent';
         document.body.style.overflow = 'visible';
@@ -69,7 +69,7 @@
     // close with Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            if (sideMenu.style.right === '0px') closeMenu();
+            if (sideMenu.style.right === '24px') closeMenu();
             if (document.getElementById('mProj').classList.contains('open')) closeModal();
         }
     });
