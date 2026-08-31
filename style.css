@@ -7,7 +7,7 @@
   --bg: #0d1117;
   --surface: #151b26;
   --surface2: #10151f;
-  --border: #ffffffb4;
+  --border: #ffffff10;
 
   --accent: #3b82f6;
   --accent2: #38bdf8;
@@ -19,7 +19,7 @@
   --card: #151b26;
 
   --bg-image: url('https://images.pexels.com/photos/6424589/pexels-photo-6424589.jpeg?auto=compress&cs=tinysrgb&w=1600');
-  --bg-overlay: rgba(56, 63, 79, 0);
+  --bg-overlay: rgba(6, 9, 15, 0.3);
 
   --shadow-soft: 9px 9px 20px #06080c, -9px -9px 20px #202838;
   --shadow-hover: 12px 12px 28px #04050a, -12px -12px 28px #263044;
