@@ -25,7 +25,68 @@
                 animateStats();
             }, 400);
         }
-    }, 50);
+    }, 60);
+
+    // ============================================================
+    // 2. SIDE MENU (معدل ليتوافق مع التعديلات الجديدة)
+    // ============================================================
+    const menuToggle = document.getElementById('menuToggle');  // زر البرجر
+    const sideMenu = document.getElementById('sideMenu');
+    const overlay = document.getElementById('overlay');        // احتفظنا بنفس المعرف
+    // ملاحظة: closeBtn غير مستخدم في الـ HTML الجديد، يمكن تركه كتحقق اختياري
+    const closeBtn = document.getElementById('closeBtn');      // إن وجد
+
+    function openMenu() {
+        sideMenu.classList.add('open');
+        overlay.classList.add('show');
+        menuToggle.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        // أنيميشن للروابط
+        const links = sideMenu.querySelectorAll('.menu-links li');
+        links.forEach((li, i) => {
+            li.style.transitionDelay = (i * 0.07) + 's';
+            li.style.opacity = '1';
+            li.style.transform = 'translateX(0)';
+        });
+    }
+
+    function closeMenu() {
+        sideMenu.classList.remove('open');
+        overlay.classList.remove('show');
+        menuToggle.classList.remove('active');
+        document.body.style.overflow = 'visible';
+        const links = sideMenu.querySelectorAll('.menu-links li');
+        links.forEach((li) => {
+            li.style.transitionDelay = '0s';
+            li.style.opacity = '0';
+            li.style.transform = 'translateX(40px)';
+        });
+    }
+
+    // فتح القائمة عند الضغط على زر البرجر
+    menuToggle.addEventListener('click', () => {
+        if (sideMenu.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    // إغلاق عند الضغط على overlay
+    overlay.addEventListener('click', closeMenu);
+
+    // إغلاق عند الضغط على closeBtn إن وجد
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeMenu);
+    }
+
+    // إغلاق بمفتاح Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (sideMenu.classList.contains('open')) closeMenu();
+            if (document.getElementById('mProj').classList.contains('open')) closeModal();
+        }
+    });
 
     // ============================================================
     // 3. FLIP CARD
@@ -110,7 +171,7 @@
     }
 
     // ============================================================
-    // 6. TABLE (CRUD + Sort + Toggle)
+    // 6. TABLE (CRUD + Sort + Toggle) - بدون تغيير
     // ============================================================
     const tblBody = document.getElementById('tblBody');
     const tblFoot = document.getElementById('tblFoot');
@@ -405,7 +466,7 @@
     // ============================================================
     // 10. KEYBOARD & ACCESSIBILITY
     // ============================================================
-    // handle ESC for modal (already added above)
+    // (تمت المعالجة في الأقسام السابقة)
 
     // ============================================================
     // 11. SMOOTH SCROLL FOR INTERNAL LINKS
@@ -419,8 +480,8 @@
                 const offset = 100;
                 const top = targetEl.getBoundingClientRect().top + window.pageYOffset - offset;
                 window.scrollTo({ top, behavior: 'smooth' });
-                // close menu if open
-                if (sideMenu.style.right === '0px') closeMenu();
+                // close menu if open (using class now)
+                if (sideMenu.classList.contains('open')) closeMenu();
             }
         });
     });
@@ -428,7 +489,6 @@
     // ============================================================
     // 12. MOBILE TOUCH IMPROVEMENTS
     // ============================================================
-    // subtle hover effect on touch devices via 'active' class
     document.addEventListener('touchstart', function() {}, { passive: true });
 
     console.log('Suhaib.dev — Light Neomorphism fully interactive!');

@@ -51,13 +51,18 @@ body{
   color: var(--text-white);
   
   /* الخلفية الصورة كما هي */
-  background-image: url('https://images.pexels.com/photos/34804000/pexels-photo-34804000.jpeg');
+  background-image: url('https://images.pexels.com/photos/34803985/pexels-photo-34803985.jpeg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   
+  /* تم التعديل: استخدم position: relative بدلاً من absolute */
   position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 body::before{
@@ -65,26 +70,16 @@ body::before{
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
   z-index: 0;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 body > * {
   position: relative;
   z-index: 1;
 }
-
-/* موبايل: تعطيل fixed attachment لتفادي مشاكل الأداء على iOS Safari */
-@media (max-width: 768px){
-  body{
-    background-attachment: scroll;
-  }
-}
-
-body::after{ display: none; }
-.orb{ display: none; }
 
 /* ==========================
    NAVBAR 
@@ -95,7 +90,6 @@ body::after{ display: none; }
   left: 50%;
   transform: translateX(-50%);
   width: auto;
-  max-width: 95%;
   padding: 12px 24px;
   display: flex;
   justify-content: center;
@@ -115,13 +109,13 @@ body::after{ display: none; }
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--text-primary);
-  white-space: nowrap;
 }
 
 .logo b{
   color: var(--text-secondary);
 }
 
+/* روابط التنقل ظاهرة جنب اللوغو مباشرة */
 .nav-links{
   list-style: none;
   display: flex;
@@ -136,12 +130,98 @@ body::after{ display: none; }
   color: var(--text-muted);
   font-size: 0.9rem;
   letter-spacing: 1px;
-  white-space: nowrap;
   transition: 0.3s;
 }
 
 .nav-links a:hover{
   color: var(--text-primary);
+}
+
+/* ==========================
+   NEW: Mobile Menu Styles
+========================== */
+.menu-btn{
+  display: none; /* مخفي على الديسكتوب */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 110;
+}
+
+.bar{
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.menu-btn.active .bar:nth-child(1){
+  transform: translateY(7px) rotate(45deg);
+}
+.menu-btn.active .bar:nth-child(2){
+  opacity: 0;
+}
+.menu-btn.active .bar:nth-child(3){
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* القائمة الجانبية */
+#sideMenu{
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background: var(--bg-card);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: var(--shadow-hover);
+  padding: 100px 24px;
+  transition: right 0.4s cubic-bezier(.2,.8,.2,1);
+  z-index: 99;
+  overflow-y: auto;
+}
+
+#sideMenu.open{
+  right: 0;
+}
+
+.menu-links{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-links a{
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: color 0.3s;
+}
+
+.menu-links a:hover{
+  color: var(--text-primary);
+}
+
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 98;
+  display: none;
+}
+
+.menu-overlay.show{
+  display: block;
 }
 
 /* ==========================
@@ -355,7 +435,7 @@ body::after{ display: none; }
    SECTIONS
 ========================== */
 section{
-  padding: 80px 0;
+  padding: 250px 0;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -1687,28 +1767,30 @@ footer{
   }
 }
 
+/* تم تعديل هذا الجزء بالكامل لدعم قائمة البرجر وإصلاح التمركز */
 @media (max-width: 900px){
   .navbar{
     top: 16px;
+    left: 16px;
     right: 16px;
-    padding: 8px 14px;
+    transform: none;
+    justify-content: space-between;
+    padding: 10px 16px;
   }
-  .logo{
-    font-size: 0.95rem;
+  .nav-links{
+    display: none;
   }
   .menu-btn{
-    width: 32px;
-    height: 32px;
+    display: flex;
   }
-  .bar{
-    width: 16px;
-    height: 2px;
+  .logo{
+    font-size: 1rem;
   }
   .hero{
     flex-direction: column;
     text-align: center;
     min-height: auto;
-    padding: 100px 20px 60px;
+    padding: 100px 20px 40px;
   }
   .hero-left{
     display: flex;
@@ -1727,17 +1809,30 @@ footer{
   .flip-wrap{
     animation: none !important;
   }
+  .card-area{
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  .flip-wrap{
+    position: relative;
+    width: 310px;
+    height: 430px;
+  }
 }
 
 @media (max-width: 768px){
   #sideMenu{
     width: 100%;
     right: -100%;
-    padding: 100px 24px;
+    padding: 80px 24px;
   }
   .menu-links a{
     font-size: 1.1rem;
-    padding: 20px 0;
+    padding: 18px 0;
   }
   .stats-bar{
     grid-template-columns: repeat(2, 1fr);
@@ -1798,20 +1893,22 @@ footer{
 @media (max-width: 480px){
   .navbar{
     top: 12px;
+    left: 12px;
     right: 12px;
-    padding: 6px 12px;
+    padding: 8px 12px;
     gap: 8px;
     border-radius: 10px;
   }
   .logo{
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   .menu-btn{
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
+    gap: 4px;
   }
   .bar{
-    width: 14px;
+    width: 18px;
     height: 1.5px;
   }
   .hero{
