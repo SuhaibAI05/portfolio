@@ -28,50 +28,40 @@
     }, 60);
 
     // ============================================================
-    // 2. SIDE MENU
+    // 2. SCROLLSPY NAVBAR — هالة حول القسم الحالي
     // ============================================================
-    const menuBtn = document.getElementById('menuBtn');
-    const closeBtn = document.getElementById('closeBtn');
-    const sideMenu = document.getElementById('sideMenu');
-    const overlay = document.getElementById('overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = Array.from(navLinks)
+        .map(link => document.getElementById(link.dataset.section))
+        .filter(Boolean);
 
-    function openMenu() {
-        sideMenu.style.right = '24px';
-        overlay.style.display = 'block';
-        overlay.style.background = 'rgba(0,0,0,0.35)';
-        document.body.style.overflow = 'hidden';
-        // animate menu links
-        const links = sideMenu.querySelectorAll('.menu-links li');
-        links.forEach((li, i) => {
-            li.style.transitionDelay = (i * 0.07) + 's';
-            li.style.opacity = '1';
-            li.style.transform = 'translateX(0)';
+    function setActiveLink(id) {
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link.dataset.section === id);
         });
     }
 
-    function closeMenu() {
-        sideMenu.style.right = '-600px';
-        overlay.style.display = 'none';
-        overlay.style.background = 'transparent';
-        document.body.style.overflow = 'visible';
-        const links = sideMenu.querySelectorAll('.menu-links li');
-        links.forEach((li) => {
-            li.style.transitionDelay = '0s';
-            li.style.opacity = '0';
-            li.style.transform = 'translateX(40px)';
+    const spyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setActiveLink(entry.target.id);
+            }
         });
-    }
+    }, {
+        // القسم يعتبر "الحالي" لما يوصل منتصف الشاشة تقريبًا
+        rootMargin: '-40% 0px -50% 0px',
+        threshold: 0
+    });
 
-    menuBtn.addEventListener('click', openMenu);
-    closeBtn.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', closeMenu);
+    sections.forEach(section => spyObserver.observe(section));
 
-    // close with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            if (sideMenu.style.right === '24px') closeMenu();
-            if (document.getElementById('mProj').classList.contains('open')) closeModal();
-        }
+    // سكرول ناعم عند الضغط على الرابط
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.getElementById(link.dataset.section);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
     });
 
     // ============================================================
