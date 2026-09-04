@@ -1662,7 +1662,7 @@ footer{
 
 @media (max-width: 640px){
   .wrap{ padding: 0 16px; }
-  section{ padding: 140px 0; }
+  section{ padding: 250px 0; }
   .stats-bar{ grid-template-columns: repeat(2, 1fr); padding: 24px 18px; }
   .skills-grid{ grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
   .skill-card{ padding: 18px; border-radius: 18px; }
