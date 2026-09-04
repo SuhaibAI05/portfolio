@@ -84,11 +84,11 @@ body::before{ display: none; }
   display: flex;
   justify-content: center;  
   align-items: center;
-  background: rgba(13,17,23,0.72);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border: none;
-  box-shadow: var(--shadow-soft), 0 2px 8px rgba(0,0,0,0.35);
+  box-shadow: none;
   z-index: 100;
 }
 
@@ -96,7 +96,7 @@ body::before{ display: none; }
   background: var(--surface);
   border-radius: var(--radius-round);
   padding: 6px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: none;
 }
 
 .nav-links{
@@ -155,7 +155,6 @@ body::before{ display: none; }
     font-size: 0.54rem;
   }
 }
-
 .wrap{
   max-width: 1200px;
   margin: 0 auto;
@@ -212,7 +211,7 @@ body::before{ display: none; }
 
 .hero-name{
   font-family: 'Syne', sans-serif;
-  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 5vw, 2rem);
   font-weight: 800;
   line-height: 0.95;
   letter-spacing: -3px;
