@@ -1622,7 +1622,14 @@ footer{
 }
 
 @media (max-width: 900px){
-  .navbar{ padding: 14px 22px; }
+  .navbar{
+    padding: 14px 22px;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+  .nav-wrap{ box-shadow: none; }
   .wrap{ padding: 0 18px; }
   .hero{
     flex-direction: column;
@@ -1634,7 +1641,14 @@ footer{
 }
 
 @media (max-width: 768px){
-  .navbar{ padding: 18px 20px; }
+  .navbar{
+    padding: 18px 20px;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+  .nav-wrap{ box-shadow: none; }
 }
 
 
