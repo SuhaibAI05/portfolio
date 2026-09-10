@@ -469,4 +469,141 @@
     document.addEventListener('touchstart', function() {}, { passive: true });
 
     console.log('Suhaib.dev — Light Neomorphism fully interactive!');
+
+    // ============================================================
+    // 13. AI CHATBOT UI
+    // ============================================================
+
+    const chatbotToggle =
+        document.getElementById('chatbotToggle');
+
+    const chatbotWindow =
+        document.getElementById('chatbotWindow');
+
+    const chatbotClose =
+        document.getElementById('chatbotClose');
+
+    const chatbotInput =
+        document.getElementById('chatbotInput');
+
+    const chatbotSend =
+        document.getElementById('chatbotSend');
+
+    const chatbotMessages =
+        document.getElementById('chatbotMessages');
+
+
+    function openChatbot() {
+
+        chatbotWindow.classList.add('open');
+
+        setTimeout(() => {
+            chatbotInput.focus();
+        }, 250);
+    }
+
+
+    function closeChatbot() {
+
+        chatbotWindow.classList.remove('open');
+    }
+
+
+    function addChatbotMessage(
+        message,
+        sender
+    ) {
+
+        const messageEl =
+            document.createElement('div');
+
+        messageEl.className =
+            `chatbot-message chatbot-${sender}`;
+
+
+        const bubbleEl =
+            document.createElement('div');
+
+        bubbleEl.className =
+            'chatbot-bubble';
+
+
+        bubbleEl.textContent =
+            message;
+
+
+        messageEl.appendChild(
+            bubbleEl
+        );
+
+
+        chatbotMessages.appendChild(
+            messageEl
+        );
+
+
+        chatbotMessages.scrollTop =
+            chatbotMessages.scrollHeight;
+    }
+
+
+    function handleChatbotMessage() {
+
+        const message =
+            chatbotInput.value.trim();
+
+
+        if (!message) {
+            return;
+        }
+
+
+        // Show user message
+        addChatbotMessage(
+            message,
+            'user'
+        );
+
+
+        chatbotInput.value = '';
+
+
+        // Temporary response
+        addChatbotMessage(
+            'The AI Assistant connection will be available soon.',
+            'bot'
+        );
+    }
+
+
+    chatbotToggle.addEventListener(
+        'click',
+        openChatbot
+    );
+
+
+    chatbotClose.addEventListener(
+        'click',
+        closeChatbot
+    );
+
+
+    chatbotSend.addEventListener(
+        'click',
+        handleChatbotMessage
+    );
+
+
+    chatbotInput.addEventListener(
+        'keydown',
+        (event) => {
+
+            if (event.key === 'Enter') {
+
+                event.preventDefault();
+
+                handleChatbotMessage();
+            }
+        }
+    );
 })();
