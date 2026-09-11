@@ -471,139 +471,270 @@
     console.log('Suhaib.dev — Light Neomorphism fully interactive!');
 
     // ============================================================
-    // 13. AI CHATBOT UI
+    // AI CHATBOT
     // ============================================================
 
-    const chatbotToggle =
-        document.getElementById('chatbotToggle');
+    document.addEventListener('DOMContentLoaded', () => {
 
-    const chatbotWindow =
-        document.getElementById('chatbotWindow');
+        const chatbotToggle =
+            document.getElementById('chatbotToggle');
 
-    const chatbotClose =
-        document.getElementById('chatbotClose');
+        const chatbotWindow =
+            document.getElementById('chatbotWindow');
 
-    const chatbotInput =
-        document.getElementById('chatbotInput');
+        const chatbotClose =
+            document.getElementById('chatbotClose');
 
-    const chatbotSend =
-        document.getElementById('chatbotSend');
+        const chatbotInput =
+            document.getElementById('chatbotInput');
 
-    const chatbotMessages =
-        document.getElementById('chatbotMessages');
+        const chatbotSend =
+            document.getElementById('chatbotSend');
 
-
-    function openChatbot() {
-
-        chatbotWindow.classList.add('open');
-
-        setTimeout(() => {
-            chatbotInput.focus();
-        }, 250);
-    }
+        const chatbotMessages =
+            document.getElementById('chatbotMessages');
 
 
-    function closeChatbot() {
+        // Make sure all chatbot elements exist
+        if (
+            !chatbotToggle ||
+            !chatbotWindow ||
+            !chatbotClose ||
+            !chatbotInput ||
+            !chatbotSend ||
+            !chatbotMessages
+        ) {
+            console.error(
+                'Chatbot elements were not found in index.html.'
+            );
 
-        chatbotWindow.classList.remove('open');
-    }
-
-
-    function addChatbotMessage(
-        message,
-        sender
-    ) {
-
-        const messageEl =
-            document.createElement('div');
-
-        messageEl.className =
-            `chatbot-message chatbot-${sender}`;
-
-
-        const bubbleEl =
-            document.createElement('div');
-
-        bubbleEl.className =
-            'chatbot-bubble';
-
-
-        bubbleEl.textContent =
-            message;
-
-
-        messageEl.appendChild(
-            bubbleEl
-        );
-
-
-        chatbotMessages.appendChild(
-            messageEl
-        );
-
-
-        chatbotMessages.scrollTop =
-            chatbotMessages.scrollHeight;
-    }
-
-
-    function handleChatbotMessage() {
-
-        const message =
-            chatbotInput.value.trim();
-
-
-        if (!message) {
             return;
         }
 
 
-        // Show user message
-        addChatbotMessage(
-            message,
-            'user'
-        );
+        // ==========================================
+        // Open Chatbot
+        // ==========================================
+
+        chatbotToggle.addEventListener('click', () => {
+
+            chatbotWindow.classList.add('open');
+
+            setTimeout(() => {
+                chatbotInput.focus();
+            }, 200);
+
+        });
 
 
-        chatbotInput.value = '';
+        // ==========================================
+        // Close Chatbot
+        // ==========================================
+
+        chatbotClose.addEventListener('click', () => {
+
+            chatbotWindow.classList.remove('open');
+
+        });
 
 
-        // Temporary response
-        addChatbotMessage(
-            'The AI Assistant connection will be available soon.',
-            'bot'
-        );
-    }
+        // ==========================================
+        // Add Message
+        // ==========================================
+
+        function addChatbotMessage(message, sender) {
+
+            const messageWrapper =
+                document.createElement('div');
+
+            messageWrapper.className =
+                `chatbot-message chatbot-${sender}`;
 
 
-    chatbotToggle.addEventListener(
-        'click',
-        openChatbot
-    );
+            const bubble =
+                document.createElement('div');
+
+            bubble.className =
+                'chatbot-bubble';
 
 
-    chatbotClose.addEventListener(
-        'click',
-        closeChatbot
-    );
+            bubble.textContent = message;
 
 
-    chatbotSend.addEventListener(
-        'click',
-        handleChatbotMessage
-    );
+            messageWrapper.appendChild(bubble);
+
+            chatbotMessages.appendChild(
+                messageWrapper
+            );
 
 
-    chatbotInput.addEventListener(
-        'keydown',
-        (event) => {
-
-            if (event.key === 'Enter') {
-
-                event.preventDefault();
-
-                handleChatbotMessage();
-            }
+            chatbotMessages.scrollTop =
+                chatbotMessages.scrollHeight;
         }
-    );
+
+
+        // ==========================================
+        // Send Message
+        // ==========================================
+
+        async function handleChatbotMessage() {
+
+            const message =
+                chatbotInput.value.trim();
+
+
+            if (!message) {
+                return;
+            }
+
+
+            // Show user message
+            addChatbotMessage(
+                message,
+                'user'
+            );
+
+
+            // Clear input
+            chatbotInput.value = '';
+
+
+            // Temporary loading message
+            addChatbotMessage(
+                'Thinking...',
+                'bot'
+            );
+
+
+            try {
+
+                const response = await fetch(
+                    'https://suhaib-ai-chatbot.onrender.com/chat',
+                    {
+                        method: 'POST',
+
+                        headers: {
+                            'Content-Type':
+                                'application/json'
+                        },
+
+                        body: JSON.stringify({
+                            message: message
+                        })
+                    }
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        'API request failed.'
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                // Remove Thinking...
+                const botMessages =
+                    chatbotMessages.querySelectorAll(
+                        '.chatbot-bot'
+                    );
+
+
+                const lastBotMessage =
+                    botMessages[
+                        botMessages.length - 1
+                    ];
+
+
+                if (lastBotMessage) {
+                    lastBotMessage.remove();
+                }
+
+
+                // Show real response
+                addChatbotMessage(
+                    data.reply ||
+                    'No response received.',
+                    'bot'
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    'Chatbot API Error:',
+                    error
+                );
+
+
+                // Remove Thinking...
+                const botMessages =
+                    chatbotMessages.querySelectorAll(
+                        '.chatbot-bot'
+                    );
+
+
+                const lastBotMessage =
+                    botMessages[
+                        botMessages.length - 1
+                    ];
+
+
+                if (lastBotMessage) {
+                    lastBotMessage.remove();
+                }
+
+
+                addChatbotMessage(
+                    'Unable to connect to the AI Assistant.',
+                    'bot'
+                );
+
+            }
+
+        }
+
+
+        // ==========================================
+        // Send Button
+        // ==========================================
+
+        chatbotSend.addEventListener(
+            'click',
+            handleChatbotMessage
+        );
+
+
+        // ==========================================
+        // Enter Key
+        // ==========================================
+
+        chatbotInput.addEventListener(
+            'keydown',
+            (event) => {
+
+                if (event.key === 'Enter') {
+
+                    event.preventDefault();
+
+                    handleChatbotMessage();
+
+                }
+
+            }
+        );
+
+    });
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // كود الـ Chatbot الجديد هنا
+
+});
