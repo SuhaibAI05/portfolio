@@ -1,35 +1,40 @@
 /* ============================
-   🌑 DARK NEOMORPHISM - BLUE ACCENTS
+   DARK NEOMORPHISM - BLUE ACCENTS
    Soft edges · Deep tones · Cyan / Sky-blue highlights
    ============================ */
 
+/* ── VARIABLES ── */
+/* متغيرات الألوان والظلال الأساسية */
 :root{
-  --bg: #0d1117;
-  --surface: #151b26;
-  --surface2: #10151f;
-  --border: #ffffff10;
+  --bg: #0d1117;                /* لون الخلفية الرئيسي */
+  --surface: #151b26;           /* سطح العناصر */
+  --surface2: #10151f;          /* سطح ثانوي أغمق */
+  --border: #ffffff10;          /* لون الحدود */
 
-  --accent: #3b82f6;
-  --accent2: #38bdf8;
-  --accent3: #f43f5e;
-  --gold: #eab308;
+  --accent: #3b82f6;            /* اللون الرئيسي - أزرق */
+  --accent2: #38bdf8;           /* اللون الثانوي - سماوي */
+  --accent3: #f43f5e;           /* لون التحذير - أحمر */
+  --gold: #eab308;              /* لون ذهبي للتمييز */
 
-  --text: #97c6fc;
-  --muted: #64748b;
-  --card: #151b26;
+  --text: #97c6fc;              /* لون النص */
+  --muted: #64748b;             /* نص باهت للتفاصيل */
+  --card: #151b26;              /* خلفية البطاقات */
 
   --bg-image: url('https://images.pexels.com/photos/6424589/pexels-photo-6424589.jpeg?auto=compress&cs=tinysrgb&w=1600');
-  --bg-overlay: rgba(6, 9, 15, 0.3);
+  --bg-overlay: rgba(6, 9, 15, 0.3); /* طبقة فوق الصورة */
 
-  --shadow-soft: 9px 9px 20px #06080c, -9px -9px 20px #202838;
-  --shadow-hover: 12px 12px 28px #04050a, -12px -12px 28px #263044;
-  --shadow-inset: inset 6px 6px 14px #06080c, inset -6px -6px 14px #202838;
-  --shadow-inset-sm: inset 3px 3px 8px #06080c, inset -3px -3px 8px #202838;
-  
-  --radius-soft: 24px;
-  --radius-round: 100px;
+  /* ظلال Neomorphism */
+  --shadow-soft:     9px 9px 20px #06080c, -9px -9px 20px #202838;         /* ظل ناعم */
+  --shadow-hover:   12px 12px 28px #04050a, -12px -12px 28px #263044;      /* ظل عند hover */
+  --shadow-inset:   inset 6px 6px 14px #06080c, inset -6px -6px 14px #202838; /* ظل داخلي */
+  --shadow-inset-sm: inset 3px 3px 8px #06080c, inset -3px -3px 8px #202838;  /* ظل داخلي صغير */
+
+  --radius-soft:  24px;   /* حواف دائرية كبيرة */
+  --radius-round: 100px;  /* حواف دائرية كاملة */
 }
 
+/* ── RESET ── */
+/* إعادة تعيين الـ margin و padding لكل العناصر */
 *,
 *::before,
 *::after{
@@ -38,16 +43,19 @@
   padding: 0;
 }
 
+/* ── HTML ── */
 html{
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* تمرير سلس عند الضغط على روابط */
 }
 
+/* ── BODY ── */
+/* الجسم الرئيسي مع صورة خلفية ثابتة */
 body{
   background-color: var(--bg);
   background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--bg-image);
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: fixed;  /* الصورة ثابتة عند التمرير */
   background-repeat: no-repeat;
   color: var(--text);
   font-family: 'Manrope', 'Orbitron', sans-serif;
@@ -57,9 +65,12 @@ body{
   min-height: 100vh;
 }
 
+/* إخفاء الـ noise overlay والـ orbs — غير مستخدمة في هذا الثيم */
 body::before{ display: none; }
 .orb{ display: none; }
 
+/* ── GLASS CARD ── */
+/* كلاس عام لعناصر Neomorphism */
 .glass{
   background: var(--surface);
   border: none;
@@ -75,6 +86,8 @@ body::before{ display: none; }
   transform: translateY(-3px);
 }
 
+/* ── NAVBAR ── */
+/* شريط التنقل العلوي الثابت */
 .navbar{
   position: fixed;
   top: 0;
@@ -82,7 +95,7 @@ body::before{ display: none; }
   width: 100%;
   padding: 16px 24px;
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
   background: transparent;
   backdrop-filter: none;
@@ -92,6 +105,7 @@ body::before{ display: none; }
   z-index: 100;
 }
 
+/* الحاوية الداخلية للروابط */
 .nav-wrap{
   background: var(--surface);
   border-radius: var(--radius-round);
@@ -99,6 +113,7 @@ body::before{ display: none; }
   box-shadow: none;
 }
 
+/* قائمة روابط التنقل */
 .nav-links{
   list-style: none;
   display: flex;
@@ -107,6 +122,7 @@ body::before{ display: none; }
   flex-wrap: nowrap;
 }
 
+/* رابط تنقل واحد */
 .nav-link{
   position: relative;
   display: inline-block;
@@ -126,12 +142,14 @@ body::before{ display: none; }
   color: var(--accent2);
 }
 
+/* الرابط النشط حاليًا */
 .nav-link.active{
   color: var(--accent2);
   background: var(--surface2);
   box-shadow: var(--shadow-inset-sm), 0 0 0 1px rgba(56, 189, 248, 0.35), 0 0 14px rgba(56, 189, 248, 0.35);
 }
 
+/* التجاوب للشاشات المتوسطة */
 @media (max-width: 900px){
   .navbar{
     padding: 12px 16px;
@@ -142,13 +160,11 @@ body::before{ display: none; }
   }
   .nav-wrap{
     max-width: 100%;
-    overflow-x: auto;
+    overflow-x: auto;                   /* تمرير أفقي للروابط على الجوال */
     -webkit-overflow-scrolling: touch;
     box-shadow: none;
   }
-  .nav-links{
-    gap: 2px;
-  }
+  .nav-links{ gap: 2px; }
   .nav-link{
     padding: 6px 11px;
     font-size: 0.6rem;
@@ -156,6 +172,7 @@ body::before{ display: none; }
   }
 }
 
+/* التجاوب للشاشات الصغيرة جداً */
 @media (max-width: 480px){
   .nav-link{
     padding: 5px 8px;
@@ -163,12 +180,16 @@ body::before{ display: none; }
   }
 }
 
+/* ── LAYOUT WRAPPER ── */
+/* حاوية المحتوى الرئيسية */
 .wrap{
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
 }
 
+/* ── HERO SECTION ── */
+/* القسم الرئيسي في أعلى الصفحة */
 .hero{
   display: flex;
   flex-direction: row;
@@ -178,12 +199,14 @@ body::before{ display: none; }
   padding-bottom: 80px;
 }
 
+/* الجانب الأيسر من الـ Hero - النص */
 .hero-left{
   position: relative;
   flex: 1;
   min-width: 0;
 }
 
+/* شارة "متاح للمشاريع" */
 .hero-tag{
   position: relative;
   display: inline-flex;
@@ -202,6 +225,7 @@ body::before{ display: none; }
   box-shadow: var(--shadow-soft);
 }
 
+/* النقطة المتحركة في الشارة */
 .hero-tag::before{
   content: '';
   width: 6px;
@@ -212,11 +236,13 @@ body::before{ display: none; }
   animation: blink 2s infinite;
 }
 
+/* انيميشن وميض النقطة */
 @keyframes blink{
   0%,100%{ opacity: 1; transform: scale(1); }
   50%{ opacity: 0.3; transform: scale(1.6); }
 }
 
+/* الاسم الكبير */
 .hero-name{
   font-family: 'Syne', sans-serif;
   font-size: clamp(2.5rem, 5vw, 2rem);
@@ -229,6 +255,7 @@ body::before{ display: none; }
 
 .hero-name .line{ display: block; }
 
+/* تأثير التدرج المتحرك على الاسم */
 .grad{
   background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
   background-size: 200% auto;
@@ -238,16 +265,19 @@ body::before{ display: none; }
   animation: revealName 1.2s ease forwards, gradientMove 4s linear infinite;
 }
 
+/* انيميشن ظهور الاسم عند تحميل الصفحة */
 @keyframes revealName{
   from{ opacity: 0; transform: translateX(-40px); filter: blur(8px); }
   to{ opacity: 1; transform: translateX(0); filter: blur(0); }
 }
 
+/* انيميشن حركة التدرج */
 @keyframes gradientMove{
   from{ background-position: 0% center; }
   to{ background-position: 200% center; }
 }
 
+/* المسمى الوظيفي */
 .hero-role{
   font-family: 'Space Mono', monospace;
   font-size: 0.78rem;
@@ -257,6 +287,7 @@ body::before{ display: none; }
   margin-bottom: 22px;
 }
 
+/* وصف قصير */
 .hero-desc{
   font-size: 1rem;
   line-height: 1.8;
@@ -265,12 +296,14 @@ body::before{ display: none; }
   margin-bottom: 34px;
 }
 
+/* حاوية أزرار الـ CTA */
 .cta{
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
 }
 
+/* زر CTA الأساسي والثانوي */
 .cta-btn{
   display: inline-flex;
   align-items: center;
@@ -290,10 +323,11 @@ body::before{ display: none; }
 }
 
 .cta-btn:hover{
-  box-shadow: var(--shadow-inset);
+  box-shadow: var(--shadow-inset); /* يعطي تأثير الضغط */
   transform: scale(0.97);
 }
 
+/* الزر الرئيسي بتدرج */
 .cta-btn.primary{
   background: linear-gradient(135deg, var(--accent), var(--accent2));
   color: #051019;
@@ -305,6 +339,7 @@ body::before{ display: none; }
   transform: scale(0.97);
 }
 
+/* الزر الثانوي */
 .cta-btn.secondary{
   background: var(--surface);
   color: var(--text);
@@ -318,45 +353,13 @@ body::before{ display: none; }
 
 .hero-left::before{ display: none; }
 
-.ticker-wrap{
-  overflow: hidden;
-  border-top: 1px solid #ffffff12;
-  border-bottom: 1px solid #ffffff12;
-  padding: 13px 0;
-  margin: 60px 0;
-  background: var(--surface);
-  box-shadow: var(--shadow-soft);
-  border-radius: 16px;
-}
 
-.ticker-track{
-  display: flex;
-  gap: 56px;
-  animation: ticker 24s linear infinite;
-  white-space: nowrap;
-  width: max-content;
-}
 
-.ticker-item{
-  font-family: 'Space Mono', monospace;
-  font-size: 0.76rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.ticker-item span{ color: var(--accent2); }
-
-@keyframes ticker{
-  from{ transform: translateX(0); }
-  to{ transform: translateX(-50%); }
-}
-
+/* ── SECTIONS ── */
+/* المسافة بين الأقسام */
 section{ padding: 300px 0; }
 
+/* رأس كل section */
 .sec-hdr{
   display: flex;
   align-items: baseline;
@@ -364,6 +367,7 @@ section{ padding: 300px 0; }
   margin-bottom: 42px;
 }
 
+/* رقم الـ section */
 .sec-num{
   font-family: 'Space Mono', monospace;
   font-size: 0.7rem;
@@ -371,6 +375,7 @@ section{ padding: 300px 0; }
   letter-spacing: 2px;
 }
 
+/* عنوان الـ section */
 .sec-title{
   font-family: 'Syne', sans-serif;
   font-size: clamp(1.7rem, 3.5vw, 2.5rem);
@@ -379,6 +384,7 @@ section{ padding: 300px 0; }
   color: var(--text);
 }
 
+/* الخط الأفقي بجانب العنوان */
 .sec-line{
   flex: 1;
   height: 1px;
@@ -386,17 +392,22 @@ section{ padding: 300px 0; }
   align-self: center;
 }
 
+/* ── SCROLL REVEAL ── */
+/* ظهور العناصر عند التمرير */
 .reveal{
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
+/* يُضاف بالـ JS عند ظهور العنصر في الشاشة */
 .reveal.on{
   opacity: 1;
   transform: translateY(0);
 }
 
+/* ── STATS BAR ── */
+/* شريط الإحصائيات الأربعة */
 .stats-bar{
   position: relative;
   overflow: hidden;
@@ -417,6 +428,7 @@ section{ padding: 300px 0; }
 
 .stat-item{ text-align: center; }
 
+/* الرقم الكبير */
 .stat-num{
   display: block;
   margin-bottom: 8px;
@@ -432,6 +444,7 @@ section{ padding: 300px 0; }
   filter: none;
 }
 
+/* التسمية تحت الرقم */
 .stat-lbl{
   position: relative;
   display: inline-block;
@@ -442,6 +455,7 @@ section{ padding: 300px 0; }
   color: var(--muted);
 }
 
+/* خط صغير تحت التسمية */
 .stat-lbl::after{
   content: '';
   position: absolute;
@@ -453,12 +467,15 @@ section{ padding: 300px 0; }
   background: linear-gradient(90deg, transparent, var(--accent2), transparent);
 }
 
+/* ── SKILLS GRID ── */
+/* شبكة بطاقات المهارات */
 .skills-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
 }
 
+/* بطاقة مهارة واحدة */
 .skill-card{
   position: relative;
   overflow: hidden;
@@ -478,6 +495,7 @@ section{ padding: 300px 0; }
 .skill-card::before,
 .skill-card::after{ display: none; }
 
+/* أيقونة المهارة */
 .sk-ico{
   font-size: 1.8rem;
   margin-bottom: 11px;
@@ -486,6 +504,7 @@ section{ padding: 300px 0; }
   font-weight: 700;
 }
 
+/* اسم المهارة */
 .sk-name{
   font-family: 'Syne', sans-serif;
   font-size: 0.93rem;
@@ -494,6 +513,7 @@ section{ padding: 300px 0; }
   color: var(--text);
 }
 
+/* خلفية شريط المهارة */
 .bar-wrap{
   background: #ffffff12;
   border-radius: var(--radius-round);
@@ -502,15 +522,17 @@ section{ padding: 300px 0; }
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.35);
 }
 
+/* الشريط الملون - يتحرك بالـ JS */
 .bar-fill{
   height: 100%;
   border-radius: var(--radius-round);
   background: linear-gradient(90deg, var(--accent), var(--accent2));
-  width: 0;
+  width: 0; /* يبدأ من 0 ويُحرَّك بالـ JS */
   transition: width 1.3s cubic-bezier(.4,0,.2,1);
   box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
 }
 
+/* النسبة المئوية */
 .sk-pct{
   font-family: 'Space Mono', monospace;
   font-size: 0.61rem;
@@ -520,6 +542,8 @@ section{ padding: 300px 0; }
   text-transform: uppercase;
 }
 
+/* ── TABLE ── */
+/* جدول لغات البرمجة */
 .tbl-controls{
   display: flex;
   gap: 10px;
@@ -527,6 +551,7 @@ section{ padding: 300px 0; }
   flex-wrap: wrap;
 }
 
+/* أزرار التحكم بالجدول */
 .tbl-btn{
   display: inline-flex;
   align-items: center;
@@ -549,31 +574,35 @@ section{ padding: 300px 0; }
   color: var(--accent2);
 }
 
+/* حاوية الجدول مع تمرير أفقي */
 .tbl-wrap{
   position: relative;
   background: var(--surface);
   border: none;
   border-radius: var(--radius-soft);
-  overflow-x: auto;
+  overflow-x: auto;                    /* تمرير أفقي على الجوال */
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;   /* تمرير سلس على iOS */
   box-shadow: var(--shadow-soft);
   transition: box-shadow 0.3s ease;
 }
 
 .tbl-wrap:hover{ box-shadow: var(--shadow-hover); }
 
+/* الجدول نفسه */
 table{
   width: 100%;
   border-collapse: collapse;
-  min-width: 520px;
+  min-width: 520px; /* يمنع تكسر الجدول على الجوال */
 }
 
+/* رأس الجدول */
 thead tr{
   background: var(--surface2);
   border-bottom: 1px solid #ffffff12;
 }
 
+/* خلية رأس العمود */
 th{
   padding: 14px 17px;
   text-align: right;
@@ -582,13 +611,14 @@ th{
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--muted);
-  cursor: pointer;
+  cursor: pointer;    /* قابل للضغط للترتيب */
   user-select: none;
   transition: color 0.2s;
 }
 
 th:hover{ color: var(--accent2); }
 
+/* خلية بيانات */
 td{
   padding: 14px 17px;
   border-bottom: 1px solid #ffffff12;
@@ -600,6 +630,7 @@ tbody tr:last-child td{ border-bottom: none; }
 tbody tr{ transition: background 0.2s; }
 tbody tr:hover{ background: rgba(59, 130, 246, 0.08); }
 
+/* شارة السنة */
 .yr-pill{
   display: inline-block;
   background: rgba(56, 189, 248, 0.12);
@@ -611,6 +642,7 @@ tbody tr:hover{ background: rgba(59, 130, 246, 0.08); }
   font-size: 0.71rem;
 }
 
+/* أزرار تعديل وحذف الصفوف */
 .act-btn{
   padding: 4px 10px;
   border-radius: 8px;
@@ -635,6 +667,7 @@ tbody tr:hover{ background: rgba(59, 130, 246, 0.08); }
   color: var(--accent3);
 }
 
+/* ذيل الجدول - الإحصائيات */
 tfoot td{
   background: var(--surface2);
   border-top: 1px solid #ffffff12;
@@ -652,8 +685,9 @@ tfoot td{
 
 .tbl-foot strong{ color: var(--accent2); }
 
+/* لوحة إضافة لغة جديدة */
 .add-panel{
-  display: none;
+  display: none; /* يظهر بالـ JS */
   margin-top: 16px;
   background: var(--surface);
   border: none;
@@ -675,6 +709,7 @@ tfoot td{
   align-items: flex-end;
 }
 
+/* حقل الإدخال */
 .p-inp{
   padding: 9px 12px;
   background: var(--surface2);
@@ -692,12 +727,15 @@ tfoot td{
 .p-inp:focus{ box-shadow: var(--shadow-inset); }
 .p-inp::placeholder{ color: var(--muted); }
 
+/* ── COURSES ── */
+/* قائمة الكورسات */
 .course-list{
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
+/* عنصر كورس واحد */
 .course-item{
   display: flex;
   align-items: center;
@@ -722,6 +760,7 @@ tfoot td{
 
 .course-item::before{ display: none; }
 
+/* رقم الكورس */
 .c-num{
   font-family: 'Space Mono', monospace;
   font-size: 0.66rem;
@@ -731,6 +770,8 @@ tfoot td{
 
 .c-icon{ font-size: 1.25rem; }
 .c-info{ flex: 1; }
+
+/* اسم الكورس */
 .c-name{
   font-family: 'Syne', sans-serif;
   font-size: 0.95rem;
@@ -738,12 +779,14 @@ tfoot td{
   color: var(--text);
 }
 
+/* وصف الكورس */
 .c-sub{
   font-size: 0.76rem;
   color: var(--muted);
   margin-top: 1px;
 }
 
+/* السهم على اليمين */
 .c-arr{
   color: var(--muted);
   transition: all 0.3s;
@@ -754,8 +797,9 @@ tfoot td{
   transform: translateX(-4px);
 }
 
+/* لوحة تفاصيل الكورس */
 .detail-panel{
-  display: none;
+  display: none; /* يظهر بالـ JS */
   background: var(--surface);
   border: none;
   border-radius: 16px;
@@ -770,6 +814,7 @@ tfoot td{
   margin-bottom: 13px;
 }
 
+/* شبكة تفاصيل الكورس */
 .d-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
@@ -777,6 +822,7 @@ tfoot td{
   margin-bottom: 13px;
 }
 
+/* خلية تفاصيل واحدة */
 .d-cell{
   background: var(--surface2);
   border: none;
@@ -800,6 +846,7 @@ tfoot td{
   color: var(--text);
 }
 
+/* تاغات المواضيع */
 .topic-tags{
   display: flex;
   flex-wrap: wrap;
@@ -817,12 +864,15 @@ tfoot td{
   font-family: 'Space Mono', monospace;
 }
 
+/* ── RESOURCES ── */
+/* بطاقات الموارد */
 .res-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 16px;
 }
 
+/* بطاقة مورد واحدة */
 .res-card{
   background: var(--surface);
   border: none;
@@ -842,6 +892,7 @@ tfoot td{
   box-shadow: var(--shadow-hover);
 }
 
+/* أيقونة البطاقة */
 .res-icon{
   font-size: 2rem;
   margin-bottom: 11px;
@@ -865,6 +916,7 @@ tfoot td{
   margin-bottom: 12px;
 }
 
+/* تاغ نوع المورد */
 .res-tag{
   font-family: 'Space Mono', monospace;
   font-size: 0.61rem;
@@ -877,6 +929,7 @@ tfoot td{
   border-radius: var(--radius-round);
 }
 
+/* شارة CLICK في الزاوية */
 .res-badge{
   position: absolute;
   top: 16px;
@@ -890,12 +943,15 @@ tfoot td{
   border-radius: var(--radius-round);
 }
 
+/* ── PROFILES ── */
+/* شبكة بطاقات LinkedIn و GitHub */
 .profiles-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
+/* بطاقة ملف شخصي واحدة */
 .profile-card{
   background: var(--surface);
   border: none;
@@ -913,6 +969,7 @@ tfoot td{
   box-shadow: var(--shadow-hover);
 }
 
+/* الجزء العلوي الملون */
 .profile-card-top{
   padding: 32px 28px;
   display: flex;
@@ -922,10 +979,12 @@ tfoot td{
   overflow: hidden;
 }
 
+/* خلفية LinkedIn */
 .linkedin-bg{
   background: linear-gradient(135deg, #0a2942, #1e4a6b);
 }
 
+/* خلفية GitHub */
 .github-bg{
   background: linear-gradient(135deg, #14141f, #1e2530);
 }
@@ -939,6 +998,7 @@ tfoot td{
 
 .profile-card-top::after{ display: none; }
 
+/* شعار الشبكة الاجتماعية */
 .profile-logo{
   width: 52px;
   height: 52px;
@@ -948,6 +1008,7 @@ tfoot td{
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
+/* شارة اسم الشبكة */
 .profile-badge{
   font-family: 'Space Mono', monospace;
   font-size: 0.65rem;
@@ -962,6 +1023,7 @@ tfoot td{
   z-index: 1;
 }
 
+/* الجزء السفلي - النص */
 .profile-card-body{
   padding: 22px 24px;
 }
@@ -1007,10 +1069,13 @@ tfoot td{
   border-radius: var(--radius-round);
 }
 
+/* ── FLIP CARD ── */
+/* بطاقة الملف الشخصي القابلة للقلب */
 :root{
   --card-radius: 26px;
 }
 
+/* حاوية البطاقة الثابتة */
 .card-area{
   display: block;
   width: 310px;
@@ -1019,6 +1084,7 @@ tfoot td{
   max-width: 100%;
 }
 
+/* الغلاف الخارجي مع perspective للـ 3D */
 .flip-wrap{
   width: 310px;
   height: 430px;
@@ -1029,15 +1095,17 @@ tfoot td{
   perspective: 1400px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  animation: floatCard 6s ease-in-out infinite;
+  animation: floatCard 6s ease-in-out infinite; /* تأثير العوم */
 }
 
+/* إيقاف العوم عند hover */
 .flip-wrap:hover{
   animation-play-state: paused;
   transform: translateY(-10px);
   transition: transform 0.5s cubic-bezier(.2,.8,.2,1);
 }
 
+/* البطاقة نفسها - تدور بالـ 3D */
 .flip-card{
   width: 100%;
   height: 100%;
@@ -1048,8 +1116,10 @@ tfoot td{
   will-change: transform;
 }
 
+/* الوجه المقلوب */
 .flip-card.flipped{ transform: rotateY(180deg); }
 
+/* الوجهان - يخفيان الظهر عند القلب */
 .card-face{
   position: absolute;
   inset: 0;
@@ -1059,11 +1129,13 @@ tfoot td{
   overflow: hidden;
 }
 
+/* انيميشن العوم للبطاقة */
 @keyframes floatCard{
   0%,100%{ transform: translateY(0); }
   50%{ transform: translateY(-8px); }
 }
 
+/* الوجه الأمامي للبطاقة */
 .card-front{
   position: absolute;
   inset: 0;
@@ -1088,6 +1160,7 @@ tfoot td{
 .card-front::before,
 .card-front::after{ display: none; }
 
+/* إطار الصورة الشخصية */
 .avatar-ring{
   position: relative;
   width: 160px;
@@ -1101,6 +1174,7 @@ tfoot td{
   box-sizing: border-box;
 }
 
+/* الحاوية الداخلية للصورة */
 .avatar-inner{
   width: 100%;
   height: 100%;
@@ -1110,6 +1184,7 @@ tfoot td{
   box-shadow: var(--shadow-inset-sm);
 }
 
+/* الصورة الشخصية */
 .avatar-inner img{
   width: 100%;
   height: 100%;
@@ -1118,6 +1193,7 @@ tfoot td{
   display: block;
 }
 
+/* الاسم على الوجه الأمامي */
 .card-name{
   font-family: 'Syne', sans-serif;
   font-size: 1.55rem;
@@ -1127,6 +1203,7 @@ tfoot td{
   text-shadow: none;
 }
 
+/* المسمى الوظيفي */
 .card-sub{
   font-family: 'Space Mono', monospace;
   font-size: 0.66rem;
@@ -1136,6 +1213,7 @@ tfoot td{
   opacity: 0.9;
 }
 
+/* شارات المهارات */
 .chips{
   display: flex;
   gap: 7px;
@@ -1162,6 +1240,7 @@ tfoot td{
   box-shadow: var(--shadow-soft);
 }
 
+/* تلميح القلب في الأسفل */
 .flip-hint{
   position: absolute;
   bottom: 16px;
@@ -1173,11 +1252,13 @@ tfoot td{
   animation: bob 2s ease-in-out infinite;
 }
 
+/* انيميشن صعود وهبوط التلميح */
 @keyframes bob{
   0%,100%{ transform: translateY(0); opacity: 0.75; }
   50%{ transform: translateY(-4px); opacity: 1; }
 }
 
+/* الوجه الخلفي للبطاقة */
 .card-back{
   position: relative;
   padding: 26px 22px;
@@ -1185,7 +1266,7 @@ tfoot td{
   flex-direction: column;
   gap: 12px;
   overflow-y: auto;
-  transform: rotateY(180deg);
+  transform: rotateY(180deg); /* مقلوب بالافتراضي */
   border-radius: var(--card-radius);
   border: none;
   background: var(--surface);
@@ -1194,6 +1275,7 @@ tfoot td{
 
 .card-back::before{ display: none; }
 
+/* اسم المستخدم في الظهر */
 .back-name{
   font-family: 'Syne', sans-serif;
   font-size: 1.15rem;
@@ -1206,6 +1288,7 @@ tfoot td{
   border-bottom: 1px solid #ffffff12;
 }
 
+/* صف معلومة واحدة */
 .info-row{
   display: flex;
   gap: 12px;
@@ -1224,6 +1307,7 @@ tfoot td{
   transform: translateX(-2px);
 }
 
+/* أيقونة الصف */
 .info-ico{
   flex-shrink: 0;
   width: 30px;
@@ -1241,6 +1325,7 @@ tfoot td{
   color: var(--accent2);
 }
 
+/* تسمية الصف */
 .info-lbl{
   font-family: 'Space Mono', monospace;
   font-size: 0.6rem;
@@ -1251,12 +1336,14 @@ tfoot td{
   opacity: 0.9;
 }
 
+/* قيمة الصف */
 .info-val{
   font-size: 0.79rem;
   line-height: 1.55;
   color: var(--text);
 }
 
+/* معلومات التواصل في الأسفل */
 .back-contact{
   margin-top: auto;
   padding-top: 14px;
@@ -1277,6 +1364,8 @@ tfoot td{
 
 .back-contact p:hover{ color: var(--text); }
 
+/* ── FOOTER ── */
+/* قسم الذيل */
 footer{
   border-top: 1px solid #ffffff12;
   padding: 36px;
@@ -1306,6 +1395,8 @@ footer{
 
 .f-credit span{ color: var(--accent2); }
 
+/* ── TOAST ── */
+/* رسائل الإشعار المنبثقة */
 .toast{
   position: fixed;
   bottom: 26px;
@@ -1319,14 +1410,17 @@ footer{
   font-size: 0.73rem;
   color: var(--text);
   z-index: 9999;
-  transform: translateX(140%);
+  transform: translateX(140%); /* مخفي خارج الشاشة */
   transition: transform 0.4s cubic-bezier(.4,0,.2,1);
   max-width: 280px;
   box-shadow: var(--shadow-soft);
 }
 
+/* يظهر عند إضافة class "show" بالـ JS */
 .toast.show{ transform: translateX(0); }
 
+/* ── MODALS ── */
+/* النوافذ المنبثقة */
 .modal-ov{
   position: fixed;
   inset: 0;
@@ -1334,14 +1428,16 @@ footer{
   background: rgba(6,9,15,0.72);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  display: none;
+  display: none; /* مخفي افتراضياً */
   align-items: center;
   justify-content: center;
   padding: 20px;
 }
 
+/* يظهر عند إضافة class "open" بالـ JS */
 .modal-ov.open{ display: flex; }
 
+/* صندوق المودال */
 .modal-box{
   background: var(--surface);
   border: none;
@@ -1353,11 +1449,13 @@ footer{
   box-shadow: var(--shadow-hover);
 }
 
+/* انيميشن ظهور المودال */
 @keyframes popIn{
   from{ opacity: 0; transform: scale(0.86) translateY(18px); }
   to{ opacity: 1; transform: scale(1) translateY(0); }
 }
 
+/* رأس المودال */
 .m-head{
   background: var(--surface2);
   padding: 19px 23px;
@@ -1368,6 +1466,7 @@ footer{
   gap: 12px;
 }
 
+/* تصنيف المودال */
 .m-tag{
   font-family: 'Space Mono', monospace;
   font-size: 0.59rem;
@@ -1377,6 +1476,7 @@ footer{
   margin-bottom: 2px;
 }
 
+/* عنوان المودال */
 .m-title{
   font-family: 'Syne', sans-serif;
   font-size: 1.12rem;
@@ -1384,6 +1484,7 @@ footer{
   color: var(--text);
 }
 
+/* زر الإغلاق X */
 .x-btn{
   flex-shrink: 0;
   width: 34px;
@@ -1406,6 +1507,7 @@ footer{
   color: var(--accent3);
 }
 
+/* قائمة المشاريع في المودال */
 .proj-list{
   padding: 19px 23px;
   display: flex;
@@ -1413,6 +1515,7 @@ footer{
   gap: 10px;
 }
 
+/* صف مشروع واحد */
 .proj-row{
   display: flex;
   align-items: center;
@@ -1433,6 +1536,7 @@ footer{
   box-shadow: var(--shadow-soft);
 }
 
+/* ألوان hover لكل نوع */
 .proj-row.pu:hover{ background: rgba(59, 130, 246, 0.08); }
 .proj-row.te:hover{ background: rgba(56, 189, 248, 0.08); }
 .proj-row.go:hover{ background: rgba(234, 179, 8, 0.08); }
@@ -1454,6 +1558,7 @@ footer{
   color: var(--muted);
 }
 
+/* السهم على اليمين */
 .pr-arr{
   font-size: 1rem;
   transition: transform 0.24s;
@@ -1462,6 +1567,7 @@ footer{
 
 .proj-row:hover .pr-arr{ transform: translateX(4px); }
 
+/* شارة "Current" */
 .pr-badge{
   font-family: 'Space Mono', monospace;
   font-size: 0.6rem;
@@ -1472,6 +1578,7 @@ footer{
   border-radius: var(--radius-round);
 }
 
+/* نص أسفل مودال المشاريع */
 .m-foot{
   padding: 0 23px 13px;
   font-family: 'Space Mono', monospace;
@@ -1481,8 +1588,10 @@ footer{
   text-align: center;
 }
 
+/* ── PERSONAL STATEMENT MODAL ── */
 .ps-ov{ align-items: flex-start; overflow-y: auto; padding: 28px 20px; }
 
+/* صف الملف الشخصي في الأعلى */
 .ps-profile-row{
   display: flex;
   gap: 17px;
@@ -1495,6 +1604,7 @@ footer{
   box-shadow: var(--shadow-inset-sm);
 }
 
+/* الحرف الأول من الاسم كصورة */
 .ps-av{
   width: 66px;
   height: 66px;
@@ -1511,6 +1621,7 @@ footer{
   box-shadow: var(--shadow-soft);
 }
 
+/* صندوق الملخص */
 .ps-sum{
   background: var(--surface2);
   border-left: 4px solid var(--accent2);
@@ -1520,12 +1631,14 @@ footer{
   box-shadow: var(--shadow-inset-sm);
 }
 
+/* شبكة الخلايا */
 .ps-grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 11px;
 }
 
+/* خلية معلومة واحدة */
 .ps-cell{
   background: var(--surface2);
   border: none;
@@ -1564,10 +1677,12 @@ footer{
   color: var(--accent2);
 }
 
+/* ── LOADING SCREEN ── */
+/* شاشة التحميل عند فتح الصفحة */
 #loader{
   position: fixed;
   inset: 0;
-  z-index: 99999;
+  z-index: 99999; /* فوق كل شي */
   background: var(--bg);
   display: flex;
   align-items: center;
@@ -1575,6 +1690,7 @@ footer{
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
+/* يختفي بعد انتهاء التحميل */
 #loader.hide{
   opacity: 0;
   visibility: hidden;
@@ -1587,22 +1703,14 @@ footer{
   gap: 24px;
 }
 
-.loader-logo{
-  font-family: 'Syne', sans-serif;
-  font-size: 5rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: logoPulse 1.2s ease-in-out infinite alternate;
-}
 
+/* انيميشن نبض الشعار */
 @keyframes logoPulse{
   from{ transform: scale(1); filter: brightness(1); }
   to{ transform: scale(1.08); filter: brightness(1.25); }
 }
 
+/* خلفية شريط التحميل */
 .loader-bar-wrap{
   width: 200px;
   height: 3px;
@@ -1612,6 +1720,7 @@ footer{
   box-shadow: var(--shadow-inset-sm);
 }
 
+/* الشريط المتحرك - يتوسع بالـ JS */
 .loader-bar{
   height: 100%;
   width: 0%;
@@ -1621,6 +1730,7 @@ footer{
   box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
 }
 
+/* نص حالة التحميل */
 .loader-text{
   font-family: 'Space Mono', monospace;
   font-size: 0.72rem;
@@ -1629,36 +1739,21 @@ footer{
   text-transform: uppercase;
 }
 
+/* ── RESPONSIVE ── */
+/* التجاوب مع الشاشات المختلفة */
 @media (max-width: 900px){
-  .navbar{
-    padding: 14px 22px;
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: none;
-  }
+  .navbar{ padding: 14px 22px; background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none; }
   .nav-wrap{ box-shadow: none; }
   .wrap{ padding: 0 18px; }
-  .hero{
-    flex-direction: column;
-    padding-top: 100px;
-    align-items: center;
-  }
+  .hero{ flex-direction: column; padding-top: 100px; align-items: center; }
   .hero-left{ width: 100%; }
   .hero-name{ font-size: 2.8rem; }
 }
 
 @media (max-width: 768px){
-  .navbar{
-    padding: 18px 20px;
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: none;
-  }
+  .navbar{ padding: 18px 20px; background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none; }
   .nav-wrap{ box-shadow: none; }
 }
-
 
 @media (max-width: 640px){
   .wrap{ padding: 0 16px; }
@@ -1678,17 +1773,14 @@ footer{
   .detail-panel{ padding: 16px; border-radius: 14px; }
   .d-grid{ grid-template-columns: 1fr 1fr; gap: 8px; }
   .hero{ padding-top: 80px; padding-bottom: 50px; gap: 36px; }
+  /* تعطيل الانيميشن على الجوال لأداء أفضل */
   .flip-wrap{ animation: none; }
   .card-front::after{ animation: none; opacity: 0.45; }
   .avatar-ring{ animation: none; }
   .card-back::before{ animation: none; }
   .flip-hint{ animation: none; opacity: 0.75; }
   footer{ padding: 24px; margin-top: 40px; border-radius: 16px 16px 0 0; }
-  #sideMenu{
-    width: calc(100vw - 32px);
-    max-width: 260px;
-    right: calc(-100vw);
-  }
+  #sideMenu{ width: calc(100vw - 32px); max-width: 260px; right: calc(-100vw); }
   #sideMenu.open{ right: 16px; }
 }
 
@@ -1698,398 +1790,247 @@ footer{
   .card-area, .flip-wrap{ width: 100%; max-width: 300px; height: 400px; }
 }
 
+/* لمن يفضل تقليل الحركة - إمكانية وصول */
 @media (prefers-reduced-motion: reduce){
   .flip-wrap, .card-front::after, .avatar-ring, .card-back::before, .flip-hint{
     animation: none !important;
   }
   .flip-card{ transition-duration: 0.35s; }
   .skill-card, .skill-card::after, .bar-fill{ transition: none; }
-  .ticker-track{ animation: none; }
   .orb{ animation: none; }
 }
 
 /* =========================================================
-   AI CHATBOT
+   AI CHATBOT — شات بوت الذكاء الاصطناعي
    ========================================================= */
 
+/* زر فتح/إغلاق الشات بوت */
 .chatbot-toggle {
     position: fixed;
     right: 28px;
     bottom: 28px;
     z-index: 9998;
-
     min-width: 150px;
     height: 52px;
-
     padding: 0 22px;
-
     border: none;
     border-radius: 16px;
-
-    background: linear-gradient(
-        135deg,
-        var(--accent),
-        var(--accent2)
-    );
-
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
     color: #051019;
-
     font-family: 'Space Mono', monospace;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-
     cursor: pointer;
-
     box-shadow:
         8px 8px 18px #06080c,
         -8px -8px 18px #202838,
         0 6px 18px rgba(59, 130, 246, 0.3);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .chatbot-toggle:hover {
     transform: translateY(-3px);
-
     box-shadow:
         10px 10px 22px #04050a,
         -10px -10px 22px #263044,
         0 8px 22px rgba(59, 130, 246, 0.35);
 }
 
-
+/* نافذة الشات بوت */
 .chatbot-window {
     position: fixed;
-
     right: 28px;
     bottom: 94px;
-
     width: 380px;
     max-width: calc(100vw - 32px);
     height: 560px;
     max-height: calc(100vh - 120px);
-
     z-index: 9999;
-
     display: flex;
     flex-direction: column;
-
     background: var(--surface);
-
     border-radius: 22px;
-
     box-shadow:
         14px 14px 30px #06080c,
         -14px -14px 30px #202838;
-
     overflow: hidden;
-
+    /* مخفية افتراضياً */
     opacity: 0;
     visibility: hidden;
-    transform:
-        translateY(18px)
-        scale(0.97);
-
+    transform: translateY(18px) scale(0.97);
     transform-origin: bottom right;
-
-    transition:
-        opacity 0.25s ease,
-        visibility 0.25s ease,
-        transform 0.25s ease;
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
 }
 
-
+/* تظهر عند إضافة class "open" */
 .chatbot-window.open {
     opacity: 1;
     visibility: visible;
-
-    transform:
-        translateY(0)
-        scale(1);
+    transform: translateY(0) scale(1);
 }
 
-
-/* -------------------------
-   Header
-------------------------- */
-
+/* رأس نافذة الشات */
 .chatbot-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 18px 20px;
-
     background: var(--surface2);
-
     border-bottom: 1px solid #ffffff12;
 }
 
-
 .chatbot-title {
     font-family: 'Syne', sans-serif;
-
     font-size: 1rem;
     font-weight: 800;
-
     color: var(--text);
 }
 
-
+/* حالة الاتصال */
 .chatbot-status {
     margin-top: 3px;
-
     font-family: 'Space Mono', monospace;
-
     font-size: 0.58rem;
     letter-spacing: 1.3px;
-
     text-transform: uppercase;
-
     color: var(--accent2);
 }
 
-
+/* زر إغلاق النافذة */
 .chatbot-close {
     width: 34px;
     height: 34px;
-
     border: none;
     border-radius: 50%;
-
     background: var(--surface);
-
     color: var(--muted);
-
     font-size: 1.2rem;
-
     cursor: pointer;
-
     box-shadow: var(--shadow-soft);
-
-    transition:
-        color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: color 0.2s ease, box-shadow 0.2s ease;
 }
-
 
 .chatbot-close:hover {
     color: var(--accent2);
-
     box-shadow: var(--shadow-inset);
 }
 
-
-/* -------------------------
-   Messages
-------------------------- */
-
+/* منطقة الرسائل */
 .chatbot-messages {
     flex: 1;
-
     padding: 18px;
-
-    overflow-y: auto;
-
+    overflow-y: auto; /* تمرير عند كثرة الرسائل */
     display: flex;
     flex-direction: column;
-
     gap: 12px;
-
     background: var(--surface);
 }
-
 
 .chatbot-message {
     display: flex;
     width: 100%;
 }
 
+/* رسائل البوت - تظهر على اليسار */
+.chatbot-bot { justify-content: flex-start; }
 
-.chatbot-bot {
-    justify-content: flex-start;
-}
+/* رسائل المستخدم - تظهر على اليمين */
+.chatbot-user { justify-content: flex-end; }
 
-
-.chatbot-user {
-    justify-content: flex-end;
-}
-
-
+/* فقاعة الرسالة */
 .chatbot-bubble {
     max-width: 84%;
-
     padding: 11px 14px;
-
     border-radius: 14px;
-
     font-size: 0.82rem;
-
     line-height: 1.65;
 }
 
-
+/* فقاعة رسالة البوت */
 .chatbot-bot .chatbot-bubble {
     background: var(--surface2);
-
     color: var(--text);
-
-    border-radius:
-        5px
-        14px
-        14px
-        14px;
-
+    border-radius: 5px 14px 14px 14px; /* الزاوية العلوية اليسرى مستقيمة */
     box-shadow: var(--shadow-inset-sm);
 }
 
-
+/* فقاعة رسالة المستخدم */
 .chatbot-user .chatbot-bubble {
-    background:
-        linear-gradient(
-            135deg,
-            var(--accent),
-            var(--accent2)
-        );
-
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
     color: #051019;
-
-    border-radius:
-        14px
-        5px
-        14px
-        14px;
-
+    border-radius: 14px 5px 14px 14px; /* الزاوية العلوية اليمنى مستقيمة */
     font-weight: 600;
 }
 
-
-/* -------------------------
-   Input
-------------------------- */
-
+/* منطقة الإدخال في الأسفل */
 .chatbot-input-wrap {
     display: flex;
-
     gap: 9px;
-
     padding: 14px;
-
     background: var(--surface2);
-
     border-top: 1px solid #ffffff12;
 }
 
-
+/* حقل كتابة الرسالة */
 .chatbot-input {
     flex: 1;
-
     min-width: 0;
-
     height: 44px;
-
     padding: 0 13px;
-
     border: none;
     border-radius: 12px;
-
     outline: none;
-
     background: var(--surface);
-
     color: var(--text);
-
     font-family: 'Manrope', sans-serif;
     font-size: 0.82rem;
-
     box-shadow: var(--shadow-inset-sm);
 }
 
+.chatbot-input::placeholder { color: var(--muted); }
+.chatbot-input:focus { box-shadow: var(--shadow-inset); }
 
-.chatbot-input::placeholder {
-    color: var(--muted);
-}
-
-
-.chatbot-input:focus {
-    box-shadow: var(--shadow-inset);
-}
-
-
+/* زر الإرسال */
 .chatbot-send {
     height: 44px;
-
     padding: 0 16px;
-
     border: none;
     border-radius: 12px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--accent),
-            var(--accent2)
-        );
-
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
     color: #051019;
-
     font-family: 'Space Mono', monospace;
-
     font-size: 0.68rem;
     font-weight: 700;
-
     cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 
 .chatbot-send:hover {
     transform: translateY(-1px);
-
-    box-shadow:
-        0 6px 14px rgba(59, 130, 246, 0.25);
+    box-shadow: 0 6px 14px rgba(59, 130, 246, 0.25);
 }
 
-
-/* -------------------------
-   Mobile
-------------------------- */
-
+/* الشات بوت على الجوال */
 @media (max-width: 640px) {
-
     .chatbot-toggle {
         right: 16px;
         bottom: 16px;
-
         min-width: 132px;
         height: 48px;
-
         padding: 0 17px;
     }
-
-
     .chatbot-window {
         right: 16px;
         bottom: 78px;
-
         width: calc(100vw - 32px);
-
-        height: min(
-            560px,
-            calc(100vh - 100px)
-        );
-
+        height: min(560px, calc(100vh - 100px));
         border-radius: 18px;
     }
 }
 
+/* رسالة المعلومات في أسفل الشات */
 .chatbot-info-message {
     font-size: 11px;
     line-height: 1.5;

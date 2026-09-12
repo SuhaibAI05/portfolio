@@ -108,10 +108,10 @@
         const statHours = document.getElementById('statHours');
         const statSkills = document.getElementById('statSkills');
 
-        const targetDays = 1000;
-        const targetProjects = 6;
+        const targetDays = +1000;
+        const targetProjects = 2;
         const targetHours = 500;
-        const targetSkills = 10;
+        const targetSkills = 11;
 
         let currentDays = 0, currentProjects = 0, currentHours = 0, currentSkills = 0;
         const step = () => {
