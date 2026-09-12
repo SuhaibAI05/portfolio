@@ -2089,3 +2089,12 @@ footer{
         border-radius: 18px;
     }
 }
+
+.chatbot-info-message {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--muted);
+    text-align: center;
+    padding: 8px 14px 12px;
+    opacity: 0.85;
+}
