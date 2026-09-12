@@ -1507,7 +1507,10 @@ footer{
   color: var(--accent3);
 }
 
-/* قائمة المشاريع في المودال */
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+
 .proj-list{
   padding: 19px 23px;
   display: flex;
@@ -1515,167 +1518,279 @@ footer{
   gap: 10px;
 }
 
-/* صف مشروع واحد */
+
 .proj-row{
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 17px;
+  padding: 16px 18px;
   border-radius: 14px;
   background: var(--surface2);
   border: none;
   cursor: pointer;
-  transition: all 0.24s;
+  transition: all 0.24s ease;
   box-shadow: var(--shadow-inset-sm);
   text-decoration: none;
   color: var(--text);
 }
+
 
 .proj-row:hover{
   transform: translateX(5px);
   box-shadow: var(--shadow-soft);
 }
 
-/* ألوان hover لكل نوع */
-.proj-row.pu:hover{ background: rgba(59, 130, 246, 0.08); }
-.proj-row.te:hover{ background: rgba(56, 189, 248, 0.08); }
-.proj-row.go:hover{ background: rgba(234, 179, 8, 0.08); }
 
-.pr-ico{
-  font-weight: 700;
-  color: var(--accent2);
+.proj-row.go:hover{
+  background: rgba(234, 179, 8, 0.08);
 }
+
+
+.proj-row.ai-project:hover{
+  background: rgba(56, 189, 248, 0.08);
+}
+
 
 .pr-name{
   font-family: 'Syne', sans-serif;
   font-weight: 700;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
   color: var(--text);
 }
+
 
 .pr-sub{
   font-size: 0.76rem;
   color: var(--muted);
 }
 
-/* السهم على اليمين */
-.pr-arr{
-  font-size: 1rem;
-  transition: transform 0.24s;
-  color: var(--muted);
-}
 
-.proj-row:hover .pr-arr{ transform: translateX(4px); }
-
-/* شارة "Current" */
 .pr-badge{
+  margin-left: auto;
+  flex-shrink: 0;
   font-family: 'Space Mono', monospace;
   font-size: 0.6rem;
   color: var(--gold);
   border: none;
   background: rgba(234, 179, 8, 0.1);
-  padding: 2px 8px;
+  padding: 3px 9px;
   border-radius: var(--radius-round);
 }
 
-/* نص أسفل مودال المشاريع */
-.m-foot{
-  padding: 0 23px 13px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.59rem;
-  color: var(--muted);
-  letter-spacing: 1px;
-  text-align: center;
+
+.chatbot-badge{
+  color: var(--accent2);
+  background: rgba(56, 189, 248, 0.12);
 }
 
-/* ── PERSONAL STATEMENT MODAL ── */
-.ps-ov{ align-items: flex-start; overflow-y: auto; padding: 28px 20px; }
 
-/* صف الملف الشخصي في الأعلى */
-.ps-profile-row{
+/* ============================================================
+   AI PROJECT DETAILS
+   ============================================================ */
+
+.ai-project-details{
+  max-width: 620px;
+}
+
+
+.ai-project-content{
+  padding: 22px 23px 24px;
+}
+
+
+.project-intro{
+  margin-bottom: 18px;
+}
+
+
+.project-intro h3{
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  margin-bottom: 7px;
+  color: var(--text);
+}
+
+
+.project-intro p{
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   PROJECT OPTIONS
+   ============================================================ */
+
+.project-option{
+  width: 100%;
   display: flex;
-  gap: 17px;
   align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 17px 18px;
+  margin-top: 10px;
   background: var(--surface2);
   border: none;
   border-radius: 14px;
-  padding: 19px;
-  margin-bottom: 19px;
+  box-shadow: var(--shadow-inset-sm);
+  color: var(--text);
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+
+.project-option:hover{
+  transform: translateX(5px);
+  box-shadow: var(--shadow-soft);
+  background: rgba(56, 189, 248, 0.07);
+}
+
+
+.project-option-text{
+  flex: 1;
+}
+
+
+.project-option-title{
+  font-family: 'Syne', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+
+.project-option-desc{
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+
+.project-option-arrow{
+  flex-shrink: 0;
+  color: var(--accent2);
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+
+
+.project-option:hover .project-option-arrow{
+  transform: translateX(4px);
+}
+
+
+/* ============================================================
+   PROJECT ARCHITECTURE
+   ============================================================ */
+
+.architecture-modal{
+  max-width: 680px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+
+.architecture-content{
+  padding: 22px 23px 26px;
+}
+
+
+.architecture-step{
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 15px;
+  background: var(--surface2);
+  border-radius: 14px;
   box-shadow: var(--shadow-inset-sm);
 }
 
-/* الحرف الأول من الاسم كصورة */
-.ps-av{
-  width: 66px;
-  height: 66px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
+
+.architecture-main{
+  border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+
+.architecture-number{
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Syne', sans-serif;
-  font-size: 1.65rem;
-  font-weight: 800;
-  flex-shrink: 0;
-  color: #051019;
-  box-shadow: var(--shadow-soft);
-}
-
-/* صندوق الملخص */
-.ps-sum{
-  background: var(--surface2);
-  border-left: 4px solid var(--accent2);
-  border-radius: 0 10px 10px 0;
-  padding: 15px 19px;
-  margin-bottom: 17px;
-  box-shadow: var(--shadow-inset-sm);
-}
-
-/* شبكة الخلايا */
-.ps-grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 11px;
-}
-
-/* خلية معلومة واحدة */
-.ps-cell{
-  background: var(--surface2);
-  border: none;
-  border-radius: 14px;
-  padding: 15px;
-  box-shadow: var(--shadow-inset-sm);
-}
-
-.ps-cell-lbl{
-  font-family: 'Space Mono', monospace;
-  font-size: 0.57rem;
-  color: var(--gold);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.ps-cell ul{
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.ps-cell li{
-  font-size: 0.8rem;
-  color: var(--text);
-  padding-left: 13px;
-  position: relative;
-}
-
-.ps-cell li::before{
-  content: '▸';
-  position: absolute;
-  left: 0;
+  background: rgba(56, 189, 248, 0.12);
   color: var(--accent2);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.63rem;
+  font-weight: 700;
 }
+
+
+.architecture-title{
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+
+.architecture-desc{
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+
+.architecture-arrow{
+  text-align: center;
+  color: var(--accent2);
+  font-size: 1.2rem;
+  padding: 5px 0;
+}
+
+
+.architecture-components{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+  margin-top: 13px;
+}
+
+
+.architecture-components span{
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent2);
+  background: rgba(56, 189, 248, 0.08);
+  padding: 7px 9px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+
+@media (max-width: 600px){
+
+  .architecture-components{
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-content{
+    padding: 17px;
+  }
+
+  .ai-project-content{
+    padding: 18px;
+  }
+
+}
+
 
 /* ── LOADING SCREEN ── */
 /* شاشة التحميل عند فتح الصفحة */

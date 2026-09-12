@@ -388,41 +388,264 @@
     // ============================================================
     // 8. PROJECTS MODAL
     // ============================================================
-    const projCard = document.getElementById('projCard');
-    const modalProj = document.getElementById('mProj');
-    const xProj = document.getElementById('xProj');
 
-    function openModal() {
+    const projCard =
+        document.getElementById('projCard');
+
+    const modalProj =
+        document.getElementById('mProj');
+
+    const xProj =
+        document.getElementById('xProj');
+
+    const aiChatbotProject =
+        document.getElementById('aiChatbotProject');
+
+    const aiProjectModal =
+        document.getElementById('aiProjectModal');
+
+    const closeAiProject =
+        document.getElementById('closeAiProject');
+
+    const architectureBtn =
+        document.getElementById('architectureBtn');
+
+    const architectureModal =
+        document.getElementById('architectureModal');
+
+    const closeArchitecture =
+        document.getElementById('closeArchitecture');
+
+    const rowPort =
+        document.getElementById('rowPort');
+
+
+    // ============================================================
+    // OPEN PROJECTS MODAL
+    // ============================================================
+
+    function openModal(){
+
         modalProj.classList.add('open');
+
         document.body.style.overflow = 'hidden';
-        // animate rows
-        const rows = modalProj.querySelectorAll('.proj-row');
-        rows.forEach((row, i) => {
-            row.style.opacity = '0';
-            row.style.transform = 'translateY(12px)';
-            setTimeout(() => {
-                row.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                row.style.opacity = '1';
-                row.style.transform = 'translateY(0)';
-            }, 100 + i * 80);
-        });
+
     }
 
-    function closeModal() {
+
+    // ============================================================
+    // CLOSE PROJECTS MODAL
+    // ============================================================
+
+    function closeModal(){
+
         modalProj.classList.remove('open');
+
         document.body.style.overflow = 'visible';
-        const rows = modalProj.querySelectorAll('.proj-row');
-        rows.forEach(row => {
-            row.style.opacity = '0';
-            row.style.transform = 'translateY(12px)';
-        });
+
     }
 
-    projCard.addEventListener('click', openModal);
-    xProj.addEventListener('click', closeModal);
-    modalProj.addEventListener('click', (e) => {
-        if (e.target === modalProj) closeModal();
-    });
+
+    projCard.addEventListener(
+        'click',
+        openModal
+    );
+
+
+    xProj.addEventListener(
+        'click',
+        closeModal
+    );
+
+
+    // Close when clicking outside
+    modalProj.addEventListener(
+        'click',
+        (event) => {
+
+            if (event.target === modalProj){
+                closeModal();
+            }
+
+        }
+    );
+
+
+    // ============================================================
+    // AI CHATBOT PROJECT
+    // ============================================================
+
+    aiChatbotProject.addEventListener(
+        'click',
+        () => {
+
+            closeModal();
+
+            aiProjectModal.classList.add('open');
+
+            document.body.style.overflow =
+                'hidden';
+
+        }
+    );
+
+
+    // ============================================================
+    // CLOSE AI CHATBOT PROJECT
+    // ============================================================
+
+    closeAiProject.addEventListener(
+        'click',
+        () => {
+
+            aiProjectModal.classList.remove(
+                'open'
+            );
+
+            document.body.style.overflow =
+                'visible';
+
+        }
+    );
+
+
+    // Close AI project modal from outside
+    aiProjectModal.addEventListener(
+        'click',
+        (event) => {
+
+            if (
+                event.target === aiProjectModal
+            ){
+
+                aiProjectModal.classList.remove(
+                    'open'
+                );
+
+                document.body.style.overflow =
+                    'visible';
+
+            }
+
+        }
+    );
+
+
+    // ============================================================
+    // ARCHITECTURE
+    // ============================================================
+
+    architectureBtn.addEventListener(
+        'click',
+        () => {
+
+            aiProjectModal.classList.remove(
+                'open'
+            );
+
+            architectureModal.classList.add(
+                'open'
+            );
+
+            document.body.style.overflow =
+                'hidden';
+
+        }
+    );
+
+
+    // ============================================================
+    // CLOSE ARCHITECTURE
+    // ============================================================
+
+    closeArchitecture.addEventListener(
+        'click',
+        () => {
+
+            architectureModal.classList.remove(
+                'open'
+            );
+
+            document.body.style.overflow =
+                'visible';
+
+        }
+    );
+
+
+    // Close Architecture from outside
+    architectureModal.addEventListener(
+        'click',
+        (event) => {
+
+            if (
+                event.target === architectureModal
+            ){
+
+                architectureModal.classList.remove(
+                    'open'
+                );
+
+                document.body.style.overflow =
+                    'visible';
+
+            }
+
+        }
+    );
+
+
+    // ============================================================
+    // WEB PORTFOLIO
+    // ============================================================
+
+    rowPort.addEventListener(
+        'click',
+        () => {
+
+            // Keep the current portfolio row
+            // as a visual project card.
+
+            showToast(
+                'This is the current Web Portfolio project.'
+            );
+
+        }
+    );
+
+
+    // ============================================================
+    // ESC — CLOSE ALL PROJECT MODALS
+    // ============================================================
+
+    document.addEventListener(
+        'keydown',
+        (event) => {
+
+            if (event.key !== 'Escape'){
+                
+                return;
+
+            }
+
+
+            modalProj.classList.remove(
+                'open'
+            );
+
+            aiProjectModal.classList.remove(
+                'open'
+            );
+
+            architectureModal.classList.remove(
+                'open'
+            );
+
+            document.body.style.overflow =
+                'visible';
+
+        }
+    );
 
     // ============================================================
     // 9. TOAST SYSTEM

@@ -446,39 +446,373 @@
 
 <!-- ========== PROJECTS MODAL ========== -->
 <div class="modal-ov" id="mProj">
-    <div class="modal-box" style="max-width:510px;">
+
+    <div class="modal-box project-modal-box">
+
         <div class="m-head">
+
             <div>
                 <div class="m-tag">Portfolio</div>
                 <div class="m-title">My Projects</div>
             </div>
-            <button class="x-btn" id="xProj">X</button>
+
+            <button class="x-btn" id="xProj" type="button">
+                X
+            </button>
+
         </div>
+
+
+        <!-- PROJECTS LIST -->
         <div class="proj-list">
-            <a class="proj-row pu" href="https://suhaibai05.github.io/Personal-Statement/" target="_blank" rel="noopener noreferrer">
+
+            <!-- AI CHATBOT -->
+            <div class="proj-row ai-project" id="aiChatbotProject">
+
                 <div class="pr-info">
-                    <div class="pr-name">Personal Statement</div>
-                    <div class="pr-sub">View my academic &amp; professional profile</div>
+
+                    <div class="pr-name">
+                        AI Chatbot
+                    </div>
+
+                    <div class="pr-sub">
+                        Python · NLP · Machine Learning · Flask
+                    </div>
+
                 </div>
-                <span class="pr-arr" style="color:var(--accent);"></span>
-            </a>
-            <a class="proj-row te" href="https://suhaibai05.github.io/CALCULATOR-MODAL/" target="_blank" rel="noopener noreferrer">
-                <div class="pr-info">
-                    <div class="pr-name">Smart Calculator</div>
-                    <div class="pr-sub">Scientific + unit converter + history log</div>
-                </div>
-                <span class="pr-arr" style="color:var(--accent2);"></span>
-            </a>
-            <div class="proj-row go" id="rowPort">
-                <div class="pr-info">
-                    <div class="pr-name">Web Portfolio</div>
-                    <div class="pr-sub">This very site — HTML5 · CSS3 · JavaScript</div>
-                </div>
-                <span class="pr-badge">Current</span>
+
+                <span class="pr-badge chatbot-badge">
+                    VIEW
+                </span>
+
             </div>
+
+
+            <!-- WEB PORTFOLIO -->
+            <div class="proj-row go" id="rowPort">
+
+                <div class="pr-info">
+
+                    <div class="pr-name">
+                        Web Portfolio
+                    </div>
+
+                    <div class="pr-sub">
+                        HTML5 · CSS3 · JavaScript
+                    </div>
+
+                </div>
+
+                <span class="pr-badge">
+                    Current
+                </span>
+
+            </div>
+
         </div>
-        <div class="m-foot">ESC to close · 3 projects</div>
+
+
+        <div class="m-foot">
+            ESC to close · 2 projects
+        </div>
+
     </div>
+
+</div>
+
+
+<!-- ========== AI CHATBOT PROJECT DETAILS ========== -->
+<div class="modal-ov" id="aiProjectModal">
+
+    <div class="modal-box ai-project-details">
+
+        <div class="m-head">
+
+            <div>
+                <div class="m-tag">
+                    AI PROJECT
+                </div>
+
+                <div class="m-title">
+                    AI Chatbot
+                </div>
+            </div>
+
+            <button
+                class="x-btn"
+                id="closeAiProject"
+                type="button"
+            >
+                X
+            </button>
+
+        </div>
+
+
+        <div class="ai-project-content">
+
+            <div class="project-intro">
+
+                <h3>
+                    AI Portfolio Assistant
+                </h3>
+
+                <p>
+                    A Python-based NLP chatbot integrated
+                    into the portfolio website to answer
+                    questions about Suhaib's skills,
+                    projects, courses, education, and goals.
+                </p>
+
+            </div>
+
+
+            <!-- OPTION 1 -->
+            <a
+                class="project-option"
+                href="https://github.com/SuhaibAI05/AI-Chatbot"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="project-option-text">
+
+                    <div class="project-option-title">
+                        GitHub Repository
+                    </div>
+
+                    <div class="project-option-desc">
+                        View the complete source code
+                        and project files.
+                    </div>
+
+                </div>
+
+                <span class="project-option-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <!-- OPTION 2 -->
+            <button
+                class="project-option"
+                id="architectureBtn"
+                type="button"
+            >
+
+                <div class="project-option-text">
+
+                    <div class="project-option-title">
+                        Project Architecture
+                    </div>
+
+                    <div class="project-option-desc">
+                        Explore how the AI Chatbot works
+                        from the user interface to the
+                        final response.
+                    </div>
+
+                </div>
+
+                <span class="project-option-arrow">
+                    →
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========== PROJECT ARCHITECTURE ========== -->
+<div class="modal-ov" id="architectureModal">
+
+    <div class="modal-box architecture-modal">
+
+        <div class="m-head">
+
+            <div>
+                <div class="m-tag">
+                    SYSTEM DESIGN
+                </div>
+
+                <div class="m-title">
+                    Project Architecture
+                </div>
+            </div>
+
+            <button
+                class="x-btn"
+                id="closeArchitecture"
+                type="button"
+            >
+                X
+            </button>
+
+        </div>
+
+
+        <div class="architecture-content">
+
+
+            <div class="architecture-step">
+                <div class="architecture-number">
+                    01
+                </div>
+
+                <div>
+                    <div class="architecture-title">
+                        User
+                    </div>
+
+                    <div class="architecture-desc">
+                        The user asks a question through
+                        the AI Assistant inside the portfolio.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="architecture-arrow">
+                ↓
+            </div>
+
+
+            <div class="architecture-step">
+                <div class="architecture-number">
+                    02
+                </div>
+
+                <div>
+                    <div class="architecture-title">
+                        Portfolio Website
+                    </div>
+
+                    <div class="architecture-desc">
+                        JavaScript receives the user's message
+                        and sends it to the Flask API.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="architecture-arrow">
+                ↓
+            </div>
+
+
+            <div class="architecture-step">
+                <div class="architecture-number">
+                    03
+                </div>
+
+                <div>
+                    <div class="architecture-title">
+                        Flask API
+                    </div>
+
+                    <div class="architecture-desc">
+                        The backend receives the message and
+                        passes it to the chatbot engine.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="architecture-arrow">
+                ↓
+            </div>
+
+
+            <div class="architecture-step architecture-main">
+
+                <div class="architecture-number">
+                    04
+                </div>
+
+                <div>
+
+                    <div class="architecture-title">
+                        Chatbot Engine
+                    </div>
+
+                    <div class="architecture-desc">
+                        The main intelligence layer processes
+                        the user's question using several
+                        techniques.
+                    </div>
+
+
+                    <div class="architecture-components">
+
+                        <span>
+                            Strong Intent Rules
+                        </span>
+
+                        <span>
+                            TF-IDF
+                        </span>
+
+                        <span>
+                            Logistic Regression
+                        </span>
+
+                        <span>
+                            Fuzzy Matching
+                        </span>
+
+                        <span>
+                            Portfolio Knowledge
+                        </span>
+
+                        <span>
+                            Conversation Memory
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="architecture-arrow">
+                ↓
+            </div>
+
+
+            <div class="architecture-step">
+
+                <div class="architecture-number">
+                    05
+                </div>
+
+                <div>
+
+                    <div class="architecture-title">
+                        Response
+                    </div>
+
+                    <div class="architecture-desc">
+                        The generated answer is returned
+                        through the API and displayed
+                        inside the AI Assistant.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
 </div>
 <!-- ========== AI CHATBOT ========== -->
 
