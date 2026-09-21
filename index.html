@@ -870,6 +870,41 @@
     </div>
 
 </div>
+
+<!-- ========== OFFLINE SCREEN ========== -->
+<div id="offlineScreen" class="offline-screen">
+        <svg class="offline-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- جسم رجل الكهف -->
+        <ellipse cx="120" cy="150" rx="38" ry="46" fill="#e2c9a0"/>
+        <!-- الرأس -->
+        <circle cx="120" cy="88" r="34" fill="#e2c9a0"/>
+        <!-- شعر رجل الكهف -->
+        <path d="M92 78 Q90 48 120 50 Q150 48 148 78 Q140 60 120 62 Q100 60 92 78 Z" fill="#5c4433"/>
+        <!-- العينين -->
+        <circle cx="109" cy="90" r="4" fill="#2a3f6a"/>
+        <circle cx="131" cy="90" r="4" fill="#2a3f6a"/>
+        <!-- الحواجب -->
+        <path d="M101 80 Q109 75 117 80" stroke="#5c4433" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M123 80 Q131 75 139 80" stroke="#5c4433" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- الفم (متسائل/حزين) -->
+        <path d="M110 106 Q120 100 130 106" stroke="#5c4433" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- الهراوة -->
+        <rect x="150" y="120" width="10" height="60" rx="5" fill="#8a6d4d" transform="rotate(25 155 150)"/>
+        <ellipse cx="172" cy="128" rx="14" ry="11" fill="#8a6d4d" transform="rotate(25 172 128)"/>
+        <!-- علامة WiFi مقطوعة فوق راسه -->
+        <g transform="translate(120,20)">
+            <path d="M-20 14 Q0 -6 20 14" stroke="#dc2626" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+            <path d="M-11 21 Q0 10 11 21" stroke="#dc2626" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+            <circle cx="0" cy="30" r="3" fill="#dc2626"/>
+            <line x1="-24" y1="-4" x2="24" y2="34" stroke="#dc2626" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+    </svg>
+
+    <div class="offline-code">404</div>
+    <h2 class="offline-title">فقدت الاتصال بالإنترنت</h2>
+    <button class="offline-retry-btn" onclick="location.reload()">إعادة المحاولة</button>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>

@@ -954,6 +954,24 @@
         );
 
     });
+
+    // ============================================================
+    // OFFLINE DETECTION
+    // ============================================================
+    const offlineScreen = document.getElementById('offlineScreen');
+
+    function updateOnlineStatus() {
+        if (navigator.onLine) {
+            offlineScreen.classList.remove('show');
+        } else {
+            offlineScreen.classList.add('show');
+        }
+    }
+
+    window.addEventListener('offline', updateOnlineStatus);
+    window.addEventListener('online', updateOnlineStatus);
+    updateOnlineStatus(); // فحص الحالة عند تحميل الصفحة
+    
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
